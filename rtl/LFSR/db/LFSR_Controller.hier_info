@@ -1,0 +1,26 @@
+|LFSR_Controller
+enable => ~NO_FANOUT~
+counter[0] <= <GND>
+counter[1] <= <GND>
+counter[2] <= <GND>
+counter[3] <= <GND>
+counter[4] <= <GND>
+counter[5] <= <GND>
+counter[6] <= <GND>
+counter[7] <= <GND>
+counter[8] <= <GND>
+counter[9] <= <GND>
+counter[10] <= <GND>
+counter[11] <= <GND>
+counter[12] <= <GND>
+counter[13] <= <GND>
+counter[14] <= <GND>
+counter[15] <= <GND>
+counter[16] <= <GND>
+counter[17] <= <GND>
+counter[18] <= <GND>
+counter[19] <= <GND>
+counter[20] <= <GND>
+counter[21] <= <GND>
+
+
