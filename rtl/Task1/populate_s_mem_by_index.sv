@@ -23,8 +23,9 @@ module populate_s_mem_by_index(
 
 	always_ff @(posedge clk) begin
 		if (address != 256) begin
-				address 				<= address + 1;
-				write_enable_out 	<= 1'b1;
+				address 					<= address + 1;
+				write_enable_out 		<= 1'b1;
+				assign_by_index_done <= 1'b0;
 		end
 		else 	begin	
 			write_enable_out		<= 1'b0;
