@@ -1,5 +1,5 @@
 |ksa
-CLOCK_50 => CLOCK_50.IN1
+CLOCK_50 => CLOCK_50.IN2
 
 
 |ksa|s_memory:s_memory_controller
@@ -658,5 +658,37 @@ ENA => WORD_SR.OUTPUTSELECT
 ENA => WORD_SR.OUTPUTSELECT
 TDI => WORD_SR.DATAA
 TDO <= WORD_SR[0].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ksa|populate_s_mem_by_index:task1
+clk => assign_by_index_done~reg0.CLK
+clk => write_enable_out~reg0.CLK
+clk => address[0].CLK
+clk => address[1].CLK
+clk => address[2].CLK
+clk => address[3].CLK
+clk => address[4].CLK
+clk => address[5].CLK
+clk => address[6].CLK
+clk => address[7].CLK
+clk => address[8].CLK
+address_out[0] <= address[0].DB_MAX_OUTPUT_PORT_TYPE
+address_out[1] <= address[1].DB_MAX_OUTPUT_PORT_TYPE
+address_out[2] <= address[2].DB_MAX_OUTPUT_PORT_TYPE
+address_out[3] <= address[3].DB_MAX_OUTPUT_PORT_TYPE
+address_out[4] <= address[4].DB_MAX_OUTPUT_PORT_TYPE
+address_out[5] <= address[5].DB_MAX_OUTPUT_PORT_TYPE
+address_out[6] <= address[6].DB_MAX_OUTPUT_PORT_TYPE
+address_out[7] <= address[7].DB_MAX_OUTPUT_PORT_TYPE
+data_out[0] <= address[0].DB_MAX_OUTPUT_PORT_TYPE
+data_out[1] <= address[1].DB_MAX_OUTPUT_PORT_TYPE
+data_out[2] <= address[2].DB_MAX_OUTPUT_PORT_TYPE
+data_out[3] <= address[3].DB_MAX_OUTPUT_PORT_TYPE
+data_out[4] <= address[4].DB_MAX_OUTPUT_PORT_TYPE
+data_out[5] <= address[5].DB_MAX_OUTPUT_PORT_TYPE
+data_out[6] <= address[6].DB_MAX_OUTPUT_PORT_TYPE
+data_out[7] <= address[7].DB_MAX_OUTPUT_PORT_TYPE
+write_enable_out <= write_enable_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+assign_by_index_done <= assign_by_index_done~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 

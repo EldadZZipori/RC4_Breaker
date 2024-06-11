@@ -6,28 +6,29 @@
 	for (i in 255) s[i] = i
 */
 module populate_s_mem_by_index(
-	input logic CLOCK_50
+	input 	logic 	clk,
+	
+	output	logic[7:0]		address_out,
+	output	logic[7:0]		data_out,
+	output	logic				write_enable_out,
+	output 	logic 			assign_by_index_done
 );
 
-	logic	[7:0] memory [255:0]; 				// For storing the memory from s_memory
-	logic	[7:0] current_q;
-	logic	[8:0] address_in;						// data_in and address_in is going to be exactlly the same s[i] = i
+	logic	[8:0] address;						// data_in and address_in is going to be exactlly the same s[i] = i
 	logic 		write_enable;
 	
-	s_memory s_memory_controller(
-		.address	(address_in[7:0]),
-		.clock	(CLOCK_50),
-		.data		(address_in[7:0]),
-		.wren		(write_enable),				// write enable
-		.q			()									// 8 bits output at a time
-	);
+	assign address_out 		= 	address[7:0];
+	assign data_out			=	address[7:0];
+	assign write_enable_out	= 	write_enable_out;
 
-	always_ff @(posedge CLOCK_50) begin
-		if (address_in != 256) begin
-				address_in 		<= address_in + 1;
-				write_enable 	<= 1'b1;
+	always_ff @(posedge clk) begin
+		if (address != 256) begin
+				address 				<= address + 1;
+				write_enable_out 	<= 1'b1;
 		end
-		else 	write_enable	<= 1'b0;
+		else 	begin	
+			write_enable_out		<= 1'b0;
+			assign_by_index_done <= 1'b1;
+		end		
 	end
-	
 endmodule
