@@ -13,8 +13,7 @@ module decryption_fsm
 	input logic [MSG_WIDTH-1:0]	s_data_in,
 	
 	output logic [MSG_WIDTH-1:0]	decrypted_output[MSG_DEP-1:0],
-	output logic [MSG_WIDTH-1:0]	current_index,
-	output logic						read_mem_direct,
+	output logic [MSG_WIDTH:0]		current_index,
 	
 	output logic [MSG-WIDTH-1:0] 	address_out,
 	output logic						wn_en,
@@ -43,10 +42,7 @@ module decryption_fsm
 	logic [4:0] current_state/*synthesis keep*/;
 	logic [4:0] next_state;
 	
-	logic [MSG_WIDTH-1:0] 	f;
-	logic [MSG_WIDTH:0]		current_i;
-	
-	assign current_index = current_i[MSG_WIDTH-1:0];
+	logic [MSG_WIDTH-1:0] 	f;	
 	
 	// Flip flop to register the current state
 	always_ff @(posedge clk) begin
@@ -80,8 +76,8 @@ module decryption_fsm
 					next_state = DETERMINE;
 				end
 				DETEMINE: begin
-					if (current_i == ({MSG_WIDTH,1'b1} + 1))  next_state = DONE;
-					else													next_state = WAIT_AVAIL;	
+					if (current_index == ({MSG_WIDTH,1'b1} + 1))  	next_state = DONE;
+					else															next_state = WAIT_AVAIL;	
 				end
 				DONE: begin
 					next_state = DONE;
@@ -90,12 +86,12 @@ module decryption_fsm
 		end
 	end
 	
-	assign wn_en = 1'b0;					 // Should never write into S
+	assign wn_en = 1'b0;					 				// Should never write into S
 	
 	always_ff @ (posedge clk) begin
 		case (current_state)
 			IDLE: begin
-				current_i <= 0;
+				current_index <= 0;
 			end
 			SEND_S_ADDR: begin
 				address_out <= s_i + s_j;
@@ -104,10 +100,10 @@ module decryption_fsm
 				f <= s_data_in;
 			end
 			DECRYPT: begin
-				decrypted_output[current_i] = f ^ encrypted_input[current_i];
+				decrypted_output[current_index] = f ^ encrypted_input[current_i];
 			end
 			INCREMENT_INDEX: begin
-				current_i <= current_i + 1;
+				current_index <= current_index + 1;
 			end
 		endcase
 	end
