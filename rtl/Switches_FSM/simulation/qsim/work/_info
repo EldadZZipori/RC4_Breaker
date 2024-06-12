@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Switches_FSM/simulation/qsim
+vswitches_fsm
+!s110 1718218205
+!i10b 1
+!s100 G_C__YJ[M[QSf4VYFR^If1
+IY>E8en0F3Z1<ClYE_daS<2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1718218204
+8switches_fsm.vo
+Fswitches_fsm.vo
+L0 32
+Z2 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z3 !s108 1718218205.000000
+!s107 switches_fsm.vo|
+!s90 -work|work|switches_fsm.vo|
+!i113 1
+Z4 o-work work
+Z5 tCvgOpt 0
+vswitches_fsm_vlg_vec_tst
+!s110 1718218206
+!i10b 1
+!s100 LNWdP=Kk3hmG[XaWiWc[C2
+IIofYTfllnYPB5?Bdb0?ai3
+R1
+R0
+w1718218203
+8switches_fsm_simulation.vwf.vt
+Fswitches_fsm_simulation.vwf.vt
+L0 30
+R2
+r1
+!s85 0
+31
+R3
+!s107 switches_fsm_simulation.vwf.vt|
+!s90 -work|work|switches_fsm_simulation.vwf.vt|
+!i113 1
+R4
+R5
