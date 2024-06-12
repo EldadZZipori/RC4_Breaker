@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Wed Jun 12 14:40:17 2024
+Analysis & Synthesis Status : Successful - Wed Jun 12 16:21:44 2024
 Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 Revision Name : shuffle_fsm
 Top-level Entity Name : shuffle_fsm
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 28
-Total pins : 87
+Total registers : 52
+Total pins : 61
 Total virtual pins : 0
 Total block memory bits : 0
 Total DSP Blocks : 0

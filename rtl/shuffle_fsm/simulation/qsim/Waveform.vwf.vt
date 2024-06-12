@@ -1,0 +1,288 @@
+// Copyright (C) 2016  Intel Corporation. All rights reserved.
+// Your use of Intel Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Intel Program License 
+// Subscription Agreement, the Intel Quartus Prime License Agreement,
+// the Intel MegaCore Function License Agreement, or other 
+// applicable license agreement, including, without limitation, 
+// that your use is for the sole purpose of programming logic 
+// devices manufactured by Intel and sold by Intel or its 
+// authorized distributors.  Please refer to the applicable 
+// agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "06/12/2024 16:25:39"
+                                                                                
+// Verilog Test Bench (with test vectors) for design :                          shuffle_fsm
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module shuffle_fsm_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg CLOCK_50;
+reg [7:0] index;
+reg reset;
+reg [7:0] s;
+reg [23:0] secret_key;
+// wires                                               
+wire [7:0] address;
+wire [7:0] data;
+wire shuffle_finished;
+wire sij_ready;
+wire write_enable;
+
+// assign statements (if any)                          
+shuffle_fsm i1 (
+// port map - connection between master ports and signals/registers   
+	.CLOCK_50(CLOCK_50),
+	.address(address),
+	.data(data),
+	.index(index),
+	.reset(reset),
+	.s(s),
+	.secret_key(secret_key),
+	.shuffle_finished(shuffle_finished),
+	.sij_ready(sij_ready),
+	.write_enable(write_enable)
+);
+initial 
+begin 
+#1000000 $finish;
+end 
+
+// CLOCK_50
+initial
+begin
+	repeat(12)
+	begin
+		CLOCK_50 = 1'b0;
+		CLOCK_50 = #40000 1'b1;
+		# 40000;
+	end
+	CLOCK_50 = 1'b0;
+end 
+
+// reset
+initial
+begin
+	reset = 1'b0;
+end 
+// secret_key[ 23 ]
+initial
+begin
+	secret_key[23] = 1'b0;
+end 
+// secret_key[ 22 ]
+initial
+begin
+	secret_key[22] = 1'b0;
+end 
+// secret_key[ 21 ]
+initial
+begin
+	secret_key[21] = 1'b0;
+end 
+// secret_key[ 20 ]
+initial
+begin
+	secret_key[20] = 1'b0;
+end 
+// secret_key[ 19 ]
+initial
+begin
+	secret_key[19] = 1'b0;
+end 
+// secret_key[ 18 ]
+initial
+begin
+	secret_key[18] = 1'b0;
+end 
+// secret_key[ 17 ]
+initial
+begin
+	secret_key[17] = 1'b0;
+end 
+// secret_key[ 16 ]
+initial
+begin
+	secret_key[16] = 1'b0;
+end 
+// secret_key[ 15 ]
+initial
+begin
+	secret_key[15] = 1'b0;
+end 
+// secret_key[ 14 ]
+initial
+begin
+	secret_key[14] = 1'b0;
+end 
+// secret_key[ 13 ]
+initial
+begin
+	secret_key[13] = 1'b0;
+end 
+// secret_key[ 12 ]
+initial
+begin
+	secret_key[12] = 1'b0;
+end 
+// secret_key[ 11 ]
+initial
+begin
+	secret_key[11] = 1'b0;
+end 
+// secret_key[ 10 ]
+initial
+begin
+	secret_key[10] = 1'b0;
+end 
+// secret_key[ 9 ]
+initial
+begin
+	secret_key[9] = 1'b0;
+end 
+// secret_key[ 8 ]
+initial
+begin
+	secret_key[8] = 1'b0;
+end 
+// secret_key[ 7 ]
+initial
+begin
+	secret_key[7] = 1'b0;
+end 
+// secret_key[ 6 ]
+initial
+begin
+	secret_key[6] = 1'b0;
+end 
+// secret_key[ 5 ]
+initial
+begin
+	secret_key[5] = 1'b0;
+end 
+// secret_key[ 4 ]
+initial
+begin
+	secret_key[4] = 1'b0;
+end 
+// secret_key[ 3 ]
+initial
+begin
+	secret_key[3] = 1'b0;
+end 
+// secret_key[ 2 ]
+initial
+begin
+	secret_key[2] = 1'b0;
+end 
+// secret_key[ 1 ]
+initial
+begin
+	secret_key[1] = 1'b1;
+end 
+// secret_key[ 0 ]
+initial
+begin
+	secret_key[0] = 1'b1;
+end 
+// index[ 7 ]
+initial
+begin
+	index[7] = 1'b0;
+end 
+// index[ 6 ]
+initial
+begin
+	index[6] = 1'b0;
+end 
+// index[ 5 ]
+initial
+begin
+	index[5] = 1'b0;
+end 
+// index[ 4 ]
+initial
+begin
+	index[4] = 1'b0;
+end 
+// index[ 3 ]
+initial
+begin
+	index[3] = 1'b0;
+end 
+// index[ 2 ]
+initial
+begin
+	index[2] = 1'b0;
+end 
+// index[ 1 ]
+initial
+begin
+	index[1] = 1'b0;
+end 
+// index[ 0 ]
+initial
+begin
+	index[0] = 1'b1;
+end 
+// s[ 7 ]
+initial
+begin
+	s[7] = 1'b0;
+end 
+// s[ 6 ]
+initial
+begin
+	s[6] = 1'b1;
+	s[6] = #290000 1'b0;
+end 
+// s[ 5 ]
+initial
+begin
+	s[5] = 1'b0;
+	s[5] = #290000 1'b1;
+end 
+// s[ 4 ]
+initial
+begin
+	s[4] = 1'b0;
+end 
+// s[ 3 ]
+initial
+begin
+	s[3] = 1'b0;
+	s[3] = #290000 1'b1;
+end 
+// s[ 2 ]
+initial
+begin
+	s[2] = 1'b1;
+	s[2] = #290000 1'b0;
+end 
+// s[ 1 ]
+initial
+begin
+	s[1] = 1'b0;
+	s[1] = #290000 1'b1;
+end 
+// s[ 0 ]
+initial
+begin
+	s[0] = 1'b1;
+	s[0] = #290000 1'b0;
+end 
+endmodule
+

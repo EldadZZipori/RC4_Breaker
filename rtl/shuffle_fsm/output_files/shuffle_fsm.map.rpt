@@ -1,5 +1,5 @@
 Analysis & Synthesis report for shuffle_fsm
-Wed Jun 12 14:40:17 2024
+Wed Jun 12 16:21:44 2024
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -13,10 +13,10 @@ Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. Removed Registers Triggering Further Register Optimizations
- 10. General Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+  8. Registers Protected by Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Source assignments for Top-level Entity: |shuffle_fsm
  12. Parameter Settings for User Entity Instance: Top-level Entity: |shuffle_fsm
  13. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0
  14. Post-Synthesis Netlist Statistics for Top Partition
@@ -48,14 +48,14 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Jun 12 14:40:17 2024       ;
+; Analysis & Synthesis Status     ; Successful - Wed Jun 12 16:21:44 2024       ;
 ; Quartus Prime Version           ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                   ; shuffle_fsm                                 ;
 ; Top-level Entity Name           ; shuffle_fsm                                 ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 28                                          ;
-; Total pins                      ; 87                                          ;
+; Total registers                 ; 52                                          ;
+; Total pins                      ; 61                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -193,25 +193,25 @@ agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 60             ;
+; Estimate of Logic utilization (ALMs needed) ; 66             ;
 ;                                             ;                ;
 ; Combinational ALUT usage for logic          ; 97             ;
 ;     -- 7 input functions                    ; 6              ;
-;     -- 6 input functions                    ; 16             ;
-;     -- 5 input functions                    ; 8              ;
-;     -- 4 input functions                    ; 10             ;
-;     -- <=3 input functions                  ; 57             ;
+;     -- 6 input functions                    ; 11             ;
+;     -- 5 input functions                    ; 14             ;
+;     -- 4 input functions                    ; 18             ;
+;     -- <=3 input functions                  ; 48             ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 28             ;
+; Dedicated logic registers                   ; 52             ;
 ;                                             ;                ;
-; I/O pins                                    ; 87             ;
+; I/O pins                                    ; 61             ;
 ;                                             ;                ;
 ; Total DSP Blocks                            ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 28             ;
-; Total fan-out                               ; 557            ;
-; Average fan-out                             ; 1.86           ;
+; Maximum fan-out                             ; 52             ;
+; Total fan-out                               ; 642            ;
+; Average fan-out                             ; 2.37           ;
 +---------------------------------------------+----------------+
 
 
@@ -220,7 +220,7 @@ agreement for further details.
 +----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node             ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                          ; Entity Name         ; Library Name ;
 +----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |shuffle_fsm                           ; 97 (58)             ; 28 (28)                   ; 0                 ; 0          ; 87   ; 0            ; |shuffle_fsm                                                                                                 ; shuffle_fsm         ; work         ;
+; |shuffle_fsm                           ; 97 (58)             ; 52 (52)                   ; 0                 ; 0          ; 61   ; 0            ; |shuffle_fsm                                                                                                 ; shuffle_fsm         ; work         ;
 ;    |lpm_divide:Mod0|                   ; 39 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |shuffle_fsm|lpm_divide:Mod0                                                                                 ; lpm_divide          ; work         ;
 ;       |lpm_divide_62m:auto_generated|  ; 39 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |shuffle_fsm|lpm_divide:Mod0|lpm_divide_62m:auto_generated                                                   ; lpm_divide_62m      ; work         ;
 ;          |sign_div_unsign_9kh:divider| ; 39 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |shuffle_fsm|lpm_divide:Mod0|lpm_divide_62m:auto_generated|sign_div_unsign_9kh:divider                       ; sign_div_unsign_9kh ; work         ;
@@ -229,42 +229,49 @@ agreement for further details.
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; state[3]                               ; Merged with state[7]                   ;
-; data_i[1]~reg0                         ; Merged with data_i[0]~reg0             ;
-; data_i[2]~reg0                         ; Merged with data_i[0]~reg0             ;
-; data_i[3]~reg0                         ; Merged with data_i[0]~reg0             ;
-; data_i[4]~reg0                         ; Merged with data_i[0]~reg0             ;
-; data_i[5]~reg0                         ; Merged with data_i[0]~reg0             ;
-; data_i[6]~reg0                         ; Merged with data_i[0]~reg0             ;
-; data_i[7]~reg0                         ; Merged with data_i[0]~reg0             ;
-; data_j[1]~reg0                         ; Merged with data_j[0]~reg0             ;
-; data_j[2]~reg0                         ; Merged with data_j[0]~reg0             ;
-; data_j[3]~reg0                         ; Merged with data_j[0]~reg0             ;
-; data_j[4]~reg0                         ; Merged with data_j[0]~reg0             ;
-; data_j[5]~reg0                         ; Merged with data_j[0]~reg0             ;
-; data_j[6]~reg0                         ; Merged with data_j[0]~reg0             ;
-; data_j[7]~reg0                         ; Merged with data_j[0]~reg0             ;
-; temp[1..7]                             ; Merged with temp[0]                    ;
-; temp[0]                                ; Stuck at GND due to stuck port data_in ;
-; data_j[0]~reg0                         ; Stuck at GND due to stuck port data_in ;
-; data_i[0]~reg0                         ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 25 ;                                        ;
-+----------------------------------------+----------------------------------------+
-
-
-+------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                        ;
-+---------------+---------------------------+----------------------------------------+
-; Register name ; Reason for Removal        ; Registers Removed due to This Register ;
-+---------------+---------------------------+----------------------------------------+
-; temp[0]       ; Stuck at GND              ; data_j[0]~reg0, data_i[0]~reg0         ;
-;               ; due to stuck port data_in ;                                        ;
-+---------------+---------------------------+----------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Protected by Synthesis                                                                                                                          ;
++-------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
+; Register Name                             ; Protected by Synthesis Attribute or Preserve Register Assignment ; Not to be Touched by Netlist Optimizations ;
++-------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
+; state[0]                                  ; yes                                                              ; yes                                        ;
+; state[1]                                  ; yes                                                              ; yes                                        ;
+; state[2]                                  ; yes                                                              ; yes                                        ;
+; state[6]                                  ; yes                                                              ; yes                                        ;
+; state[5]                                  ; yes                                                              ; yes                                        ;
+; state[4]                                  ; yes                                                              ; yes                                        ;
+; state[3]                                  ; yes                                                              ; yes                                        ;
+; a_i[7]                                    ; yes                                                              ; yes                                        ;
+; a_i[6]                                    ; yes                                                              ; yes                                        ;
+; a_i[5]                                    ; yes                                                              ; yes                                        ;
+; a_i[4]                                    ; yes                                                              ; yes                                        ;
+; a_i[3]                                    ; yes                                                              ; yes                                        ;
+; a_i[2]                                    ; yes                                                              ; yes                                        ;
+; a_i[1]                                    ; yes                                                              ; yes                                        ;
+; a_i[0]                                    ; yes                                                              ; yes                                        ;
+; s_i[0]                                    ; yes                                                              ; yes                                        ;
+; s_i[1]                                    ; yes                                                              ; yes                                        ;
+; s_i[2]                                    ; yes                                                              ; yes                                        ;
+; s_i[3]                                    ; yes                                                              ; yes                                        ;
+; s_i[4]                                    ; yes                                                              ; yes                                        ;
+; s_i[5]                                    ; yes                                                              ; yes                                        ;
+; s_i[6]                                    ; yes                                                              ; yes                                        ;
+; s_i[7]                                    ; yes                                                              ; yes                                        ;
+; a_j[0]                                    ; yes                                                              ; yes                                        ;
+; a_j[1]                                    ; yes                                                              ; yes                                        ;
+; a_j[2]                                    ; yes                                                              ; yes                                        ;
+; a_j[3]                                    ; yes                                                              ; yes                                        ;
+; a_j[4]                                    ; yes                                                              ; yes                                        ;
+; a_j[5]                                    ; yes                                                              ; yes                                        ;
+; a_j[6]                                    ; yes                                                              ; yes                                        ;
+; a_j[7]                                    ; yes                                                              ; yes                                        ;
+; k[4]                                      ; yes                                                              ; yes                                        ;
+; k[3]                                      ; yes                                                              ; yes                                        ;
+; k[2]                                      ; yes                                                              ; yes                                        ;
+; k[1]                                      ; yes                                                              ; yes                                        ;
+; k[0]                                      ; yes                                                              ; yes                                        ;
+; Total number of protected registers is 36 ;                                                                  ;                                            ;
++-------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -272,26 +279,72 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 28    ;
+; Total registers                              ; 52    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 2     ;
+; Number of registers using Synchronous Load   ; 18    ;
 ; Number of registers using Asynchronous Clear ; 15    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 21    ;
+; Number of registers using Clock Enable       ; 45    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 129:1              ; 8 bits    ; 688 LEs       ; 0 LEs                ; 688 LEs                ; Yes        ; |shuffle_fsm|i[0]          ;
-; 129:1              ; 3 bits    ; 258 LEs       ; 3 LEs                ; 255 LEs                ; Yes        ; |shuffle_fsm|k[4]          ;
-; 129:1              ; 2 bits    ; 172 LEs       ; 2 LEs                ; 170 LEs                ; Yes        ; |shuffle_fsm|k[1]          ;
-; 130:1              ; 2 bits    ; 172 LEs       ; 28 LEs               ; 144 LEs                ; Yes        ; |shuffle_fsm|state[4]      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------+
+; 128:1              ; 8 bits    ; 680 LEs       ; 0 LEs                ; 680 LEs                ; Yes        ; |shuffle_fsm|data[0]~reg0    ;
+; 64:1               ; 8 bits    ; 336 LEs       ; 0 LEs                ; 336 LEs                ; Yes        ; |shuffle_fsm|address[0]~reg0 ;
+; 129:1              ; 3 bits    ; 258 LEs       ; 3 LEs                ; 255 LEs                ; Yes        ; |shuffle_fsm|k[4]            ;
+; 129:1              ; 2 bits    ; 172 LEs       ; 2 LEs                ; 170 LEs                ; Yes        ; |shuffle_fsm|k[1]            ;
+; 67:1               ; 8 bits    ; 352 LEs       ; 0 LEs                ; 352 LEs                ; Yes        ; |shuffle_fsm|a_i[7]          ;
+; 130:1              ; 2 bits    ; 172 LEs       ; 26 LEs               ; 146 LEs                ; Yes        ; |shuffle_fsm|state[4]        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------+
+
+
++-------------------------------------------------------+
+; Source assignments for Top-level Entity: |shuffle_fsm ;
++-------------------+-------+------+--------------------+
+; Assignment        ; Value ; From ; To                 ;
++-------------------+-------+------+--------------------+
+; PRESERVE_REGISTER ; on    ; -    ; a_i[7]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_i[6]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_i[5]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_i[4]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_i[3]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_i[2]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_i[1]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_i[0]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_j[7]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_j[6]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_j[5]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_j[4]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_j[3]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_j[2]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_j[1]             ;
+; PRESERVE_REGISTER ; on    ; -    ; a_j[0]             ;
+; PRESERVE_REGISTER ; on    ; -    ; k[4]               ;
+; PRESERVE_REGISTER ; on    ; -    ; k[3]               ;
+; PRESERVE_REGISTER ; on    ; -    ; k[2]               ;
+; PRESERVE_REGISTER ; on    ; -    ; k[1]               ;
+; PRESERVE_REGISTER ; on    ; -    ; k[0]               ;
+; PRESERVE_REGISTER ; on    ; -    ; s_i[7]             ;
+; PRESERVE_REGISTER ; on    ; -    ; s_i[6]             ;
+; PRESERVE_REGISTER ; on    ; -    ; s_i[5]             ;
+; PRESERVE_REGISTER ; on    ; -    ; s_i[4]             ;
+; PRESERVE_REGISTER ; on    ; -    ; s_i[3]             ;
+; PRESERVE_REGISTER ; on    ; -    ; s_i[2]             ;
+; PRESERVE_REGISTER ; on    ; -    ; s_i[1]             ;
+; PRESERVE_REGISTER ; on    ; -    ; s_i[0]             ;
+; PRESERVE_REGISTER ; on    ; -    ; state[6]           ;
+; PRESERVE_REGISTER ; on    ; -    ; state[5]           ;
+; PRESERVE_REGISTER ; on    ; -    ; state[4]           ;
+; PRESERVE_REGISTER ; on    ; -    ; state[3]           ;
+; PRESERVE_REGISTER ; on    ; -    ; state[2]           ;
+; PRESERVE_REGISTER ; on    ; -    ; state[1]           ;
+; PRESERVE_REGISTER ; on    ; -    ; state[0]           ;
++-------------------+-------+------+--------------------+
 
 
 +-----------------------------------------------------------------------------+
@@ -332,12 +385,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 28                          ;
+; arriav_ff             ; 52                          ;
 ;     CLR               ; 7                           ;
-;     ENA               ; 11                          ;
+;     ENA               ; 19                          ;
 ;     ENA CLR           ; 8                           ;
-;     ENA SLD           ; 2                           ;
-; arriav_lcell_comb     ; 98                          ;
+;     ENA SLD           ; 18                          ;
+; arriav_lcell_comb     ; 97                          ;
 ;     arith             ; 27                          ;
 ;         0 data inputs ; 7                           ;
 ;         1 data inputs ; 8                           ;
@@ -345,20 +398,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;         4 data inputs ; 5                           ;
 ;     extend            ; 6                           ;
 ;         7 data inputs ; 6                           ;
-;     normal            ; 57                          ;
-;         0 data inputs ; 1                           ;
-;         2 data inputs ; 18                          ;
-;         3 data inputs ; 9                           ;
-;         4 data inputs ; 5                           ;
-;         5 data inputs ; 8                           ;
-;         6 data inputs ; 16                          ;
+;     normal            ; 56                          ;
+;         2 data inputs ; 15                          ;
+;         3 data inputs ; 3                           ;
+;         4 data inputs ; 13                          ;
+;         5 data inputs ; 14                          ;
+;         6 data inputs ; 11                          ;
 ;     shared            ; 8                           ;
 ;         2 data inputs ; 7                           ;
 ;         3 data inputs ; 1                           ;
-; boundary_port         ; 87                          ;
+; boundary_port         ; 61                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 9.40                        ;
-; Average LUT depth     ; 4.65                        ;
+; Average LUT depth     ; 4.13                        ;
 +-----------------------+-----------------------------+
 
 
@@ -377,19 +429,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Wed Jun 12 14:40:00 2024
+    Info: Processing started: Wed Jun 12 16:21:28 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off shuffle_fsm -c shuffle_fsm
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file shuffle_fsm.sv
     Info (12023): Found entity 1: shuffle_fsm File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 10
 Info (12127): Elaborating entity "shuffle_fsm" for the top level hierarchy
-Warning (10855): Verilog HDL warning at shuffle_fsm.sv(68): initial value for variable i should be constant File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 68
-Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(88): truncated value with size 32 to match size of target (8) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 88
+Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(40): truncated value with size 8 to match size of target (7) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 40
+Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(41): truncated value with size 8 to match size of target (7) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 41
+Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(42): truncated value with size 8 to match size of target (7) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 42
+Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(43): truncated value with size 8 to match size of target (7) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 43
+Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(44): truncated value with size 8 to match size of target (7) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 44
+Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(45): truncated value with size 8 to match size of target (7) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 45
+Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(46): truncated value with size 8 to match size of target (7) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 46
+Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(47): truncated value with size 8 to match size of target (7) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 47
+Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(48): truncated value with size 8 to match size of target (7) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 48
+Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(70): truncated value with size 32 to match size of target (8) File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 70
 Info (278001): Inferred 1 megafunctions from design logic
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 88
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 88
-Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter: File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 88
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 70
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 70
+Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter: File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 70
     Info (12134): Parameter "LPM_WIDTHN" = "8"
     Info (12134): Parameter "LPM_WIDTHD" = "2"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -400,44 +460,17 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_9kh File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/db/sign_div_unsign_9kh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ose.tdf
     Info (12023): Found entity 1: alt_u_div_ose File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/db/alt_u_div_ose.tdf Line: 23
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "data_i[0]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_i[1]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_i[2]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_i[3]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_i[4]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_i[5]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_i[6]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_i[7]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_j[0]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_j[1]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_j[2]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_j[3]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_j[4]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_j[5]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_j[6]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
-    Warning (13410): Pin "data_j[7]" is stuck at GND File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 81
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 9 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "assign_by_index_done" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 16
-    Warning (15610): No output dependent on input pin "s_j[0]" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 19
-    Warning (15610): No output dependent on input pin "s_j[1]" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 19
-    Warning (15610): No output dependent on input pin "s_j[2]" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 19
-    Warning (15610): No output dependent on input pin "s_j[3]" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 19
-    Warning (15610): No output dependent on input pin "s_j[4]" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 19
-    Warning (15610): No output dependent on input pin "s_j[5]" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 19
-    Warning (15610): No output dependent on input pin "s_j[6]" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 19
-    Warning (15610): No output dependent on input pin "s_j[7]" File: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/shuffle_fsm.sv Line: 19
 Info (21057): Implemented 192 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 51 input pins
-    Info (21059): Implemented 36 output pins
-    Info (21061): Implemented 105 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 30 warnings
-    Info: Peak virtual memory: 4869 megabytes
-    Info: Processing ended: Wed Jun 12 14:40:17 2024
-    Info: Elapsed time: 00:00:17
-    Info: Total CPU time (on all processors): 00:00:16
+    Info (21058): Implemented 42 input pins
+    Info (21059): Implemented 19 output pins
+    Info (21061): Implemented 131 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 11 warnings
+    Info: Peak virtual memory: 4871 megabytes
+    Info: Processing ended: Wed Jun 12 16:21:44 2024
+    Info: Elapsed time: 00:00:16
+    Info: Total CPU time (on all processors): 00:00:17
 
 
