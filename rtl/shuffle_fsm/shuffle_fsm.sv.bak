@@ -1,0 +1,107 @@
+/*
+    SHUFFLE S MEMORY (FINITE STATE MACHINE)
+    
+    Uses a state machine that shuffles the memory
+    
+    
+*/
+`default nettype none
+
+module shuffle_fsm(
+#( parameter KEYLENGTH = 3)
+     
+(    // inputs
+    input logic CLOCK_50,
+    input logic reset,
+    input    logic assign_by_index_done,
+    input logic [23:0] secret_key,
+    input logic [7:0] s_i,
+    input logic [7:0] s_j,
+    input logic [7:0] data_i,
+    input logic [7:0] data_j,
+    
+    // outputs
+    output logic write_en_i,
+    output logic write_en_j,
+    output logic [7:0] address_i,
+    output logic [7:0] address_j,
+    output logic shuffle_finished
+);
+
+    logic    [7:0] memory [255:0];                 // For storing the memory from s_memory
+    logic    [7:0] current_q;
+    logic    [8:0] address_in;                        // data_in and address_in is going to be exactlly the same s[i] = i
+    logic         write_enable
+    
+    
+   // State register to hold the current state
+   reg [6:0] state;    
+    
+     
+   // State definitions using parameters
+   localparam [6:0] IDLE            = 7'b0000_000;              // Check state
+   localparam [6:0] MOD             = 7'b0001_000;              // Give state
+   localparam [6:0] READ_SI         = 7'b0010_000;                // Waiting to finish
+   localparam [6:0] ASSIGN_J        = 7'b0011_000;              // Registering data
+   localparam [6:0] READ_SJ         = 7'b0100_000;              // Finishing
+   localparam [6:0] WRITE_SI        = 7'b0101_001;              // Finishing
+   localparam [6:0] WRITE_SJ        = 7'b0110_010;              // Finishing
+   localparam [6:0] INCREMENT_I     = 7'b0111_000;              // Finishing
+   localparam [6:0] FINISH          = 7'b1000_100;              // Finishing
+    
+    
+    assign write_en_j = state[0];
+    assign write_en_i = state[1];
+    assign shuffle_finished = state[2];
+    
+    
+    // starting state
+   initial begin
+       state = IDLE;
+   end
+     
+     
+    always_ff @(posedge CLOCK_50 or posedge reset) begin
+        if (reset) begin
+            state >= IDLE;
+        end
+        
+        else begin
+            case(state) begin
+            
+                IDLE:             state <= MOD;
+            
+                
+                MOD:                k <= i % KEY_LENGTH;
+                                    state <= READ_SI;
+                
+                
+                READ_SI:            state <= ASSIGN_J;
+                
+                
+                ASSIGN_J:        state <= READ_SJ;
+                
+                
+                READ_SJ:            state <= WRITE_SI;
+                
+                
+                WRITE_SI:        state <= WRITE_SJ;
+                
+                
+                WRITE_SJ:        state <= INCREMENT_I;
+                
+                
+                INCREMENT_I:    i <= i + 1;
+                                    if(i == 256)    state <= FINISH;
+                                    else                state <= MOD;
+                
+                
+                FINISH:            if(reset)    state <= IDLE;
+                
+                
+            endcase
+        end
+        
+    end
+    
+endmodule
