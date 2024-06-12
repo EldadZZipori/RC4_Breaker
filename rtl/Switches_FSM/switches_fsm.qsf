@@ -38,7 +38,7 @@
 
 
 set_global_assignment -name FAMILY "Cyclone V"
-set_global_assignment -name DEVICE 5CSEMA6F31C6
+set_global_assignment -name DEVICE 5CSEMA5F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY switches_fsm
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.1.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:28:44  JUNE 12, 2024"
@@ -880,5 +880,11 @@ set_global_assignment -name SYSTEMVERILOG_FILE switches_fsm.sv
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name VECTOR_WAVEFORM_FILE switches_fsm_simulation.vwf
+set_global_assignment -name CDF_FILE output_files/Chain3.cdf
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity Basic_Organ_Solution -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity Basic_Organ_Solution -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity Basic_Organ_Solution -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -entity Basic_Organ_Solution -section_id Top
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name CDF_FILE output_files/Chain.cdf
