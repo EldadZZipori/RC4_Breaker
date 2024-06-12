@@ -1,0 +1,5 @@
+module decryption_fsm
+# (parameter MSG_DEP = 32, parameter MSG_WIDTH = 8)
+(
+	input logic [MSG_LEN-1:0]	encrypted_input,
+);
