@@ -1,5 +1,5 @@
 Flow report for rc4
-Tue Jun 11 16:29:04 2024
+Wed Jun 12 14:32:38 2024
 Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 
 
@@ -41,16 +41,16 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Tue Jun 11 16:28:58 2024       ;
+; Flow Status                     ; Successful - Wed Jun 12 14:32:32 2024       ;
 ; Quartus Prime Version           ; 16.1.2 Build 203 01/18/2017 SJ Lite Edition ;
 ; Revision Name                   ; rc4                                         ;
 ; Top-level Entity Name           ; ksa                                         ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 100 / 32,070 ( < 1 % )                      ;
-; Total registers                 ; 144                                         ;
-; Total pins                      ; 3 / 457 ( < 1 % )                           ;
+; Logic utilization (in ALMs)     ; 108 / 32,070 ( < 1 % )                      ;
+; Total registers                 ; 156                                         ;
+; Total pins                      ; 23 / 457 ( 5 % )                            ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 2,048 / 4,065,280 ( < 1 % )                 ;
 ; Total DSP Blocks                ; 0 / 87 ( 0 % )                              ;
@@ -68,7 +68,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/11/2024 16:27:54 ;
+; Start date & time ; 06/12/2024 14:31:20 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; rc4                 ;
 +-------------------+---------------------+
@@ -82,7 +82,7 @@ agreement for further details.
 ; AUTO_RAM_RECOGNITION                              ; Off                                    ; On                 ; --          ; --         ;
 ; AUTO_ROM_RECOGNITION                              ; Off                                    ; On                 ; --          ; --         ;
 ; BLOCK_RAM_AND_MLAB_EQUIVALENT_POWER_UP_CONDITIONS ; Care                                   ; Auto               ; --          ; --         ;
-; COMPILER_SIGNATURE_ID                             ; 141812765405310.171814847415268        ; --                 ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                             ; 141812765405310.171822788004924        ; --                 ; --          ; --         ;
 ; EXTRACT_VERILOG_STATE_MACHINES                    ; Off                                    ; On                 ; --          ; --         ;
 ; EXTRACT_VHDL_STATE_MACHINES                       ; Off                                    ; On                 ; --          ; --         ;
 ; FITTER_EFFORT                                     ; Standard Fit                           ; Auto Fit           ; --          ; --         ;
@@ -99,6 +99,8 @@ agreement for further details.
 ; POWER_PRESET_COOLING_SOLUTION                     ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --                 ; --          ; --         ;
 ; PROJECT_OUTPUT_DIRECTORY                          ; output_files                           ; --                 ; --          ; --         ;
 ; ROUTER_CLOCKING_TOPOLOGY_ANALYSIS                 ; On                                     ; Off                ; --          ; --         ;
+; SEARCH_PATH                                       ; task2                                  ; --                 ; --          ; --         ;
+; SEARCH_PATH                                       ; task1                                  ; --                 ; --          ; --         ;
 ; SYNCHRONIZATION_REGISTER_CHAIN_LENGTH             ; 2                                      ; 3                  ; --          ; --         ;
 ; TOP_LEVEL_ENTITY                                  ; ksa                                    ; rc4                ; --          ; --         ;
 ; VERILOG_INPUT_VERSION                             ; SystemVerilog_2005                     ; Verilog_2001       ; --          ; --         ;
@@ -112,11 +114,11 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:18     ; 1.0                     ; 4890 MB             ; 00:00:35                           ;
-; Fitter                    ; 00:00:38     ; 1.0                     ; 6890 MB             ; 00:01:42                           ;
-; Assembler                 ; 00:00:06     ; 1.0                     ; 4827 MB             ; 00:00:06                           ;
-; TimeQuest Timing Analyzer ; 00:00:05     ; 1.1                     ; 5190 MB             ; 00:00:06                           ;
-; Total                     ; 00:01:07     ; --                      ; --                  ; 00:02:29                           ;
+; Analysis & Synthesis      ; 00:00:22     ; 1.0                     ; 4885 MB             ; 00:00:47                           ;
+; Fitter                    ; 00:00:41     ; 1.0                     ; 6894 MB             ; 00:01:54                           ;
+; Assembler                 ; 00:00:06     ; 1.0                     ; 4831 MB             ; 00:00:06                           ;
+; TimeQuest Timing Analyzer ; 00:00:05     ; 1.2                     ; 5190 MB             ; 00:00:06                           ;
+; Total                     ; 00:01:14     ; --                      ; --                  ; 00:02:53                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

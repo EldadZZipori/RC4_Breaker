@@ -1,5 +1,25 @@
 |ksa
-CLOCK_50 => CLOCK_50.IN2
+CLOCK_50 => CLOCK_50.IN3
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+SW[2] => SW[2].IN1
+SW[3] => SW[3].IN1
+SW[4] => SW[4].IN1
+SW[5] => SW[5].IN1
+SW[6] => SW[6].IN1
+SW[7] => SW[7].IN1
+SW[8] => SW[8].IN1
+SW[9] => SW[9].IN1
+LEDR[0] <= switches_fsm:key_switches_control.LEDR
+LEDR[1] <= switches_fsm:key_switches_control.LEDR
+LEDR[2] <= switches_fsm:key_switches_control.LEDR
+LEDR[3] <= switches_fsm:key_switches_control.LEDR
+LEDR[4] <= switches_fsm:key_switches_control.LEDR
+LEDR[5] <= switches_fsm:key_switches_control.LEDR
+LEDR[6] <= switches_fsm:key_switches_control.LEDR
+LEDR[7] <= switches_fsm:key_switches_control.LEDR
+LEDR[8] <= switches_fsm:key_switches_control.LEDR
+LEDR[9] <= switches_fsm:key_switches_control.LEDR
 
 
 |ksa|s_memory:s_memory_controller
@@ -690,5 +710,65 @@ data_out[6] <= address[6].DB_MAX_OUTPUT_PORT_TYPE
 data_out[7] <= address[7].DB_MAX_OUTPUT_PORT_TYPE
 write_enable_out <= write_enable_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
 assign_by_index_done <= assign_by_index_done~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ksa|switches_fsm:key_switches_control
+CLOCK_50 => secret_key[0]~reg0.CLK
+CLOCK_50 => secret_key[1]~reg0.CLK
+CLOCK_50 => secret_key[2]~reg0.CLK
+CLOCK_50 => secret_key[3]~reg0.CLK
+CLOCK_50 => secret_key[4]~reg0.CLK
+CLOCK_50 => secret_key[5]~reg0.CLK
+CLOCK_50 => secret_key[6]~reg0.CLK
+CLOCK_50 => secret_key[7]~reg0.CLK
+CLOCK_50 => secret_key[8]~reg0.CLK
+CLOCK_50 => secret_key[9]~reg0.CLK
+CLOCK_50 => current_state[0].CLK
+CLOCK_50 => current_state[1].CLK
+CLOCK_50 => current_state[2].CLK
+CLOCK_50 => current_state[3].CLK
+reset => ~NO_FANOUT~
+SW[0] => Equal0.IN19
+SW[0] => secret_key[0]~reg0.DATAIN
+SW[1] => Equal0.IN18
+SW[1] => secret_key[1]~reg0.DATAIN
+SW[2] => Equal0.IN17
+SW[2] => secret_key[2]~reg0.DATAIN
+SW[3] => Equal0.IN16
+SW[3] => secret_key[3]~reg0.DATAIN
+SW[4] => Equal0.IN15
+SW[4] => secret_key[4]~reg0.DATAIN
+SW[5] => Equal0.IN14
+SW[5] => secret_key[5]~reg0.DATAIN
+SW[6] => Equal0.IN13
+SW[6] => secret_key[6]~reg0.DATAIN
+SW[7] => Equal0.IN12
+SW[7] => secret_key[7]~reg0.DATAIN
+SW[8] => Equal0.IN11
+SW[8] => secret_key[8]~reg0.DATAIN
+SW[9] => Equal0.IN10
+SW[9] => secret_key[9]~reg0.DATAIN
+LEDR[0] <= secret_key[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[1] <= secret_key[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[2] <= secret_key[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[3] <= secret_key[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[4] <= secret_key[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[5] <= secret_key[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[6] <= secret_key[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[7] <= secret_key[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[8] <= secret_key[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[9] <= secret_key[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+secret_key[0] <= secret_key[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+secret_key[1] <= secret_key[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+secret_key[2] <= secret_key[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+secret_key[3] <= secret_key[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+secret_key[4] <= secret_key[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+secret_key[5] <= secret_key[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+secret_key[6] <= secret_key[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+secret_key[7] <= secret_key[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+secret_key[8] <= secret_key[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+secret_key[9] <= secret_key[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+key_available <= key_available.DB_MAX_OUTPUT_PORT_TYPE
+key_changed <= key_changed.DB_MAX_OUTPUT_PORT_TYPE
 
 
