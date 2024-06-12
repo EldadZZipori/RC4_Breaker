@@ -1,5 +1,5 @@
 EDA Netlist Writer report for shuffle_fsm
-Wed Jun 12 16:25:41 2024
+Wed Jun 12 16:57:11 2024
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Wed Jun 12 16:25:41 2024 ;
+; EDA Netlist Writer Status ; Successful - Wed Jun 12 16:57:11 2024 ;
 ; Revision Name             ; shuffle_fsm                           ;
 ; Top-level Entity Name     ; shuffle_fsm                           ;
 ; Family                    ; Cyclone V                             ;
@@ -95,14 +95,14 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: devices manufactured by Intel and sold by Intel or its 
     Info: authorized distributors.  Please refer to the applicable 
     Info: agreement for further details.
-    Info: Processing started: Wed Jun 12 16:25:40 2024
+    Info: Processing started: Wed Jun 12 16:57:10 2024
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/" shuffle_fsm -c shuffle_fsm
 Info (119006): Selected device 5CGXFC7C7F23C8 for design "shuffle_fsm"
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file shuffle_fsm.vo in folder "C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4717 megabytes
-    Info: Processing ended: Wed Jun 12 16:25:41 2024
+    Info: Processing ended: Wed Jun 12 16:57:11 2024
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

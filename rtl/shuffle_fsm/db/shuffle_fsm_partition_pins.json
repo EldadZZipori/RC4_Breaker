@@ -88,10 +88,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "index[5]",
-					"strict" : false
-				},
-				{
 					"name" : "index[6]",
 					"strict" : false
 				},
@@ -117,6 +113,10 @@
 				},
 				{
 					"name" : "index[4]",
+					"strict" : false
+				},
+				{
+					"name" : "index[5]",
 					"strict" : false
 				},
 				{

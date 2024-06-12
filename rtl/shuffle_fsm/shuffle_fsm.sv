@@ -42,10 +42,11 @@ module shuffle_fsm
    localparam [6:0] READ_SI         = 8'b0010_000;              // Waiting to finish
    localparam [6:0] ASSIGN_J        = 8'b0011_000;              // Registering data
    localparam [6:0] READ_SJ         = 8'b0100_000;              // Finishing
-   localparam [6:0] WRITE_SI        = 8'b0101_001;              // Finishing
+   localparam [6:0] SWAP        		= 8'b0101_000;              // Finishing
    localparam [6:0] WRITE_SJ        = 8'b0110_001;              // Finishing
-   localparam [6:0] WAIT_FOR_I      = 8'b0111_010;              // Finishing
-   localparam [6:0] FINISH          = 8'b1000_100;              // Finishing
+   localparam [6:0] WRITE_SI        = 8'b0111_001;              // Finishing
+   localparam [6:0] WAIT_FOR_I      = 8'b1000_010;              // Finishing
+   localparam [6:0] FINISH          = 8'b1001_100;              // Finishing
     
    
 	// assign outputs from state bit-wise
@@ -85,10 +86,10 @@ module shuffle_fsm
 
                 READ_SJ: begin
 						  address <= a_j;
-                    state <= WRITE_SI;
+                    state <= SWAP;
                 end
 
-                WRITE_SI: begin
+                SWAP: begin
                     data <= s;
 						  address <= a_i;
                     state <= WRITE_SJ;
@@ -97,6 +98,10 @@ module shuffle_fsm
                 WRITE_SJ: begin
                     data <= s_i;
 						  address <= a_j;
+                    state <= WRITE_SI;
+                end
+
+                WRITE_SI: begin
                     state <= WAIT_FOR_I;
                 end
 

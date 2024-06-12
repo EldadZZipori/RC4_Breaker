@@ -26,7 +26,7 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: devices manufactured by Intel and sold by Intel or its 
     Info: authorized distributors.  Please refer to the applicable 
     Info: agreement for further details.
-    Info: Processing started: Wed Jun 12 16:25:38 2024
+    Info: Processing started: Wed Jun 12 16:57:09 2024
 Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off shuffle_fsm -c shuffle_fsm --vector_source="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/Waveform.vwf" --testbench_file="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/Waveform.vwf.vt"
 Info (119006): Selected device 5CGXFC7C7F23C8 for design "shuffle_fsm"
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -58,14 +58,14 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: devices manufactured by Intel and sold by Intel or its 
     Info: authorized distributors.  Please refer to the applicable 
     Info: agreement for further details.
-    Info: Processing started: Wed Jun 12 16:25:40 2024
+    Info: Processing started: Wed Jun 12 16:57:10 2024
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/" shuffle_fsm -c shuffle_fsm
 Info (119006): Selected device 5CGXFC7C7F23C8 for design "shuffle_fsm"
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file shuffle_fsm.vo in folder "C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4717 megabytes
-    Info: Processing ended: Wed Jun 12 16:25:41 2024
+    Info: Processing ended: Wed Jun 12 16:57:11 2024
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
@@ -87,40 +87,39 @@ Reading C:/intelFPGA_lite/16.1/modelsim_ase/tcl/vsim/pref.tcl
 
 
 # do shuffle_fsm.do
-
 # ** Warning: (vlib-34) Library already exists at "work".
+
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:25:42 on Jun 12,2024
+# Start time: 16:57:12 on Jun 12,2024
 # vlog -work work shuffle_fsm.vo 
 # -- Compiling module shuffle_fsm
-
 # 
 # Top level modules:
 # 	shuffle_fsm
-# End time: 16:25:42 on Jun 12,2024, Elapsed time: 0:00:00
+# End time: 16:57:12 on Jun 12,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:25:42 on Jun 12,2024
-# vlog -work work Waveform.vwf.vt 
 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:57:12 on Jun 12,2024
+# vlog -work work Waveform.vwf.vt 
 # -- Compiling module shuffle_fsm_vlg_vec_tst
 # 
 # Top level modules:
 # 	shuffle_fsm_vlg_vec_tst
-# End time: 16:25:42 on Jun 12,2024, Elapsed time: 0:00:00
+# End time: 16:57:13 on Jun 12,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 
 # vsim -novopt -c -t 1ps -L cyclonev_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.shuffle_fsm_vlg_vec_tst 
-# Start time: 16:25:42 on Jun 12,2024
+# Start time: 16:57:13 on Jun 12,2024
 # Loading work.shuffle_fsm_vlg_vec_tst
 # Loading work.shuffle_fsm
 # Loading altera_ver.dffeas
 # Loading altera_ver.PRIM_GDFF_LOW
-
 # after#25
+
 # ** Note: $finish    : Waveform.vwf.vt(61)
 #    Time: 1 us  Iteration: 0  Instance: /shuffle_fsm_vlg_vec_tst
-# End time: 16:25:43 on Jun 12,2024, Elapsed time: 0:00:01
+# End time: 16:57:13 on Jun 12,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 
 Completed successfully. 
@@ -133,7 +132,7 @@ Reading C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simul
 
 Processing channel transitions... 
 
-Writing the resulting VWF to C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/shuffle_fsm_20240612162543.sim.vwf
+Writing the resulting VWF to C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/shuffle_fsm_20240612165713.sim.vwf
 
 Finished VCD to VWF conversion.
 

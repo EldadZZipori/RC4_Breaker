@@ -1,5 +1,5 @@
 Flow report for shuffle_fsm
-Wed Jun 12 16:25:41 2024
+Wed Jun 12 16:57:11 2024
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -41,7 +41,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Jun 12 16:25:41 2024       ;
+; Flow Status                     ; Successful - Wed Jun 12 16:57:11 2024       ;
 ; Quartus Prime Version           ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                   ; shuffle_fsm                                 ;
 ; Top-level Entity Name           ; shuffle_fsm                                 ;
@@ -68,7 +68,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/12/2024 16:21:29 ;
+; Start date & time ; 06/12/2024 16:56:45 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; shuffle_fsm         ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 1098883674261.171823448930160          ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 1098883674261.171823660530836          ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
 ; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -92,18 +92,10 @@ agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:16     ; 1.0                     ; 4871 MB             ; 00:00:17                           ;
+; Analysis & Synthesis ; 00:00:16     ; 1.0                     ; 4870 MB             ; 00:00:19                           ;
 ; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4714 MB             ; 00:00:01                           ;
 ; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4717 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4715 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4717 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4715 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4717 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4715 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4717 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4715 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4717 MB             ; 00:00:01                           ;
-; Total                ; 00:00:26     ; --                      ; --                  ; 00:00:27                           ;
+; Total                ; 00:00:18     ; --                      ; --                  ; 00:00:21                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -115,14 +107,6 @@ agreement for further details.
 ; Analysis & Synthesis ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
 ; EDA Netlist Writer   ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
 ; EDA Netlist Writer   ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-EHA7JC4  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -130,14 +114,6 @@ agreement for further details.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off shuffle_fsm -c shuffle_fsm
-quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off shuffle_fsm -c shuffle_fsm --vector_source="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/Waveform.vwf" --testbench_file="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/Waveform.vwf.vt"
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/" shuffle_fsm -c shuffle_fsm
-quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off shuffle_fsm -c shuffle_fsm --vector_source="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/Waveform.vwf" --testbench_file="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/Waveform.vwf.vt"
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/" shuffle_fsm -c shuffle_fsm
-quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off shuffle_fsm -c shuffle_fsm --vector_source="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/Waveform.vwf" --testbench_file="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/Waveform.vwf.vt"
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/" shuffle_fsm -c shuffle_fsm
-quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off shuffle_fsm -c shuffle_fsm --vector_source="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/Waveform.vwf" --testbench_file="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/Waveform.vwf.vt"
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/" shuffle_fsm -c shuffle_fsm
 quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off shuffle_fsm -c shuffle_fsm --vector_source="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/Waveform.vwf" --testbench_file="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/Waveform.vwf.vt"
 quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/shuffle_fsm/simulation/qsim/" shuffle_fsm -c shuffle_fsm
 
