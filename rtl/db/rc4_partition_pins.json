@@ -44,11 +44,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[0]",
+					"name" : "CLOCK_50",
 					"strict" : false
 				},
 				{
-					"name" : "CLOCK_50",
+					"name" : "SW[0]",
 					"strict" : false
 				},
 				{

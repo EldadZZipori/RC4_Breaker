@@ -7,6 +7,7 @@
 */
 module populate_s_mem_by_index(
 	input 	logic 	clk,
+	input 	logic		reset,
 	
 	output	logic[7:0]		address_out,
 	output	logic[7:0]		data_out,
@@ -22,7 +23,8 @@ module populate_s_mem_by_index(
 	assign write_enable_out	= 	write_enable_out;
 
 	always_ff @(posedge clk) begin
-		if (address != 256) begin
+		if (reset) address <= 0;
+		else if (address != 256) begin
 				address 					<= address + 1;
 				write_enable_out 		<= 1'b1;
 				assign_by_index_done <= 1'b0;

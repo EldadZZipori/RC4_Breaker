@@ -42,7 +42,8 @@ module ksa
 		.address_out			(by_index_address_out),
 		.data_out				(by_index_data_out),
 		.write_enable_out		(by_index_data_enable),
-		.assign_by_index_done(assign_by_index_done)
+		.assign_by_index_done(assign_by_index_done),
+		.reset					(key_from_switches_changed)
 		
 	);
 	
@@ -77,10 +78,10 @@ module ksa
 	logic			shuffle_mem_finished;
 	logic			shuffle_mem_write_enable;
 	
-	shuffle_fsm shuffle_control # (.KEY_LENGTH(3))
+	/*shuffle_fsm shuffle_control # (.KEY_LENGTH(3))
 	(    
 		 .CLOCK_50				(CLOCK_50),
-		 .reset					(1'b0),
+		 .reset					(key_from_switches_changed),
 		 .secret_key			(secret_key),
 		 .s						(s_memory_q_data_out),
 		 .index					(shuffle_mem_index),
@@ -89,7 +90,7 @@ module ksa
 		 .address				(shuffle_mem_address_out),
 		 .sij_ready				(shuffle_mem_s_i_j_avail),
 		 .shuffle_finished	(shuffle_mem_finished)
-	);
+	); */
 	/*
 		MUX to control which signals conrtol the S memory
 		[*] Move to module at the end
