@@ -1,0 +1,54 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/LFSR/simulation/qsim
+vLFSR_Controller
+Z1 !s110 1718215726
+!i10b 1
+!s100 Wi^7l_YH8Y5D`kV>R383K1
+IAMMEkRWFQ4jTQ1Q?7M:kR3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1718215726
+8LFSR_Controller.vo
+FLFSR_Controller.vo
+L0 32
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1718215726.000000
+!s107 LFSR_Controller.vo|
+!s90 -work|work|LFSR_Controller.vo|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+n@l@f@s@r_@controller
+vLFSR_Controller_vlg_vec_tst
+R1
+!i10b 1
+!s100 [EM??ZJ`RFa4M8GJXc]:B1
+I;ma:Oc03OI8obX^:4?_MB2
+R2
+R0
+w1718215725
+8LFSR_Simulation.vwf.vt
+FLFSR_Simulation.vwf.vt
+L0 30
+R3
+r1
+!s85 0
+31
+R4
+!s107 LFSR_Simulation.vwf.vt|
+!s90 -work|work|LFSR_Simulation.vwf.vt|
+!i113 1
+R5
+R6
+n@l@f@s@r_@controller_vlg_vec_tst
