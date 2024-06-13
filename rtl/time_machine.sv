@@ -5,30 +5,35 @@ module time_machine(
 	input logic key_from_switches_available,
 	input logic shuffle_mem_finished,
 	input logic assign_by_index_done,
+	input logic sec_shuffle_done,
+	input logic s_data_read_done,
 	
 	output logic reset_all,
 	output logic start_shuffle,
 	output logic start_s_i_i,
 	output logic start_sec_shuffle,
+	output logic s_data_read_start,
 	output logic[7:0] current_state
 );
 
-	localparam IDLE 					= 7'b000_0000;
-	localparam RESET					= 7'b001_0001;
-	localparam START_S_I_I 			= 7'b100_0010;
-	localparam S_I_I					= 7'b100_0011;
-	localparam START_SHUFFLE		= 7'b010_0100;
-	localparam SHUFFLE				= 7'b010_0101;
-	localparam STRAT_SEC_SHUFFLE	= 7'b100_0111;
-	localparam SEC_SHUFFLE			= 7'b100_1000;
-	localparam FINAL					= 7'b000_0110;
+	localparam IDLE 					= 7'b0000_000;
+	localparam RESET					= 7'b0001_001;
+	localparam START_S_I_I 			= 7'b0100_010;
+	localparam S_I_I					= 7'b0100_011;
+	localparam START_SHUFFLE		= 7'b0010_100;
+	localparam SHUFFLE				= 7'b0010_101;
+	localparam STRAT_SEC_SHUFFLE	= 7'b1000_111;
+	localparam SEC_SHUFFLE			= 7'b1000_000; 
+	localparam FINAL					= 7'b0000_110;
+	localparam READ_S_DATA			= 7'b1111_000;
 	
 	logic [7:0] next_state;
 	
-	assign reset_all 				= current_state[3];
-	assign start_shuffle 		= current_state[4];
-	assign start_s_i_i			= current_state[5];
-	assign start_sec_shuffle 	= current_state[6];
+	assign reset_all 				= (current_state == RESET);
+	assign start_shuffle 		= (current_state == START_SHUFFLE) | (current_state == SHUFFLE);
+	assign start_s_i_i			= (current_state == START_S_I_I) | (current_state == S_I_I);
+	assign start_sec_shuffle 	= (current_state == STRAT_SEC_SHUFFLE) | (current_state == SEC_SHUFFLE);
+	assign s_data_read_start	= (current_state == READ_S_DATA);
 	
 	always_ff @(posedge CLOCK_50) begin
 		current_state <= next_state;
@@ -66,8 +71,12 @@ module time_machine(
 																next_state = SEC_SHUFFLE;
 				end
 				SEC_SHUFFLE: begin
-					if (sec_shuffle_done)				next_state = FINAL;
+					if (sec_shuffle_done)				next_state = READ_S_DATA;
 					else										next_state = SEC_SHUFFLE;
+				end
+				READ_S_DATA: begin
+					if(s_data_read_done)					next_state = FINAL;
+					else										next_state = READ_S_DATA;
 				end
 				FINAL: begin
 																next_state = FINAL;

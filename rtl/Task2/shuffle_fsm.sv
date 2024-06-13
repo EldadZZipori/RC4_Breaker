@@ -94,7 +94,10 @@ module shuffle_fsm
 							1: address_j 		<= address_j + s_data_at_i + secret_key[15:8];
 							2: address_j 		<= address_j + s_data_at_i + secret_key[7:0];
 						endcase*/
-						address_j = (address_j + s_data_at_i + secret_key[5'd23 - (4'd8 * (address_i % 2'd3)) -: 8]);
+						if (secret_key != 0)
+							address_j = (address_j + s_data_at_i + secret_key[5'd23 - (4'd8 * (address_i % 2'd3)) -: 8]);
+						else 
+							address_j = (address_j + s_data_at_i );
 														
 						state 				<= SETUPT_SJ;
                 end
@@ -131,11 +134,6 @@ module shuffle_fsm
                     if (address_i == 8'd255) begin
                         state <= FINISH;
                     end 
-						  else if (secret_key == 23'd0) begin 			// When there is no secret key skip the modulo operation
-								address_out <= address_i + 1'b1;
-								address_i 	<= address_i + 1'b1;
-								state 		<= READ_SI;
-						  end 
 						  else begin
                         address_i 	<= address_i + 1'b1;
                         state 		<= SETUP_SI_J;

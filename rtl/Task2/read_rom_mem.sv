@@ -1,51 +1,67 @@
-module read_rom_mem(
+/*
+	ROM READER
+*/
+
+module read_rom_mem
+# (parameter DEP = 32, parameter WID = 8)
+(
 	input logic 		clk,
 	input logic			reset,
+	input logic			start,
 	input	logic[7:0]	rom_q_data_in,
 	
 	output logic 		done,
-	output logic[5:0]	address,
-	output logic[7:0] rom_data[31:0]
+	output logic[8:0]	address,
+	output logic[WID-1:0] rom_data[DEP-1:0]
 );
 	
-	localparam IDLE = 2'b00;
-	localparam READ = 2'b01;
-	localparam INC  = 2'b10;
-	localparam DONE = 2'b11;
+	localparam IDLE = 3'b000;
+	localparam WAIT = 3'b100;
+	localparam READ = 3'b001;
+	localparam INC  = 3'b010;
+	localparam DONE = 3'b011;
 	
-	logic[1:0] state;
+	logic[2:0] state;
 	
-	logic [6:0] current_index;
-	logic	[7:0] rom_data_register[31:0];
+	logic [8:0] current_index;
+	logic	[WID-1:0] rom_data_register[DEP-1:0] /*synthesis keep*/;
 	
 	assign rom_data = rom_data_register;
-	assign address = current_index[5:0];
+	assign address = current_index[8:0];
 
 	always_ff @(posedge clk) begin
 		if (reset) begin
 			current_index 	<= 0;
 			state 			<= IDLE;
+			done 				<= 1'b0;
 		end
 		else begin
 			case(state)
 				IDLE:begin
 					current_index 	<= 0;
-					done				<= 0;
-					state 			<= READ;
+					done 				<= 0;
+					if(start) state 			<= WAIT;
+				end
+				WAIT: begin
+					state <= READ;
 				end
 				READ: begin
-					if(current_index == 32) state <= DONE;
-					else begin
-						rom_data_register[current_index] <= rom_q_data_in;
-						state 									<= INC;
-					end
+
+					rom_data_register[current_index] <= rom_q_data_in;
+					state 									<= INC;
+					
+					if(current_index == (DEP-1))		done 	<= 1'b1;
 				end
 				INC: begin
-					current_index	<= current_index + 1'b1;
-					state				<=	READ;
+					if (!done) begin
+						current_index	<= current_index + 1;
+						state				<=	WAIT;
+					end
+					else begin
+						state <= DONE;
+					end
 				end
 				DONE: begin
-					done 	<= 1'b1;
 					state <= DONE;
 				end
 			endcase
