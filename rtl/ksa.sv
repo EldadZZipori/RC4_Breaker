@@ -78,19 +78,29 @@ module ksa
 	logic			shuffle_mem_finished;
 	logic			shuffle_mem_write_enable;
 	
-	/*shuffle_fsm shuffle_control # (.KEY_LENGTH(3))
+	shuffle_fsm #(.KEY_LENGTH(3)) 
+	shuffle_control
 	(    
 		 .CLOCK_50				(CLOCK_50),
 		 .reset					(key_from_switches_changed),
 		 .secret_key			(secret_key),
 		 .s						(s_memory_q_data_out),
-		 .index					(shuffle_mem_index),
-		 .write_enble			(shuffle_mem_write_enable)
+		 .index					(shuffle_mem_index[7:0]),
+		 .write_enable			(shuffle_mem_write_enable),
 		 .data					(shuffle_mem_data_out),
 		 .address				(shuffle_mem_address_out),
 		 .sij_ready				(shuffle_mem_s_i_j_avail),
 		 .shuffle_finished	(shuffle_mem_finished)
-	); */
+	); 
+	
+	// Counter for shuffel memory
+	always_ff @ (posedge CLOCK_50) begin
+		if (shuffle_mem_s_i_j_avail != 256) begin
+			if (shuffle_mem_s_i_j_avail) begin
+				shuffle_mem_index <= shuffle_mem_index + 1;
+			end
+		end
+	end
 	
 	/*
 		Reading from ROM memory
