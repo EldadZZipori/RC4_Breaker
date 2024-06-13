@@ -63,15 +63,15 @@ module ksa
 		.reset			(1'b0),
 		.SW				(SW),
 		.LEDR				(LEDR),
-		.secret_key		(secret_key[9:0]),
+		.secret_key		(),
 		.key_available (key_from_switches_available),
 		.key_changed	(key_from_switches_changed)					// This sends a reset to the other state machines
 	);
 	
+	assign secret_key = {{14{1'b0}},LEDR};
 	/*
 		Shuffle memory control
 	*/
-	logic [8:0] shuffle_mem_index;
 	logic	[7:0]	shuffle_mem_data_out;
 	logic [7:0]	shuffle_mem_address_out;
 	logic 		shuffle_mem_s_i_j_avail;
@@ -84,23 +84,13 @@ module ksa
 		 .CLOCK_50				(CLOCK_50),
 		 .reset					(key_from_switches_changed),
 		 .secret_key			(secret_key),
-		 .s						(s_memory_q_data_out),
-		 .index					(shuffle_mem_index[7:0]),
-		 .write_enable			(shuffle_mem_write_enable),
-		 .data					(shuffle_mem_data_out),
-		 .address				(shuffle_mem_address_out),
+		 .s_data_in				(s_memory_q_data_out),
+		 .write_enable_out	(shuffle_mem_write_enable),
+		 .data_for_s_write	(shuffle_mem_data_out),
+		 .address_out			(shuffle_mem_address_out),
 		 .sij_ready				(shuffle_mem_s_i_j_avail),
 		 .shuffle_finished	(shuffle_mem_finished)
 	); 
-	
-	// Counter for shuffel memory
-	always_ff @ (posedge CLOCK_50) begin
-		if (shuffle_mem_s_i_j_avail != 256) begin
-			if (shuffle_mem_s_i_j_avail) begin
-				shuffle_mem_index <= shuffle_mem_index + 1;
-			end
-		end
-	end
 	
 	/*
 		Reading from ROM memory
@@ -131,21 +121,21 @@ module ksa
 		MUX to control which signals conrtol the S memory
 		[*] Move to module at the end
 	*/
-	always_comb begin
+	always_ff @	(posedge CLOCK_50) begin
 		if(!assign_by_index_done) begin									// indicates s[i] = i is done
-			s_memory_address_in	=	by_index_address_out;
-			s_memory_data_in		=	by_index_data_out;
-			s_memory_data_enable	=	by_index_data_enable;
+			s_memory_address_in	<=	by_index_address_out;
+			s_memory_data_in		<=	by_index_data_out;
+			s_memory_data_enable	<=	by_index_data_enable;
 		end
 		else if (!shuffle_mem_finished) begin							// indicates j = (j + s[i] + secret_key[i mod keylength]) and swap s[i[ and s[j] done
-			s_memory_data_enable = 	shuffle_mem_write_enable;
-			s_memory_data_in		=	shuffle_mem_data_out;
-			s_memory_address_in	= 	shuffle_mem_address_out;
+			s_memory_data_enable <= shuffle_mem_write_enable;
+			s_memory_data_in		<=	shuffle_mem_data_out;
+			s_memory_address_in	<= shuffle_mem_address_out;
 		end
 		else begin
-			s_memory_address_in	=	0;
-			s_memory_data_in		=	0;
-			s_memory_data_enable	=	0;
+			s_memory_address_in	<=	0;
+			s_memory_data_in		<=	0;
+			s_memory_data_enable	<=	0;
 		end
 	end
 
