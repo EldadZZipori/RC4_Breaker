@@ -1,0 +1,65 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "reset_all",
+					"strict" : false
+				},
+				{
+					"name" : "start_shuffle",
+					"strict" : false
+				},
+				{
+					"name" : "start_s_i_i",
+					"strict" : false
+				},
+				{
+					"name" : "current_state[0]",
+					"strict" : false
+				},
+				{
+					"name" : "current_state[1]",
+					"strict" : false
+				},
+				{
+					"name" : "current_state[2]",
+					"strict" : false
+				},
+				{
+					"name" : "current_state[3]",
+					"strict" : false
+				},
+				{
+					"name" : "current_state[4]",
+					"strict" : false
+				},
+				{
+					"name" : "current_state[5]",
+					"strict" : false
+				},
+				{
+					"name" : "key_from_switches_changed",
+					"strict" : false
+				},
+				{
+					"name" : "key_from_switches_available",
+					"strict" : false
+				},
+				{
+					"name" : "CLOCK_50",
+					"strict" : false
+				},
+				{
+					"name" : "shuffle_mem_finished",
+					"strict" : false
+				},
+				{
+					"name" : "assign_by_index_done",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

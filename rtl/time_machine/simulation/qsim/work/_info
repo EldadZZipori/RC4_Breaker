@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine/simulation/qsim
+vtime_machine
+Z1 !s110 1718303554
+!i10b 1
+!s100 UDdf0gY_^]dS=@I[19TID1
+If9AVQ80<_]HHHT>1i5B1c1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1718303553
+8time_machine.vo
+Ftime_machine.vo
+L0 32
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1718303554.000000
+!s107 time_machine.vo|
+!s90 -work|work|time_machine.vo|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+vtime_machine_vlg_vec_tst
+R1
+!i10b 1
+!s100 ]KJJTRh=o<8B`a5aRl^MX2
+I0m^mdg`T;VZ4N]j78EQzh1
+R2
+R0
+w1718303552
+8time_machine_simulation.vwf.vt
+Ftime_machine_simulation.vwf.vt
+L0 30
+R3
+r1
+!s85 0
+31
+R4
+!s107 time_machine_simulation.vwf.vt|
+!s90 -work|work|time_machine_simulation.vwf.vt|
+!i113 1
+R5
+R6
