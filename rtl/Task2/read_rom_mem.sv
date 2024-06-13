@@ -30,6 +30,7 @@ module read_rom_mem(
 			case(state)
 				IDLE:begin
 					current_index 	<= 0;
+					done				<= 0;
 					state 			<= READ;
 				end
 				READ: begin

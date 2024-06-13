@@ -65,7 +65,7 @@ module ksa
 		.LEDR				(LEDR),
 		.secret_key		(secret_key[9:0]),
 		.key_available (key_from_switches_available),
-		.key_changed	(key_from_switches_changed)	
+		.key_changed	(key_from_switches_changed)					// This sends a reset to the other state machines
 	);
 	
 	/*
@@ -105,8 +105,8 @@ module ksa
 	/*
 		Reading from ROM memory
 	*/
-	/*
-	logic[7:0] 	rom_data[31:0];
+	
+	logic[7:0] 	rom_data[31:0];								// Registers all the ROMS data so it can be taken for several parallel computation
 	logic[7:0] 	rom_q_data_out;
 	logic[5:0]	rom_reader_address_out;
 	logic			rom_reader_done;
@@ -126,18 +126,18 @@ module ksa
 		.rom_data		(rom_data)
 	);
 
-	*/
+	
 	/*
 		MUX to control which signals conrtol the S memory
 		[*] Move to module at the end
 	*/
 	always_comb begin
-		if(!assign_by_index_done) begin
+		if(!assign_by_index_done) begin									// indicates s[i] = i is done
 			s_memory_address_in	=	by_index_address_out;
 			s_memory_data_in		=	by_index_data_out;
 			s_memory_data_enable	=	by_index_data_enable;
 		end
-		else if (!shuffle_mem_finished) begin
+		else if (!shuffle_mem_finished) begin							// indicates j = (j + s[i] + secret_key[i mod keylength]) and swap s[i[ and s[j] done
 			s_memory_data_enable = 	shuffle_mem_write_enable;
 			s_memory_data_in		=	shuffle_mem_data_out;
 			s_memory_address_in	= 	shuffle_mem_address_out;
