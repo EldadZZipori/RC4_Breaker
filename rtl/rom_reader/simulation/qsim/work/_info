@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/simulation/qsim
+vrom_reader
+Z1 !s110 1718248814
+!i10b 1
+!s100 dMAom0B^QC:?edOb@QCc]0
+IOSI06[1oSC_fYPMoB[Wz]3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1718248813
+8rom_reader.vo
+From_reader.vo
+L0 32
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1718248814.000000
+!s107 rom_reader.vo|
+!s90 -work|work|rom_reader.vo|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+vrom_reader_vlg_vec_tst
+R1
+!i10b 1
+!s100 XUbCi`?Yh`C9zAC9IjKhM1
+I^=TdRaiMGR[`z2FTjG`H31
+R2
+R0
+R3
+8rom_reader_simulator.vwf.vt
+From_reader_simulator.vwf.vt
+L0 30
+R4
+r1
+!s85 0
+31
+R5
+!s107 rom_reader_simulator.vwf.vt|
+!s90 -work|work|rom_reader_simulator.vwf.vt|
+!i113 1
+R6
+R7
