@@ -92,7 +92,7 @@ module decryption_fsm
 				f <= s_data[s_data[index_i] +s_data[index_j]];
 			end
 			DECRYPT: begin
-				decrypted_output[index_i] = f ^ encrypted_input[index_i];
+				decrypted_output[index_i] <= f ^ encrypted_input[index_i];
 			end
 
 		endcase
