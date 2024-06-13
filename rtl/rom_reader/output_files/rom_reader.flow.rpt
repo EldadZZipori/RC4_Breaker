@@ -1,5 +1,5 @@
 Flow report for rom_reader
-Wed Jun 12 20:20:13 2024
+Thu Jun 13 12:41:12 2024
 Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 
 
@@ -41,15 +41,15 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Jun 12 20:20:13 2024       ;
+; Flow Status                     ; Successful - Thu Jun 13 12:41:12 2024       ;
 ; Quartus Prime Version           ; 16.1.2 Build 203 01/18/2017 SJ Lite Edition ;
 ; Revision Name                   ; rom_reader                                  ;
 ; Top-level Entity Name           ; rom_reader                                  ;
 ; Family                          ; Cyclone V                                   ;
-; Device                          ; 5CGXFC7C7F23C8                              ;
+; Device                          ; 5CSEMA6F31C6                                ;
 ; Timing Models                   ; Final                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 268                                         ;
+; Total registers                 ; 269                                         ;
 ; Total pins                      ; 273                                         ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -68,7 +68,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/12/2024 20:12:30 ;
+; Start date & time ; 06/13/2024 12:41:04 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; rom_reader          ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 141812765405310.171824835001084        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 141812765405310.171830766410568        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -94,16 +94,8 @@ agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 4843 MB             ; 00:00:19                           ;
-; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4711 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4715 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4711 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4715 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4711 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4715 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4711 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4715 MB             ; 00:00:01                           ;
-; Total                ; 00:00:08     ; --                      ; --                  ; 00:00:27                           ;
+; Analysis & Synthesis ; 00:00:07     ; 1.0                     ; 4846 MB             ; 00:00:17                           ;
+; Total                ; 00:00:07     ; --                      ; --                  ; 00:00:17                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -113,14 +105,6 @@ agreement for further details.
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -128,14 +112,6 @@ agreement for further details.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off rom_reader -c rom_reader
-quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off rom_reader -c rom_reader --vector_source=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader_simulator.vwf --testbench_file=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/simulation/qsim/rom_reader_simulator.vwf.vt
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/simulation/qsim/ rom_reader -c rom_reader
-quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off rom_reader -c rom_reader --vector_source=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader_simulator.vwf --testbench_file=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/simulation/qsim/rom_reader_simulator.vwf.vt
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/simulation/qsim/ rom_reader -c rom_reader
-quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off rom_reader -c rom_reader --vector_source=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader_simulator.vwf --testbench_file=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/simulation/qsim/rom_reader_simulator.vwf.vt
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/simulation/qsim/ rom_reader -c rom_reader
-quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off rom_reader -c rom_reader --vector_source=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader_simulator.vwf --testbench_file=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/simulation/qsim/rom_reader_simulator.vwf.vt
-quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/simulation/qsim/ rom_reader -c rom_reader
 
 
 

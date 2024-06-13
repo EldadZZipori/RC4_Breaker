@@ -274,6 +274,7 @@ reset => current_index.OUTPUTSELECT
 reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
+reset => state.OUTPUTSELECT
 reset => state.IDLE.DATAIN
 reset => rom_data_register[2][5].ENA
 reset => rom_data_register[2][4].ENA

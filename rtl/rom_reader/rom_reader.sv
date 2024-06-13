@@ -12,12 +12,13 @@ module rom_reader(
 	output logic[7:0] rom_data[31:0]
 );
 	
-	localparam IDLE = 2'b00;
-	localparam READ = 2'b01;
-	localparam INC  = 2'b10;
-	localparam DONE = 2'b11;
+	localparam IDLE = 3'b000;
+	localparam WAIT = 3'b100;
+	localparam READ = 3'b001;
+	localparam INC  = 3'b010;
+	localparam DONE = 3'b011;
 	
-	logic[1:0] state;
+	logic[2:0] state;
 	
 	logic [6:0] current_index;
 	logic	[7:0] rom_data_register[31:0] /*synthesis keep*/;
@@ -35,7 +36,10 @@ module rom_reader(
 				IDLE:begin
 					current_index 	<= 0;
 					done 				<= 0;
-					state 			<= READ;
+					state 			<= WAIT;
+				end
+				WAIT: begin
+					state <= READ;
 				end
 				READ: begin
 					if(current_index == 32) state <= DONE;
