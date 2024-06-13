@@ -1,0 +1,3 @@
+Warning (10268): Verilog HDL information at decryption_fsm.sv(47): always construct contains both blocking and non-blocking assignments File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Decryption/decryption_fsm.sv Line: 47
+Warning (10268): Verilog HDL information at decryption_fsm.sv(79): always construct contains both blocking and non-blocking assignments File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Decryption/decryption_fsm.sv Line: 79
+Info (10281): Verilog HDL Declaration information at decryption_fsm.sv(16): object "done" differs only in case from object "DONE" in the same scope File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Decryption/decryption_fsm.sv Line: 16
