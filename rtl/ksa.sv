@@ -10,14 +10,132 @@ module ksa
 	
 	output logic[9:0] LEDR
 );
-
+	localparam IDLE 				= 0;
+	localparam RESET				= 1;
+	localparam START_S_I_I 		= 2;
+	localparam S_I_I				= 3;
+	localparam START_SHUFFLE	= 4;
+	localparam SHUFFLE			= 5;
+	localparam FINAL				= 6;
+	
+	logic [7:0] current_state, next_state;
+	logic start_s_i_i, start_shuffle;
+	
+	always_ff @(posedge CLOCK_50) begin
+		current_state <= next_state;
+	end
+	
+	always_comb begin
+		if (key_from_switches_changed) begin
+			next_state = RESET;
+		end
+		else begin
+			case (current_state)
+				IDLE: begin
+																next_state = START_S_I_I;
+				end
+				RESET: begin
+					if(key_from_switches_available) 	next_state = IDLE;
+					else										next_state = RESET;
+				end
+				START_S_I_I: begin
+																next_state = S_I_I;
+				end
+				S_I_I: begin
+					//if (assign_by_index_done) 			next_state = START_SHUFFLE;
+					//else 										next_state = S_I_I;
+					next_state = S_I_I;
+				end
+				START_SHUFFLE: begin
+																next_state = SHUFFLE;
+				end
+				SHUFFLE: begin
+					if (shuffle_mem_finished) 			next_state = FINAL;
+					else										next_state = SHUFFLE;
+				end
+				FINAL: begin
+																next_state = FINAL;
+				end
+				default: next_state = FINAL;
+			endcase
+		end
+	end
+	/*
+		Register control to start FSM's
+	*/
+	logic reset_all;
+	always_ff @(posedge CLOCK_50) begin
+		if(reset_all) begin
+			start_s_i_i <= 1'b0;
+			start_shuffle <= 1'b0;
+		end
+		else begin
+			case(current_state)
+				IDLE: begin
+					reset_all <= 1'b0;
+				end
+				S_I_I: begin									// indicates s[i] = i is done
+					start_s_i_i <= 1'b0;
+					start_shuffle <= 1'b0;
+				end
+				SHUFFLE: begin									// indicates j = (j + s[i] + secret_key[i mod keylength]) and swap s[i[ and s[j] done
+					start_s_i_i <= 1'b0;
+					start_shuffle <= 1'b0;
+				end
+				START_S_I_I: begin
+					start_s_i_i <= 1'b1;
+				end
+				START_SHUFFLE: begin
+					start_shuffle <= 1'b1;
+				end
+				RESET: begin
+					reset_all <= 1'b1;
+				end
+				default: begin
+					start_s_i_i <= 1'b0;
+					start_shuffle <= 1'b0;
+				end
+			endcase
+		end
+	end
+	
+	/*
+		MUX to control which signals conrtol the S memory
+		[*] Move to module at the end
+	*/
+	always_comb begin
+		if(reset_all) begin
+				s_memory_address_in	=	0;
+				s_memory_data_in		=	0;
+				s_memory_data_enable	=	0;
+		end
+		else begin
+			case(current_state)
+				S_I_I: begin									// indicates s[i] = i is done
+					s_memory_address_in	=	by_index_address_out;
+					s_memory_data_in		=	by_index_data_out;
+					s_memory_data_enable	=	by_index_data_enable;
+				end
+				SHUFFLE: begin						// indicates j = (j + s[i] + secret_key[i mod keylength]) and swap s[i[ and s[j] done
+					s_memory_data_enable = shuffle_mem_write_enable;
+					s_memory_data_in		=	shuffle_mem_data_out;
+					s_memory_address_in	= shuffle_mem_address_out;
+				end
+				default: begin
+					s_memory_address_in	=	0;
+					s_memory_data_in		=	0;
+					s_memory_data_enable	=	0;
+				end
+			endcase
+		end
+	end
 	/*
 		S Memory Instance Controls
 	*/
 	logic	[7:0]	s_memory_address_in;
 	logic [7:0] s_memory_data_in;
 	logic			s_memory_data_enable;
-	logic			s_memory_q_data_out;
+	logic	[7:0]	s_memory_q_data_out;
 	
 	s_memory s_memory_controller(
 		.address	(s_memory_address_in),
@@ -38,12 +156,13 @@ module ksa
 	logic 		assign_by_index_done;
 	
 	populate_s_mem_by_index task1(
-		.clk						(CLOCK_50),	
+		.clk						(CLOCK_50),
+		.start					(start_s_i_i),
 		.address_out			(by_index_address_out),
 		.data_out				(by_index_data_out),
 		.write_enable_out		(by_index_data_enable),
 		.assign_by_index_done(assign_by_index_done),
-		.reset					(key_from_switches_changed)
+		.reset					(reset_all)
 		
 	);
 	
@@ -82,8 +201,10 @@ module ksa
 	shuffle_control
 	(    
 		 .CLOCK_50				(CLOCK_50),
-		 .reset					(key_from_switches_changed),
-		 .secret_key			(secret_key),
+		 .reset					(reset_all),
+		 .start					(start_shuffle),
+		 //.secret_key			(secret_key),
+		 .secret_key			(24'b00000000_00000010_01001001),
 		 .s_data_in				(s_memory_q_data_out),
 		 .write_enable_out	(shuffle_mem_write_enable),
 		 .data_for_s_write	(shuffle_mem_data_out),
@@ -117,26 +238,6 @@ module ksa
 	);
 
 	
-	/*
-		MUX to control which signals conrtol the S memory
-		[*] Move to module at the end
-	*/
-	always_ff @	(posedge CLOCK_50) begin
-		if(!assign_by_index_done) begin									// indicates s[i] = i is done
-			s_memory_address_in	<=	by_index_address_out;
-			s_memory_data_in		<=	by_index_data_out;
-			s_memory_data_enable	<=	by_index_data_enable;
-		end
-		else if (!shuffle_mem_finished) begin							// indicates j = (j + s[i] + secret_key[i mod keylength]) and swap s[i[ and s[j] done
-			s_memory_data_enable <= shuffle_mem_write_enable;
-			s_memory_data_in		<=	shuffle_mem_data_out;
-			s_memory_address_in	<= shuffle_mem_address_out;
-		end
-		else begin
-			s_memory_address_in	<=	0;
-			s_memory_data_in		<=	0;
-			s_memory_data_enable	<=	0;
-		end
-	end
+
 
 endmodule 

@@ -41,7 +41,7 @@ module read_rom_mem(
 					end
 				end
 				INC: begin
-					current_index	<= current_index + 1;
+					current_index	<= current_index + 1'b1;
 					state				<=	READ;
 				end
 				DONE: begin
