@@ -20,6 +20,7 @@ module rom_reader(
 	read_rom_mem(
 		.clk				(CLOCK_50),
 		.reset			(1'b0),
+		.start			(1'b1),
 		.rom_q_data_in	(rom_q_data_out),	
 		.done				(rom_reader_done),
 		.address			(rom_reader_address_out),

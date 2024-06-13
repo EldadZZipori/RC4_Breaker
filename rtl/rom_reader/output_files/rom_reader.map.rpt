@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rom_reader
-Thu Jun 13 15:13:41 2024
+Thu Jun 13 16:31:17 2024
 Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 
 
@@ -26,17 +26,18 @@ Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
  18. Source assignments for read_rom_mem:comb_5
  19. Source assignments for sld_signaltap:auto_signaltap_0
  20. Parameter Settings for User Entity Instance: encrypted_data_memory:rom_memory|altsyncram:altsyncram_component
- 21. Parameter Settings for Inferred Entity Instance: sld_signaltap:auto_signaltap_0
- 22. altsyncram Parameter Settings by Entity Instance
- 23. Port Connectivity Checks: "read_rom_mem:comb_5"
- 24. Port Connectivity Checks: "encrypted_data_memory:rom_memory"
- 25. SignalTap II Logic Analyzer Settings
- 26. In-System Memory Content Editor Settings
- 27. Post-Synthesis Netlist Statistics for Top Partition
- 28. Elapsed Time Per Partition
- 29. Connections to In-System Debugging Instance "auto_signaltap_0"
- 30. Analysis & Synthesis Messages
- 31. Analysis & Synthesis Suppressed Messages
+ 21. Parameter Settings for User Entity Instance: read_rom_mem:comb_5
+ 22. Parameter Settings for Inferred Entity Instance: sld_signaltap:auto_signaltap_0
+ 23. altsyncram Parameter Settings by Entity Instance
+ 24. Port Connectivity Checks: "read_rom_mem:comb_5"
+ 25. Port Connectivity Checks: "encrypted_data_memory:rom_memory"
+ 26. SignalTap II Logic Analyzer Settings
+ 27. In-System Memory Content Editor Settings
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Connections to In-System Debugging Instance "auto_signaltap_0"
+ 31. Analysis & Synthesis Messages
+ 32. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -63,13 +64,13 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Jun 13 15:13:41 2024       ;
+; Analysis & Synthesis Status     ; Successful - Thu Jun 13 16:31:17 2024       ;
 ; Quartus Prime Version           ; 16.1.2 Build 203 01/18/2017 SJ Lite Edition ;
 ; Revision Name                   ; rom_reader                                  ;
 ; Top-level Entity Name           ; rom_reader                                  ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 3780                                        ;
+; Total registers                 ; 3782                                        ;
 ; Total pins                      ; 1                                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 33,152                                      ;
@@ -267,16 +268,16 @@ agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 1989           ;
+; Estimate of Logic utilization (ALMs needed) ; 1990           ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 738            ;
+; Combinational ALUT usage for logic          ; 734            ;
 ;     -- 7 input functions                    ; 4              ;
-;     -- 6 input functions                    ; 160            ;
-;     -- 5 input functions                    ; 335            ;
+;     -- 6 input functions                    ; 139            ;
+;     -- 5 input functions                    ; 360            ;
 ;     -- 4 input functions                    ; 46             ;
-;     -- <=3 input functions                  ; 193            ;
+;     -- <=3 input functions                  ; 185            ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 3780           ;
+; Dedicated logic registers                   ; 3782           ;
 ;                                             ;                ;
 ; I/O pins                                    ; 1              ;
 ; Total MLAB memory bits                      ; 0              ;
@@ -285,8 +286,8 @@ agreement for further details.
 ; Total DSP Blocks                            ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 2682           ;
-; Total fan-out                               ; 19263          ;
+; Maximum fan-out                             ; 2684           ;
+; Total fan-out                               ; 19247          ;
 ; Average fan-out                             ; 4.02           ;
 +---------------------------------------------+----------------+
 
@@ -296,14 +297,14 @@ agreement for further details.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                    ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |rom_reader                                                                                                                             ; 738 (3)             ; 3780 (0)                  ; 33152             ; 0          ; 1    ; 0            ; |rom_reader                                                                                                                                                                                                                                                                                                                                            ; rom_reader                        ; work         ;
+; |rom_reader                                                                                                                             ; 734 (3)             ; 3782 (0)                  ; 33152             ; 0          ; 1    ; 0            ; |rom_reader                                                                                                                                                                                                                                                                                                                                            ; rom_reader                        ; work         ;
 ;    |encrypted_data_memory:rom_memory|                                                                                                   ; 37 (0)              ; 32 (0)                    ; 256               ; 0          ; 0    ; 0            ; |rom_reader|encrypted_data_memory:rom_memory                                                                                                                                                                                                                                                                                                           ; encrypted_data_memory             ; work         ;
 ;       |altsyncram:altsyncram_component|                                                                                                 ; 37 (0)              ; 32 (0)                    ; 256               ; 0          ; 0    ; 0            ; |rom_reader|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component                                                                                                                                                                                                                                                                           ; altsyncram                        ; work         ;
 ;          |altsyncram_2qj1:auto_generated|                                                                                               ; 37 (0)              ; 32 (0)                    ; 256               ; 0          ; 0    ; 0            ; |rom_reader|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_2qj1:auto_generated                                                                                                                                                                                                                                            ; altsyncram_2qj1                   ; work         ;
 ;             |altsyncram_ffl2:altsyncram1|                                                                                               ; 0 (0)               ; 0 (0)                     ; 256               ; 0          ; 0    ; 0            ; |rom_reader|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_2qj1:auto_generated|altsyncram_ffl2:altsyncram1                                                                                                                                                                                                                ; altsyncram_ffl2                   ; work         ;
 ;             |sld_mod_ram_rom:mgl_prim2|                                                                                                 ; 37 (20)             ; 32 (23)                   ; 0                 ; 0          ; 0    ; 0            ; |rom_reader|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_2qj1:auto_generated|sld_mod_ram_rom:mgl_prim2                                                                                                                                                                                                                  ; sld_mod_ram_rom                   ; work         ;
 ;                |sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|                                                                     ; 17 (17)             ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |rom_reader|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_2qj1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr                                                                                                                                                               ; sld_rom_sr                        ; work         ;
-;    |read_rom_mem:comb_5|                                                                                                                ; 59 (59)             ; 268 (268)                 ; 0                 ; 0          ; 0    ; 0            ; |rom_reader|read_rom_mem:comb_5                                                                                                                                                                                                                                                                                                                        ; read_rom_mem                      ; work         ;
+;    |read_rom_mem:comb_5|                                                                                                                ; 55 (55)             ; 270 (270)                 ; 0                 ; 0          ; 0    ; 0            ; |rom_reader|read_rom_mem:comb_5                                                                                                                                                                                                                                                                                                                        ; read_rom_mem                      ; work         ;
 ;    |sld_hub:auto_hub|                                                                                                                   ; 114 (1)             ; 120 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |rom_reader|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
 ;       |alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric| ; 113 (0)             ; 120 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |rom_reader|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric                                                                                                                                                                                           ; alt_sld_fab_with_jtag_input       ; altera_sld   ;
 ;          |alt_sld_fab:instrumentation_fabric|                                                                                           ; 113 (0)             ; 120 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |rom_reader|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                                                                                        ; alt_sld_fab                       ; alt_sld_fab  ;
@@ -913,8 +914,8 @@ Encoding Type:  One-Hot
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
 ; Register name                                                                                                                                            ; Reason for Removal                     ;
 +----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
-; read_rom_mem:comb_5|state~2                                                                                                                              ; Lost fanout                            ;
-; read_rom_mem:comb_5|state~3                                                                                                                              ; Lost fanout                            ;
+; read_rom_mem:comb_5|state~7                                                                                                                              ; Lost fanout                            ;
+; read_rom_mem:comb_5|state~8                                                                                                                              ; Lost fanout                            ;
 ; read_rom_mem:comb_5|state.DONE                                                                                                                           ; Lost fanout                            ;
 ; encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_2qj1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[3] ; Stuck at GND due to stuck port data_in ;
 ; Total Number of Removed Registers = 4                                                                                                                    ;                                        ;
@@ -926,7 +927,7 @@ Encoding Type:  One-Hot
 +-----------------------------+--------------------+----------------------------------------+
 ; Register name               ; Reason for Removal ; Registers Removed due to This Register ;
 +-----------------------------+--------------------+----------------------------------------+
-; read_rom_mem:comb_5|state~2 ; Lost Fanouts       ; read_rom_mem:comb_5|state.DONE         ;
+; read_rom_mem:comb_5|state~7 ; Lost Fanouts       ; read_rom_mem:comb_5|state.DONE         ;
 +-----------------------------+--------------------+----------------------------------------+
 
 
@@ -935,9 +936,9 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 3780  ;
+; Total registers                              ; 3782  ;
 ; Number of registers using Synchronous Clear  ; 102   ;
-; Number of registers using Synchronous Load   ; 417   ;
+; Number of registers using Synchronous Load   ; 419   ;
 ; Number of registers using Asynchronous Clear ; 1201  ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 1350  ;
@@ -1320,6 +1321,17 @@ Encoding Type:  One-Hot
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_rom_mem:comb_5 ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; DEP            ; 32    ; Signed Integer                          ;
+; WID            ; 8     ; Signed Integer                          ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Parameter Settings for Inferred Entity Instance: sld_signaltap:auto_signaltap_0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
 +-------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
@@ -1406,14 +1418,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------------------+------------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "read_rom_mem:comb_5"                                                                    ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; Port     ; Type   ; Severity ; Details                                                                             ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
-; reset    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; rom_data ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+----------+--------+----------+-------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "read_rom_mem:comb_5"                                                                         ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; reset         ; Input  ; Info     ; Stuck at GND                                                                        ;
+; start         ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; address[8..6] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; rom_data      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1448,31 +1462,31 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 300                         ;
+; arriav_ff             ; 302                         ;
 ;     CLR               ; 5                           ;
 ;     ENA               ; 265                         ;
 ;     ENA CLR           ; 10                          ;
 ;     ENA SLD           ; 8                           ;
-;     SLD               ; 7                           ;
+;     SLD               ; 9                           ;
 ;     plain             ; 5                           ;
-; arriav_lcell_comb     ; 98                          ;
-;     arith             ; 7                           ;
-;         1 data inputs ; 6                           ;
+; arriav_lcell_comb     ; 94                          ;
+;     arith             ; 9                           ;
+;         1 data inputs ; 8                           ;
 ;         2 data inputs ; 1                           ;
 ;     extend            ; 1                           ;
 ;         7 data inputs ; 1                           ;
-;     normal            ; 90                          ;
+;     normal            ; 84                          ;
 ;         0 data inputs ; 1                           ;
-;         2 data inputs ; 15                          ;
-;         3 data inputs ; 17                          ;
+;         2 data inputs ; 12                          ;
+;         3 data inputs ; 10                          ;
 ;         4 data inputs ; 9                           ;
-;         5 data inputs ; 14                          ;
-;         6 data inputs ; 34                          ;
+;         5 data inputs ; 39                          ;
+;         6 data inputs ; 13                          ;
 ; boundary_port         ; 285                         ;
 ; stratixv_ram_block    ; 8                           ;
 ;                       ;                             ;
 ; Max LUT depth         ; 2.00                        ;
-; Average LUT depth     ; 0.58                        ;
+; Average LUT depth     ; 0.57                        ;
 +-----------------------+-----------------------------+
 
 
@@ -2046,7 +2060,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
-    Info: Processing started: Thu Jun 13 15:13:19 2024
+    Info: Processing started: Thu Jun 13 16:30:52 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rom_reader -c rom_reader
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
@@ -2056,7 +2070,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file encrypt
     Info (12023): Found entity 1: encrypted_data_memory File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/encrypted_data_memory.v Line: 40
 Warning (12125): Using design file rom_reader.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: rom_reader File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader.sv Line: 5
-Critical Warning (10846): Verilog HDL Instantiation warning at rom_reader.sv(27): instance has no name File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader.sv Line: 27
+Critical Warning (10846): Verilog HDL Instantiation warning at rom_reader.sv(28): instance has no name File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader.sv Line: 28
 Info (12127): Elaborating entity "rom_reader" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at rom_reader.sv(9): object "rom_data" assigned a value but never read File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader.sv Line: 9
 Info (12128): Elaborating entity "encrypted_data_memory" for hierarchy "encrypted_data_memory:rom_memory" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader.sv Line: 18
@@ -2098,8 +2112,8 @@ Info (12133): Instantiated megafunction "encrypted_data_memory:rom_memory|altsyn
 Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_2qj1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 302
 Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_2qj1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
 Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_2qj1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 828
-Info (12128): Elaborating entity "read_rom_mem" for hierarchy "read_rom_mem:comb_5" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader.sv Line: 27
-Warning (10230): Verilog HDL assignment warning at read_rom_mem.sv(54): truncated value with size 32 to match size of target (7) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/read_rom_mem.sv Line: 54
+Info (12128): Elaborating entity "read_rom_mem" for hierarchy "read_rom_mem:comb_5" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader.sv Line: 28
+Warning (10230): Verilog HDL assignment warning at read_rom_mem.sv(57): truncated value with size 32 to match size of target (9) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/read_rom_mem.sv Line: 57
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_2f84.tdf
     Info (12023): Found entity 1: altsyncram_2f84 File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/db/altsyncram_2f84.tdf Line: 28
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_elc.tdf
@@ -2122,7 +2136,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr
     Info (12023): Found entity 1: cmpr_99c File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/db/cmpr_99c.tdf Line: 23
 Info (12033): Analysis and Synthesis generated SignalTap II or debug node instance "auto_signaltap_0"
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2024.06.13.15:13:33 Progress: Loading sld47286636/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2024.06.13.16:31:08 Progress: Loading sld47286636/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -2177,16 +2191,16 @@ Info (144001): Generated suppressed messages file C:/Users/eldad/OneDrive/Deskto
 Info (35024): Successfully connected in-system debug instance "auto_signaltap_0" to all 547 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 9 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 4327 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 4323 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
     Info (21059): Implemented 1 output pins
-    Info (21061): Implemented 4056 logic cells
+    Info (21061): Implemented 4052 logic cells
     Info (21064): Implemented 265 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 31 warnings
-    Info: Peak virtual memory: 4943 megabytes
-    Info: Processing ended: Thu Jun 13 15:13:41 2024
-    Info: Elapsed time: 00:00:22
-    Info: Total CPU time (on all processors): 00:00:38
+    Info: Peak virtual memory: 4947 megabytes
+    Info: Processing ended: Thu Jun 13 16:31:17 2024
+    Info: Elapsed time: 00:00:25
+    Info: Total CPU time (on all processors): 00:00:48
 
 
 +------------------------------------------+

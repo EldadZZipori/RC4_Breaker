@@ -2,14 +2,17 @@
 	ROM READER
 */
 
-module read_rom_mem(
+module read_rom_mem
+# (parameter DEP = 32, parameter WID = 8)
+(
 	input logic 		clk,
 	input logic			reset,
-	input	logic[7:0]	rom_q_data_in,
+	input logic			start,
+	input	logic[WID-1:0]	rom_q_data_in,
 	
 	output logic 		done,
-	output logic[4:0]	address,
-	output logic[7:0] rom_data[31:0]
+	output logic[8:0]	address,
+	output logic[WID-1:0] rom_data[DEP-1:0]
 );
 	
 	localparam IDLE = 3'b000;
@@ -20,11 +23,11 @@ module read_rom_mem(
 	
 	logic[2:0] state;
 	
-	logic [6:0] current_index;
-	logic	[7:0] rom_data_register[31:0] /*synthesis keep*/;
+	logic [8:0] current_index;
+	logic	[WID-1:0] rom_data_register[DEP-1:0] /*synthesis keep*/;
 	
 	assign rom_data = rom_data_register;
-	assign address = current_index[4:0];
+	assign address = current_index[8:0];
 
 	always_ff @(posedge clk) begin
 		if (reset) begin
@@ -37,7 +40,7 @@ module read_rom_mem(
 				IDLE:begin
 					current_index 	<= 0;
 					done 				<= 0;
-					state 			<= WAIT;
+					if(start) state 			<= WAIT;
 				end
 				WAIT: begin
 					state <= READ;
@@ -47,7 +50,7 @@ module read_rom_mem(
 					rom_data_register[current_index] <= rom_q_data_in;
 					state 									<= INC;
 					
-					if(current_index == 31)		done 	<= 1'b1;
+					if(current_index == (DEP-1))		done 	<= 1'b1;
 				end
 				INC: begin
 					if (!done) begin
