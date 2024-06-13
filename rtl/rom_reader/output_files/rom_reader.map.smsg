@@ -1,1 +1,1 @@
-Info (10281): Verilog HDL Declaration information at rom_reader.sv(10): object "done" differs only in case from object "DONE" in the same scope File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/rom_reader.sv Line: 10
+Info (10281): Verilog HDL Declaration information at read_rom_mem.sv(10): object "done" differs only in case from object "DONE" in the same scope File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/rom_reader/read_rom_mem.sv Line: 10
