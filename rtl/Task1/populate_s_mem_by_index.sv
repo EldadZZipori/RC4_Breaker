@@ -16,9 +16,12 @@ module populate_s_mem_by_index(
 	output 	logic 			assign_by_index_done
 );
 
-	localparam IDLE 	= 0;
-	localparam ASSIGN = 1;
-	localparam FINISH = 2;
+	localparam IDLE 		= 0;
+	localparam FIRST		= 1;
+	localparam ASSIGN 	= 2;
+	localparam WAIT		= 3;
+	localparam DISEBLE	= 4;
+	localparam FINISH 	= 5;
 	
 	logic [7:0] current_state, next_state;
 	
@@ -33,12 +36,21 @@ module populate_s_mem_by_index(
 		else begin
 			case (current_state) 
 				IDLE: begin
-					if(start) 	next_state = ASSIGN;
+					if(start) 	next_state = FIRST;
 					else 			next_state = IDLE;
 				end
+				FIRST: begin
+					next_state = WAIT;
+				end
 				ASSIGN: begin
-					if (address != 255) 	next_state = ASSIGN;
+					if (address < 8) 		next_state = WAIT;
 					else						next_state = FINISH;
+				end
+				WAIT: begin
+					next_state = DISEBLE;
+				end
+				DISEBLE: begin
+					next_state = ASSIGN;
 				end
 				FINISH: begin
 						next_state = FINISH;
@@ -63,8 +75,13 @@ module populate_s_mem_by_index(
 		end
 		else if (current_state == ASSIGN) begin
 				address 					<= address + 1;
-				write_enable_out 		<= 1'b1;
 				assign_by_index_done <= 1'b0;
+		end
+		else if (current_state == WAIT) begin
+			write_enable_out 		<= 1'b1;
+		end
+		else if (current_state == DISEBLE) begin
+				write_enable_out 		<= 1'b0;
 		end
 		else if (current_state == FINISH) begin	
 				write_enable_out		<= 1'b0;

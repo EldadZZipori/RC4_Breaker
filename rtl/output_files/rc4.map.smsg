@@ -1,4 +1,0 @@
-Info (10281): Verilog HDL Declaration information at ksa.sv(15): object "START_S_I_I" differs only in case from object "start_s_i_i" in the same scope File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 15
-Info (10281): Verilog HDL Declaration information at ksa.sv(17): object "START_SHUFFLE" differs only in case from object "start_shuffle" in the same scope File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 17
-Info (10281): Verilog HDL Declaration information at read_rom_mem.sv(6): object "done" differs only in case from object "DONE" in the same scope File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/read_rom_mem.sv Line: 6
-Warning (10268): Verilog HDL information at shuffle_fsm.sv(64): always construct contains both blocking and non-blocking assignments File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task2/shuffle_fsm.sv Line: 64

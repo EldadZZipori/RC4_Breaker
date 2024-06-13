@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task1/simulation/qsim
+vpopulate_s_mem_by_index
+Z1 !s110 1718300830
+!i10b 1
+!s100 ]]_W:Z26_<2cKH]edHOBR2
+IH;_VnV3c3EY1:KHE22BXj0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1718300829
+8populate_s_mem_by_index.vo
+Fpopulate_s_mem_by_index.vo
+L0 32
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1718300830.000000
+!s107 populate_s_mem_by_index.vo|
+!s90 -work|work|populate_s_mem_by_index.vo|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+vpopulate_s_mem_by_index_vlg_vec_tst
+R1
+!i10b 1
+!s100 <RW942D[ekHFzHm<4QQ0e2
+I81eloB5<V>PWBH`L4KG^?3
+R2
+R0
+w1718300828
+8task1_simulation.vwf.vt
+Ftask1_simulation.vwf.vt
+L0 30
+R3
+r1
+!s85 0
+31
+R4
+!s107 task1_simulation.vwf.vt|
+!s90 -work|work|task1_simulation.vwf.vt|
+!i113 1
+R5
+R6

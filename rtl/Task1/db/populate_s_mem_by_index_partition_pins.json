@@ -1,0 +1,93 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "address_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "address_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "address_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "address_out[3]",
+					"strict" : false
+				},
+				{
+					"name" : "address_out[4]",
+					"strict" : false
+				},
+				{
+					"name" : "address_out[5]",
+					"strict" : false
+				},
+				{
+					"name" : "address_out[6]",
+					"strict" : false
+				},
+				{
+					"name" : "address_out[7]",
+					"strict" : false
+				},
+				{
+					"name" : "data_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "data_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "data_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "data_out[3]",
+					"strict" : false
+				},
+				{
+					"name" : "data_out[4]",
+					"strict" : false
+				},
+				{
+					"name" : "data_out[5]",
+					"strict" : false
+				},
+				{
+					"name" : "data_out[6]",
+					"strict" : false
+				},
+				{
+					"name" : "data_out[7]",
+					"strict" : false
+				},
+				{
+					"name" : "write_enable_out",
+					"strict" : false
+				},
+				{
+					"name" : "assign_by_index_done",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "start",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
