@@ -11,13 +11,15 @@ module ksa
 	output logic[9:0] LEDR
 );
 
-	localparam IDLE 				= 6'b000_000;
-	localparam RESET				= 6'b001_001;
-	localparam START_S_I_I 		= 6'b100_010;
-	localparam S_I_I				= 6'b100_011;
-	localparam START_SHUFFLE	= 6'b010_100;
-	localparam SHUFFLE			= 6'b010_101;
-	localparam FINAL				= 6'b000_110;
+	localparam IDLE 					= 7'b000_0000;
+	localparam RESET					= 7'b001_0001;
+	localparam START_S_I_I 			= 7'b100_0010;
+	localparam S_I_I					= 7'b100_0011;
+	localparam START_SHUFFLE		= 7'b010_0100;
+	localparam SHUFFLE				= 7'b010_0101;
+	localparam STRAT_SEC_SHUFFLE	= 7'b100_0111;
+	localparam SEC_SHUFFLE			= 7'b100_1000;
+	localparam FINAL					= 7'b000_0110;
 	
 	logic [7:0] current_state;
 	logic start_s_i_i, start_shuffle, reset_all;
@@ -138,8 +140,8 @@ module ksa
 		 .CLOCK_50				(CLOCK_50),
 		 .reset					(reset_all),
 		 .start					(start_shuffle),
-		 //.secret_key			(secret_key),
-		 .secret_key			(24'b00000000_00000010_01001001),
+		 .secret_key			(secret_key),
+		 //.secret_key			(24'b00000000_00000010_01001001),
 		 .s_data_in				(s_memory_q_data_out),
 		 .write_enable_out	(shuffle_mem_write_enable),
 		 .data_for_s_write	(shuffle_mem_data_out),
@@ -172,6 +174,10 @@ module ksa
 		.rom_data		(rom_data)
 	);
 
+	
+	/*
+		Second Shuffle for decryption
+	*/
 	
 
 

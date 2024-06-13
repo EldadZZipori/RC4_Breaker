@@ -10,16 +10,16 @@ SW[6] => SW[6].IN1
 SW[7] => SW[7].IN1
 SW[8] => SW[8].IN1
 SW[9] => SW[9].IN1
-LEDR[0] <= switches_fsm:key_switches_control.LEDR
-LEDR[1] <= switches_fsm:key_switches_control.LEDR
-LEDR[2] <= switches_fsm:key_switches_control.LEDR
-LEDR[3] <= switches_fsm:key_switches_control.LEDR
-LEDR[4] <= switches_fsm:key_switches_control.LEDR
-LEDR[5] <= switches_fsm:key_switches_control.LEDR
-LEDR[6] <= switches_fsm:key_switches_control.LEDR
-LEDR[7] <= switches_fsm:key_switches_control.LEDR
-LEDR[8] <= switches_fsm:key_switches_control.LEDR
-LEDR[9] <= switches_fsm:key_switches_control.LEDR
+LEDR[0] <= secret_key[0].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[1] <= secret_key[1].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[2] <= secret_key[2].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[3] <= secret_key[3].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[4] <= secret_key[4].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[5] <= secret_key[5].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[6] <= secret_key[6].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[7] <= secret_key[7].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[8] <= secret_key[8].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[9] <= secret_key[9].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |ksa|time_machine:comb_3
