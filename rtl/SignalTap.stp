@@ -106,7 +106,7 @@
         <trigger_in_editor/>
         <trigger_out_editor/>
       </presentation>
-      <trigger CRC="AB0F1339" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2024/06/13 11:11:57  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
+      <trigger CRC="AB0F1339" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2024/06/13 11:11:57  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
         <power_up_trigger position="pre" storage_qualifier_disabled="no"/>
         <events use_custom_flow_control="no">
           <level enabled="yes" name="condition1" type="basic">'switches_fsm:key_switches_control|key_changed' == rising edge
@@ -717,7 +717,7 @@
         <trigger_in_editor/>
         <trigger_out_editor/>
       </presentation>
-      <trigger CRC="D3565B4D" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2024/06/13 08:05:23  #0" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
+      <trigger CRC="D3565B4D" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2024/06/13 08:05:23  #0" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
         <power_up_trigger position="pre" storage_qualifier_disabled="no"/>
         <events use_custom_flow_control="no">
           <level enabled="yes" name="condition1" type="basic">'shuffle_fsm:shuffle_control|write_enable_out' == rising edge
@@ -824,7 +824,7 @@
           </node>
           <node data_index="9" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="dont_care" name="time_machine:comb_3|start_s_i_i" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="9" tap_mode="classic" trigger_index="9" type="unknown"/>
           <node data_index="10" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="dont_care" name="time_machine:comb_3|start_shuffle" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="10" tap_mode="classic" trigger_index="10" type="unknown"/>
-          <node data_index="8" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="dont_care" name="time_machine:comb_3|reset_all" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
+          <node data_index="8" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="rising edge" name="time_machine:comb_3|reset_all" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
         </unified_setup_data_view>
         <data_view>
           <bus is_selected="false" level-0="alt_or" name="time_machine:comb_3|current_state[7..0]" order="msb_to_lsb" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="combinatorial">
@@ -839,7 +839,7 @@
           </bus>
           <net data_index="9" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="dont_care" name="time_machine:comb_3|start_s_i_i" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="9" tap_mode="classic" trigger_index="9" type="unknown"/>
           <net data_index="10" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="dont_care" name="time_machine:comb_3|start_shuffle" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="10" tap_mode="classic" trigger_index="10" type="unknown"/>
-          <net data_index="8" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="dont_care" name="time_machine:comb_3|reset_all" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
+          <net data_index="8" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="rising edge" name="time_machine:comb_3|reset_all" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
         </data_view>
         <setup_view>
           <bus is_selected="false" level-0="alt_or" name="time_machine:comb_3|current_state[7..0]" order="msb_to_lsb" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="combinatorial">
@@ -854,17 +854,18 @@
           </bus>
           <net data_index="9" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="dont_care" name="time_machine:comb_3|start_s_i_i" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="9" tap_mode="classic" trigger_index="9" type="unknown"/>
           <net data_index="10" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="dont_care" name="time_machine:comb_3|start_shuffle" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="10" tap_mode="classic" trigger_index="10" type="unknown"/>
-          <net data_index="8" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="dont_care" name="time_machine:comb_3|reset_all" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
+          <net data_index="8" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" level-0="rising edge" name="time_machine:comb_3|reset_all" pwr_level-0="dont_care" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
         </setup_view>
         <trigger_in_editor/>
         <trigger_out_editor/>
       </presentation>
-      <trigger CRC="994AFA9B" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2024/06/13 11:14:00  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
+      <trigger CRC="994AFA9B" attribute_mem_mode="false" gap_record="true" global_temp="1" name="trigger: 2024/06/13 12:15:30  #0" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
         <power_up_trigger position="pre" storage_qualifier_disabled="no"/>
         <events use_custom_flow_control="no">
-          <level enabled="yes" name="condition1" type="basic">
+          <level enabled="yes" name="condition1" type="basic">'time_machine:comb_3|reset_all' == rising edge
             <power_up enabled="yes">
-            </power_up><op_node/>
+            </power_up>
+            <op_node/>
           </level>
         </events>
         <storage_qualifier_events>
@@ -888,21 +889,21 @@
           </storage_qualifier_level>
         </storage_qualifier_events>
         <log>
-          <data global_temp="1" name="log: Trig @ 2024/06/13 11:18:17 (0:0:0.1 elapsed)" power_up_mode="false" sample_depth="128" trigger_position="16">1100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100110000001001100000010011000000100</data>
-          <extradata>1111111111111111T111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</extradata>
+          <data global_temp="1" name="log: Trig @ 2024/06/13 12:15:37 (0:0:2.8 elapsed)" power_up_mode="false" sample_depth="127" trigger_position="-1">0110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000001100000000011000000000110000000011000100010</data>
+          <extradata>11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</extradata>
         </log>
       </trigger>
     </signal_set>
     <position_info>
       <single attribute="active tab" value="0"/>
+      <single attribute="data horizontal scroll position" value="0"/>
+      <single attribute="data vertical scroll position" value="0"/>
       <single attribute="setup horizontal scroll position" value="0"/>
       <single attribute="setup vertical scroll position" value="0"/>
-      <single attribute="data vertical scroll position" value="0"/>
-      <single attribute="data horizontal scroll position" value="0"/>
-      <single attribute="zoom level numerator" value="1"/>
       <single attribute="zoom level denominator" value="1"/>
-      <single attribute="zoom offset numerator" value="130944"/>
+      <single attribute="zoom level numerator" value="1"/>
       <single attribute="zoom offset denominator" value="1"/>
+      <single attribute="zoom offset numerator" value="130944"/>
     </position_info>
   </instance>
   <global_info>

@@ -23,9 +23,6 @@ LEDR[9] <= switches_fsm:key_switches_control.LEDR
 
 
 |ksa|time_machine:comb_3
-CLOCK_50 => reset_all~reg0.CLK
-CLOCK_50 => start_shuffle~reg0.CLK
-CLOCK_50 => start_s_i_i~reg0.CLK
 CLOCK_50 => current_state[0]~reg0.CLK
 CLOCK_50 => current_state[1]~reg0.CLK
 CLOCK_50 => current_state[2]~reg0.CLK
@@ -34,16 +31,26 @@ CLOCK_50 => current_state[4]~reg0.CLK
 CLOCK_50 => current_state[5]~reg0.CLK
 CLOCK_50 => current_state[6]~reg0.CLK
 CLOCK_50 => current_state[7]~reg0.CLK
+reset => ~NO_FANOUT~
+key_from_switches_changed => next_state[5].OUTPUTSELECT
+key_from_switches_changed => next_state[4].OUTPUTSELECT
+key_from_switches_changed => next_state[3].OUTPUTSELECT
 key_from_switches_changed => next_state[2].OUTPUTSELECT
 key_from_switches_changed => next_state[1].OUTPUTSELECT
 key_from_switches_changed => next_state[0].OUTPUTSELECT
-key_from_switches_available => Selector1.IN2
-shuffle_mem_finished => Selector0.IN5
-shuffle_mem_finished => Selector1.IN3
-assign_by_index_done => ~NO_FANOUT~
-reset_all <= reset_all~reg0.DB_MAX_OUTPUT_PORT_TYPE
-start_shuffle <= start_shuffle~reg0.DB_MAX_OUTPUT_PORT_TYPE
-start_s_i_i <= start_s_i_i~reg0.DB_MAX_OUTPUT_PORT_TYPE
+key_from_switches_available => next_state.DATAB
+key_from_switches_available => Selector4.IN3
+shuffle_mem_finished => Selector3.IN7
+shuffle_mem_finished => Selector1.IN2
+shuffle_mem_finished => Selector4.IN4
+assign_by_index_done => Selector1.IN7
+assign_by_index_done => Selector2.IN5
+assign_by_index_done => Selector0.IN2
+assign_by_index_done => Selector3.IN2
+assign_by_index_done => Selector4.IN2
+reset_all <= current_state[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+start_shuffle <= current_state[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+start_s_i_i <= current_state[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 current_state[0] <= current_state[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 current_state[1] <= current_state[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 current_state[2] <= current_state[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -1582,7 +1589,7 @@ TDI => WORD_SR.DATAA
 TDO <= WORD_SR[0].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|ksa|read_rom_mem:comb_71
+|ksa|read_rom_mem:comb_73
 clk => rom_data_register[0][0].CLK
 clk => rom_data_register[0][1].CLK
 clk => rom_data_register[0][2].CLK
