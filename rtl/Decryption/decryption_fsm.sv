@@ -54,7 +54,7 @@ module decryption_fsm
 					next_state = INCREMENT_INDEX_J;
 				end
 				INCREMENT_INDEX_J: begin
-					next_state = DECRYPT;
+					next_state = ASSIGN_F;
 				end
 				ASSIGN_F: begin
 					next_state = DECRYPT;
