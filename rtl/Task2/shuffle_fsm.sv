@@ -86,7 +86,7 @@ module shuffle_fsm
                 IDLE: begin
 						if(start) state <= SETUP_SI_J;
 						else		 state <= IDLE;
-                  address_i	<= INDEX;			
+                  address_i	<= START_INDEX;			
 					   address_j	<= 0;				
 	
                 end

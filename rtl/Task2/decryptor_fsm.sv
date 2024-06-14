@@ -10,7 +10,7 @@ module decryptor_fsm
 	input logic [MSG_WIDTH-1:0]	s_data[S_DEP-1:0],
 	input logic							start,
 	
-	output logic [S_DEP-1:0]		address_out,
+	output logic [MSG_WIDTH-1:0]	address_out,
 	output logic [MSG_WIDTH-1:0]	data_out,	
 	output logic 						enable_write,
 	output logic [MSG_WIDTH-1:0]	decrypted_output[MSG_DEP-1:0],	
@@ -30,6 +30,7 @@ module decryptor_fsm
 	localparam DECRYPT				= 4'b0010;
 	localparam INCREMENT_INDEX_I	= 4'b0011;
 	localparam INCREMENT_INDEX_J	= 4'b0100;
+	localparam TAKE_TEMP				= 4'b1111;
 	localparam I_TO_J					= 4'b0111;
 	localparam WAIT_I_TO_J			= 4'b1001;
 	localparam DIS_I_TO_J			= 4'b1011;
@@ -46,7 +47,7 @@ module decryptor_fsm
 	logic [MSG_WIDTH-1:0] 	f;	
 	logic	[7:0]					index_i, index_j;
 	
-	logic [MSG_WIDTH] temp_i;
+	logic [MSG_WIDTH:0] temp_j;
 	
 	// Flip flop to register the current state
 	always_ff @(posedge clk) begin
@@ -66,7 +67,10 @@ module decryptor_fsm
 					next_state = INCREMENT_INDEX_J;
 				end
 				INCREMENT_INDEX_J: begin
-					next_state = ASSIGN_F;
+					next_state = TAKE_TEMP;
+				end
+				TAKE_TEMP: begin
+					next_state = I_TO_J;
 				end
 				I_TO_J: begin
 					next_state = WAIT_I_TO_J;
@@ -118,6 +122,9 @@ module decryptor_fsm
 			INCREMENT_INDEX_J: begin
 				index_j <= index_j + s_data[index_i];
 			end
+			TAKE_TEMP: begin
+				temp_j <= s_data[index_j];
+			end
 			I_TO_J: begin
 				address_out 	<= index_j;
 				data_out			<= s_data[index_i];
@@ -133,7 +140,7 @@ module decryptor_fsm
 			J_TO_I: begin
 				enable_write 	<= 1'b0;
 				address_out 	<= index_i;
-				data_out			<= s_data[index_j];
+				data_out			<= temp_j;
 			end
 			WAIT_J_TO_I: begin
 				enable_write 	<= 1'b1;

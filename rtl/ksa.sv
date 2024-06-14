@@ -27,7 +27,7 @@ module ksa
 	logic [7:0] current_state;
 	logic start_s_i_i,
 			start_shuffle,
-			start_sec_shuffle,
+			start_decrypt,
 			start_read_s_data,
 			decrypt_done,
 			reset_all;
@@ -38,14 +38,14 @@ module ksa
 		.key_from_switches_available	(key_from_switches_available),
 		.assign_by_index_done			(assign_by_index_done),
 		.shuffle_mem_finished			(shuffle_mem_finished),
-		.sec_shuffle_done					(sec_shuffle_mem_finished),
+		//.sec_shuffle_done					(sec_shuffle_mem_finished),
 		.s_data_read_done					(s_data_read_done),
 		.decrypt_done 						(decrypt_done),
 		
 		.reset_all							(reset_all),
 		.start_shuffle						(start_shuffle),
 		.start_s_i_i						(start_s_i_i),
-		.start_sec_shuffle				(start_sec_shuffle),
+		//.start_sec_shuffle				(start_sec_shuffle),
 		.s_data_read_start				(start_read_s_data),
 		.start_decrypt						(start_decrypt),
 		.current_state						(current_state)
@@ -183,13 +183,19 @@ module ksa
 	logic[7:0] 	rom_data[31:0];								// Registers all the ROMS data so it can be taken for several parallel computation
 	logic[7:0] 	rom_q_data_out;
 	logic[5:0]	rom_reader_address_out;
+	logic[7:0] 	rom_reader_data_out;
 	logic			rom_reader_done;
+	logic 		rom_reader_enable;
 	
 	encrypted_data_memory rom_memory(
 		.address	(rom_reader_address_out),
 		.clock	(CLOCK_50 & (!rom_reader_done)),			// When rom_read_done flag is up stop reading
 		.q			(rom_q_data_out)
 	);
+	
+	always_ff @(posedge CLOCK_50) begin
+		if (rom_reader_enable) rom_data[rom_reader_address_out] <= rom_reader_data_out;
+	end
 	
 	read_rom_mem rom_d(
 		.clk				(CLOCK_50),
@@ -198,19 +204,35 @@ module ksa
 		.rom_q_data_in	(rom_q_data_out),	
 		.done				(rom_reader_done),				// TODO: add to time machine to check this is actually done before reading rom_data!!!
 		.address			(rom_reader_address_out),
-		.rom_data		(rom_data)
+		.rom_data		(rom_reader_data_out),
+		.enable_output	(rom_reader_enable)
 	);
 
 	
 	/*
-		read and register reshuffled memory
+		read and register  memory
 	*/
 	
 	
 	logic[7:0] 	s_data[255:0];								// Registers all the ROMS data so it can be taken for several parallel computation
 	logic[7:0]	s_reader_address_out;
+	logic[7:0]	s_reader_data_out;
 	logic			s_data_read_done;
+	logic    	reader_write_enable;
+
 	
+	always_ff @(posedge CLOCK_50) begin
+		if (current_state == READ_S_DATA) begin
+			if (reader_write_enable) begin
+					s_data[s_reader_address_out] <= s_reader_data_out;
+			end
+		end
+		else if (current_state == DECRYPT) begin
+			if(decrypt_enable) begin
+				s_data[decryptor_address_out] <= decryptor_data_out;
+			end
+		end
+	end
 	
 	read_rom_mem #(.DEP(256),.WID(8)) s_data_reader(
 		.clk				(CLOCK_50),
@@ -219,15 +241,18 @@ module ksa
 		.rom_q_data_in	(s_memory_q_data_out),	
 		.done				(s_data_read_done),
 		.address			(s_reader_address_out),
-		.rom_data		(s_data)
+		.rom_data		(s_reader_data_out),
+		.enable_output	(reader_write_enable)
 	);
 	
 	/*
 		Decryptions
 	*/
-	/*
-	logic[7:0] 	decrypted_data[31:0];	
-	logic start_decrypt;
+	
+	logic[7:0] 		decrypted_data[31:0];	
+	logic 			decrypt_enable;
+	logic[255:0] 	decryptor_address_out;
+	logic[7:0] 		decryptor_data_out;
 	
 	decryptor_fsm
 	# (.MSG_DEP(32), .S_DEP(256), .MSG_WIDTH (8))
@@ -239,6 +264,9 @@ module ksa
 		.s_data				(s_data),
 		.start				(start_decrypt),
 		.decrypted_output	(decrypted_data),
-		.done					(decrypt_done)
-	);*/
+		.done					(decrypt_done),
+		.enable_write		(decrypt_enable),
+		.address_out		(decryptor_address_out),
+		.data_out			(decryptor_data_out)
+	);
 endmodule 
