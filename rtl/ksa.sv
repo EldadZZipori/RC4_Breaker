@@ -225,7 +225,7 @@ module ksa
 	/*
 		Decryptions
 	*/
-	
+	/*
 	logic[7:0] 	decrypted_data[31:0];	
 	logic start_decrypt;
 	
@@ -240,5 +240,5 @@ module ksa
 		.start				(start_decrypt),
 		.decrypted_output	(decrypted_data),
 		.done					(decrypt_done)
-	);
+	);*/
 endmodule 
