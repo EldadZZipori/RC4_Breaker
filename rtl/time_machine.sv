@@ -7,12 +7,14 @@ module time_machine(
 	input logic assign_by_index_done,
 	input logic sec_shuffle_done,
 	input logic s_data_read_done,
+	input logic decrypt_done,
 	
 	output logic reset_all,
 	output logic start_shuffle,
 	output logic start_s_i_i,
 	output logic start_sec_shuffle,
 	output logic s_data_read_start,
+	output logic start_decrypt,
 	output logic[7:0] current_state
 );
 
@@ -26,6 +28,7 @@ module time_machine(
 	localparam SEC_SHUFFLE			= 7'b1000_000; 
 	localparam FINAL					= 7'b0000_110;
 	localparam READ_S_DATA			= 7'b1111_000;
+	localparam DECRYPT				= 7'b1111_111;
 	
 	logic [7:0] next_state;
 	
@@ -34,6 +37,7 @@ module time_machine(
 	assign start_s_i_i			= (current_state == START_S_I_I) | (current_state == S_I_I);
 	assign start_sec_shuffle 	= (current_state == STRAT_SEC_SHUFFLE) | (current_state == SEC_SHUFFLE);
 	assign s_data_read_start	= (current_state == READ_S_DATA);
+	assign start_decrypt			= (current_state == DECRYPT);
 	
 	always_ff @(posedge CLOCK_50) begin
 		current_state <= next_state;
@@ -75,8 +79,12 @@ module time_machine(
 					else										next_state = SEC_SHUFFLE;
 				end
 				READ_S_DATA: begin
-					if(s_data_read_done)					next_state = FINAL;
+					if(s_data_read_done)					next_state = DECRYPT;
 					else										next_state = READ_S_DATA;
+				end
+				DECRYPT: begin
+					if (decrypt_done)						next_state = FINAL;
+					else										next_state = DECRYPT;
 				end
 				FINAL: begin
 																next_state = FINAL;

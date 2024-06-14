@@ -21,12 +21,20 @@ module ksa
 	localparam SEC_SHUFFLE			= 7'b1000_000;
 	localparam FINAL					= 7'b0000_110;
 	localparam READ_S_DATA			= 7'b1111_000;
+	localparam DECRYPT				= 7'b1111_111;
+
 
 	
 	
 	logic [7:0] current_state;
-	logic start_s_i_i, start_shuffle,start_sec_shuffle, start_read_s_data, reset_all;
-	time_machine(
+	logic start_s_i_i,
+			start_shuffle,
+			start_sec_shuffle,
+			start_read_s_data,
+			decrypt_done,
+			reset_all;
+			
+	time_machine time_controller(
 		.CLOCK_50(CLOCK_50),
 		.key_from_switches_changed		(key_from_switches_changed),
 		.key_from_switches_available	(key_from_switches_available),
@@ -34,12 +42,14 @@ module ksa
 		.shuffle_mem_finished			(shuffle_mem_finished),
 		.sec_shuffle_done					(sec_shuffle_mem_finished),
 		.s_data_read_done					(s_data_read_done),
+		.decrypt_done 						(decrypt_done),
 		
 		.reset_all							(reset_all),
 		.start_shuffle						(start_shuffle),
 		.start_s_i_i						(start_s_i_i),
 		.start_sec_shuffle				(start_sec_shuffle),
 		.s_data_read_start				(start_read_s_data),
+		.start_decrypt						(start_decrypt),
 		.current_state						(current_state)
 	);
 	/*
@@ -72,7 +82,12 @@ module ksa
 				READ_S_DATA: begin
 					s_memory_data_enable = 1'b0;
 					s_memory_data_in		= 1'b0;
-					s_memory_address_in	= s_data_address_out;
+					s_memory_address_in	= s_reader_address_out;
+				end
+				DECRYPT: begin
+					s_memory_data_enable = 1'b0;
+					s_memory_data_in		= 1'b0;
+					s_memory_address_in	= 0;
 				end
 				default: begin
 					s_memory_address_in	=	0;
@@ -228,7 +243,7 @@ module ksa
 	
 	
 	logic[7:0] 	s_data[255:0];								// Registers all the ROMS data so it can be taken for several parallel computation
-	logic[7:0]	s_data_address_out;
+	logic[7:0]	s_reader_address_out;
 	logic			s_data_read_done;
 	
 	
@@ -238,9 +253,27 @@ module ksa
 		.start			(start_read_s_data),
 		.rom_q_data_in	(s_memory_q_data_out),	
 		.done				(s_data_read_done),
-		.address			(s_data_address_out),
+		.address			(s_reader_address_out),
 		.rom_data		(s_data)
 	);
-
-
+	
+	/*
+		Decryptions
+	*/
+	
+	logic[7:0] 	decrypted_data[31:0];	
+	logic start_decrypt;
+	
+	decryptor_fsm
+	# (.MSG_DEP(32), .S_DEP(256), .MSG_WIDTH (8))
+	decryptor_1
+	(
+		.clk					(CLOCK_50),
+		.reset				(reset_all),
+		.encrypted_input	(rom_data),
+		.s_data				(s_data),
+		.start				(start_decrypt),
+		.decrypted_output	(decrypted_data),
+		.done					(decrypt_done)
+	);
 endmodule 
