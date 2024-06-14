@@ -1,25 +1,32 @@
 /*
 	DECRYPTION CORE
+	
+	This module is a complete FSM of many other FSM's that preforme the decryption algorithem.
+	
+	NOTE: time machine is the FSM that controlles the transition of this FSM (timing) while the logic of this FSM
+			(controls) are inside this module directly.
 */
 
 module decryption_core(
-	input logic clk,
-	input logic reset,
+	input logic 			clk,									
+	input logic 			reset,								// reset must be given before new_key_available can be used again to check a new key
 	
-	input logic 			key_from_switches_changed,
-	input logic 			key_from_switches_available,
-	input logic				new_key_available,
+	input logic 			key_from_switches_changed,		// resets the state machine when switches have changed
+	input logic 			key_from_switches_available,	// another start flag for this fsm only when the new switches position are available, for switches control
+	input logic				new_key_available,				// start flag for this start machine, only when a new key is available, LFSR control
 	
-	input logic 			ROM_mem_read,
-	input logic[7:0] 		rom_data_d[31:0],
+	input logic 			ROM_mem_read,						// Flag to ensure that the ROM data was actually registered already
+	input logic[7:0] 		rom_data_d[31:0],					// Encrypted data to be decrpted by this FSM
+	input logic [23:0] 	secret_key,							// Secret key provided by switches or LFSR
 	
-	input logic [23:0] 	secret_key,
-	
-	output logic[7:0] 	decrypted_data[31:0],
+	output logic[7:0] 	decrypted_data[31:0],			// Result decrpted data to be determined if right by another FSM
 	output logic 			done									// asserted when this core has finished processing a given key
 	
  
 );
+	/*
+		These states all come from time machine that manages the time of the decryption cores
+	*/
 
 	localparam IDLE 					= 7'b0000_000;
 	localparam RESET					= 7'b0001_001;
@@ -27,18 +34,20 @@ module decryption_core(
 	localparam S_I_I					= 7'b0100_011;
 	localparam START_SHUFFLE		= 7'b0010_100;
 	localparam SHUFFLE				= 7'b0010_101;
-	localparam FINAL					= 7'b0000_110;
 	localparam READ_S_DATA			= 7'b1111_000;
 	localparam DECRYPT				= 7'b1111_111;
-	
+	localparam FINAL					= 7'b0000_110;
 	
 	logic [7:0] current_state;
-	logic start_s_i_i,
-			start_shuffle,
-			start_decrypt,
-			start_read_s_data,
-			decrypt_done,
-			reset_all;
+	
+	/*
+		start flags for all internal FSMS
+	*/
+	logic start_s_i_i,											// populate_s_mem_by_index 	- s[i] = i
+			start_shuffle,											// shuffle_fsm 					- second for loop
+			start_read_s_data,									// read_rom_mem 					- s_data 
+			start_decrypt,											// decryptor_fsm					- decryptor_fsm
+			reset_all;												// reset all FSMs to initial state if switches have changed or a new key is going to be given
 			
 			
 	time_machine time_controller(
@@ -110,6 +119,7 @@ module decryption_core(
 			endcase
 		end
 	end
+	
 	/*
 		S Memory Instance Controls
 	*/
@@ -170,20 +180,24 @@ module decryption_core(
 		 .address_out			(shuffle_mem_address_out),
 		 .sij_ready				(shuffle_mem_s_i_j_avail),
 		 .shuffle_finished	(shuffle_mem_finished)
-	); 
+	);
+	
 	
 	/*
 		read and register  memory
 	*/
-	
-	
 	logic[7:0] 	s_data[255:0];								// Registers all the ROMS data so it can be taken for several parallel computation
 	logic[7:0]	s_reader_address_out;
 	logic[7:0]	s_reader_data_out;
 	logic			s_data_read_done;
 	logic    	reader_write_enable;
-
 	
+	
+	/*
+		MUX + FF to allow writing into a local s_data register
+		This will allow us to parallelize even more in the future so we 
+		dont need to access S memory directly for decryption.
+	*/
 	always_ff @(posedge clk) begin
 		if (current_state == READ_S_DATA) begin
 			if (reader_write_enable) begin
@@ -213,6 +227,7 @@ module decryption_core(
 	*/
 	
 	logic 			decrypt_enable;
+	logic 			decrypt_done;
 	logic[255:0] 	decryptor_address_out;
 	logic[7:0] 		decryptor_data_out;
 	

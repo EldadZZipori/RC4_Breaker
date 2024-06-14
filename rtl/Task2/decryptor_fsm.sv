@@ -1,43 +1,61 @@
 `default_nettype none
-
+/*
+	DECRYPTOR FSM
+	This module implements the third loop in the decryption algorithem.
+	
+	NOTE: This module does not write into S memory! It is ment to be used with a local
+			register that is a copy of S memory.
+	
+	i=0 j = 0
+	for k = 0 to key_length-1
+		i = i + 1
+		j = (j + s[i])
+		swap value of s[i] and s[j]
+		f = s[ s[i] + s[j]]
+		decrypted_output[k] = f xor encrypted_input[k]
+		
+	This module has three paramters -
+	MSG_DEP					number of words in the encrypted data 
+	S_DEP						number of words in S memory to be used to crack encryption
+	MSG_WIDTH				number of bits in each word (has to be the same in both)
+*/
 
 module decryptor_fsm
-# (parameter MSG_DEP = 32, parameter S_DEP = 256, parameter MSG_WIDTH = 8)
+# (
+	parameter MSG_DEP		= 32, 
+	parameter S_DEP	 	= 256, 
+	parameter MSG_WIDTH 	= 8
+)
 (
 	input logic							clk,
 	input logic							reset,
-	input logic [MSG_WIDTH-1:0]	encrypted_input[MSG_DEP-1:0],
-	input logic [MSG_WIDTH-1:0]	s_data[S_DEP-1:0],
-	input logic							start,
+	input logic [MSG_WIDTH-1:0]	encrypted_input[MSG_DEP-1:0],			// the ROM memory containing the encrpted data
+	input logic [MSG_WIDTH-1:0]	s_data[S_DEP-1:0],						// locally registred S memory
+	input logic							start,										// flag indicating this FSM can start operation, Master should insure all other FSM's are done
 	
-	output logic [MSG_WIDTH-1:0]	address_out,
-	output logic [MSG_WIDTH-1:0]	data_out,	
-	output logic 						enable_write,
-	output logic [MSG_WIDTH-1:0]	decrypted_output[MSG_DEP-1:0],	
-	output logic						done
+	output logic [MSG_WIDTH-1:0]	address_out,								// Address of local registred S memory to be written to
+	output logic [MSG_WIDTH-1:0]	data_out,									// Data to be written to local registred S memory
+	output logic 						enable_write,								// Write enable to local registres S memory
+	output logic [MSG_WIDTH-1:0]	decrypted_output[MSG_DEP-1:0],		// Decrypted message, to be determined if correct by another FSM
+	output logic						done											// Indicates FSM is done operation
 );
 
 	/*
 		STATE CONTROL
-		
-		state is encoded as follows
-		[0-2]		state number
-		3			available flag
-		4			counter_finished flag
 	*/
 	localparam IDLE 					= 4'b0000;
-	localparam ASSIGN_F				= 4'b0001;
-	localparam DECRYPT				= 4'b0010;
-	localparam INCREMENT_INDEX_I	= 4'b0011;
-	localparam INCREMENT_INDEX_J	= 4'b0100;
-	localparam TAKE_TEMP				= 4'b1111;
+	localparam INCREMENT_INDEX_I	= 4'b0011;									// i = i + 1
+	localparam INCREMENT_INDEX_J	= 4'b0100;									// j = (j + s[i])
+	localparam TAKE_TEMP				= 4'b1111;									// temp = s[j]
 	localparam I_TO_J					= 4'b0111;
-	localparam WAIT_I_TO_J			= 4'b1001;
-	localparam DIS_I_TO_J			= 4'b1011;
+	localparam WAIT_I_TO_J			= 4'b1001;									// s[j] = s[i]
+	localparam DIS_I_TO_J			= 4'b1011;									// This start lowers the enable flag to ensure we are not writing to the wrong address
 	localparam J_TO_I					= 4'b1000;
-	localparam WAIT_J_TO_I			= 4'b1010;
-	localparam DIS_J_TO_I			= 4'b1100;
-	localparam DETERMINE				= 4'b0101;
+	localparam WAIT_J_TO_I			= 4'b1010;									// s[i] = s[j]
+	localparam DIS_J_TO_I			= 4'b1100;									// This start lowers the enable flag to ensure we are not writing to the wrong address
+	localparam ASSIGN_F				= 4'b0001;									// f = s[ s[i] + s[j]]
+	localparam DECRYPT				= 4'b0010;									// decrypted_output[k] = f xor encrypted_input[k]
+	localparam DETERMINE				= 4'b0101;									// k == 255 ? DONE : INCREMENT_INDEX_I
 	localparam DONE					= 4'b0110;
 	
 	
@@ -59,7 +77,7 @@ module decryptor_fsm
 		else begin
 			case (current_state)
 				IDLE: begin
-					if (start) 	next_state <= INCREMENT_INDEX_I;
+					if (start) 	next_state <= INCREMENT_INDEX_I;					// Only get out of IDLE start when Master confirmed all other FSM are done execution
 					else 			next_state <= IDLE;
 					
 				end
@@ -97,7 +115,7 @@ module decryptor_fsm
 					next_state = DETERMINE;
 				end
 				DETERMINE: begin
-					if (index_i == ({MSG_WIDTH{1'b1}}))  	next_state = DONE;					// when all data is read stop 
+					if (index_i == ({MSG_WIDTH{1'b1}}))  	next_state = DONE;					// when all data is read stop decryption prosses
 					else												next_state = INCREMENT_INDEX_I;	
 				end
 				DONE: begin
@@ -117,7 +135,7 @@ module decryptor_fsm
 				done 				<= 1'b0;
 			end
 			INCREMENT_INDEX_I: begin
-				index_i <= index_i + 1;													 // i = i + 1 in the begining of the loop. i.e. i starts at 1
+				index_i <= index_i + 1;
 			end
 			INCREMENT_INDEX_J: begin
 				index_j <= index_j + s_data[index_i];
@@ -131,7 +149,6 @@ module decryptor_fsm
 				enable_write 	<= 1'b0;
 			end
 			WAIT_I_TO_J: begin	
-				// just letting it settle
 				enable_write 	<= 1'b1;
 			end
 			DIS_I_TO_J: begin

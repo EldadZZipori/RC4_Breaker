@@ -78,7 +78,7 @@ module time_machine(
 					if(ROM_mem_read)						next_state = START_S_I_I;
 					else										next_state = IDLE;
 				end
-				RESET: begin//TODO !!! add case for when new key is available
+				RESET: begin
 					if(key_from_switches_available | new_key_available) 	
 																next_state = IDLE;					// Only move on from reset when a new key is actually available
 					else										next_state = RESET;

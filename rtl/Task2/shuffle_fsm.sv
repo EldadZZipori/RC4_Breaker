@@ -4,7 +4,7 @@
    This module implements the second loop in the decryption algorithe.
 	
 	j = 0
-	for i = 1 to 255
+	for i in 0 to 255
 		j = (j + s[i] + secret_key[i mode keylength])
 		swap value of s[i] and s[j]
 		

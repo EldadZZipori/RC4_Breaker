@@ -3,24 +3,24 @@
 	
 	Assigns each memory address in the s memory instance a value equal to its address
 	
-	for (i in 255) s[i] = i
+	for (i in 0 to 255) s[i] = i
 */
 module populate_s_mem_by_index(
 	input 	logic 			clk,
 	input 	logic				reset,
-	input		logic				start,
+	input		logic				start,						// Initiates this states machine operation, Master FSM insures no other FSM is writing to S
 	
-	output	logic[7:0]		address_out,
-	output	logic[7:0]		data_out,
-	output	logic				write_enable_out,
-	output 	logic 			assign_by_index_done
+	output	logic[7:0]		address_out,				// Address of S memory for S_controller
+	output	logic[7:0]		data_out,					// Data to be written to S memory for S_controller
+	output	logic				write_enable_out,			// Enable signal for S_controller
+	output 	logic 			assign_by_index_done		// asserts thats this FSM's opertion is done
 );
 
 	localparam IDLE 		= 0;
 	localparam FIRST		= 1;
 	localparam ASSIGN 	= 2;
-	localparam WAIT		= 3;
-	localparam DISEBLE	= 4;
+	localparam WAIT		= 3;								// This state assertes! the write_enable_out flag that allows writing into S memory
+	localparam DISEBLE	= 4;								// This state lowers the write_enable_out flag that allows writing into S memory
 	localparam FINISH 	= 5;
 	
 	logic [7:0] current_state, next_state;
@@ -36,14 +36,14 @@ module populate_s_mem_by_index(
 		else begin
 			case (current_state) 
 				IDLE: begin
-					if(start) 	next_state = FIRST;		// only start the state machine when directed by the time machine
+					if(start) 	next_state = FIRST;			// only start the state machine when directed by the time machine
 					else 			next_state = IDLE;
 				end
 				FIRST: begin
 					next_state = WAIT;
 				end
 				ASSIGN: begin
-					if (address < 255) 						// When the address reaches the final address state goes into an idle finish state
+					if (address < 255) 							// When the address reaches the final address state goes into an idle finish state
 									next_state = WAIT;
 					else						
 									next_state = FINISH;
@@ -51,7 +51,7 @@ module populate_s_mem_by_index(
 				WAIT: begin
 									next_state = DISEBLE;
 				end
-				DISEBLE: begin
+				DISEBLE: begin									
 									next_state = ASSIGN;
 				end
 				FINISH: begin
