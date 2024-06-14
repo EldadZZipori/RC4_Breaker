@@ -7,7 +7,7 @@ module de_data_writer(
 	output logic done
 );
 
-	de_memory de_memory_controller(
+	decrypted_data_memory de_memory_controller(
 		.address	(address),
 		.clock	(clk),
 		.data		(data),

@@ -72,9 +72,18 @@ module ksa
 	  .ROM_mem_read					(rom_reader_done),
 	  .rom_data_d						(rom_data_d),
 	  .secret_key						(secret_key),
-	  .decrypted_data					(decrypted_data)
+	  .decrypted_data					(decrypted_data),
+	  .done								(decryption_done)
 	);
 	
 	logic[7:0] 	decrypted_data[31:0];
+	logic decryption_done;
 	
+	de_data_writer(
+	.clk				(CLOCK_50),
+	.reset			(1'b0),
+	.start			(decryption_done),
+	.decrypted_data(decrypted_data),
+	.done				()
+	);
 endmodule 
