@@ -67,7 +67,6 @@ module decryption_fsm
 				end
 				INCREMENT_INDEX_J: begin
 					next_state = ASSIGN_F;
-<<<<<<< HEAD
 				end
 				I_TO_J: begin
 					next_state = WAIT_I_TO_J;
@@ -86,8 +85,6 @@ module decryption_fsm
 				end
 				DIS_J_TO_I: begin
 					next_state = ASSIGN_F;
-=======
->>>>>>> 0f912df5bb20986705b81edb8e6cb79959679420
 				end
 				ASSIGN_F: begin
 					next_state = DECRYPT;
@@ -148,14 +145,11 @@ module decryption_fsm
 				f <= s_data[s_data[index_i] +s_data[index_j]];
 			end
 			DECRYPT: begin
-<<<<<<< HEAD
 				decrypted_output[index_i-1] <= f ^ encrypted_input[index_i-1]; // k = i -1 always
 			end
 			DONE: begin
 				done <= 1'b1;
-=======
 				decrypted_output[index_i] <= f ^ encrypted_input[index_i];
->>>>>>> 0f912df5bb20986705b81edb8e6cb79959679420
 			end
 
 		endcase
