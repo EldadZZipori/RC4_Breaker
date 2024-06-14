@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Thu Jun 13 16:31:17 2024
+Analysis & Synthesis Status : Successful - Fri Jun 14 11:52:32 2024
 Quartus Prime Version : 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 Revision Name : rom_reader
 Top-level Entity Name : rom_reader
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 3782
-Total pins : 1
+Total registers : 710
+Total pins : 257
 Total virtual pins : 0
-Total block memory bits : 33,152
+Total block memory bits : 384
 Total DSP Blocks : 0
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0

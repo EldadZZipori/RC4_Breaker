@@ -11,8 +11,9 @@ module read_rom_mem
 	input	logic[WID-1:0]	rom_q_data_in,
 	
 	output logic 		done,
-	output logic[8:0]	address,
-	output logic[WID-1:0] rom_data[DEP-1:0]
+	output logic[7:0]	address,
+	output logic		enable_output,
+	output logic[WID-1:0] rom_data
 );
 	
 	localparam IDLE = 3'b000;
@@ -24,9 +25,9 @@ module read_rom_mem
 	logic[2:0] state;
 	
 	logic [8:0] current_index;
-	logic	[WID-1:0] rom_data_register[DEP-1:0] /*synthesis keep*/;
+	//logic	[WID-1:0] rom_data_register[DEP-1:0] /*synthesis keep*/;
 	
-	assign rom_data = rom_data_register;
+	//assign rom_data = rom_data_register;
 	assign address = current_index[8:0];
 
 	always_ff @(posedge clk) begin
@@ -34,6 +35,7 @@ module read_rom_mem
 			current_index 	<= 0;
 			state 			<= IDLE;
 			done 				<= 1'b0;
+			enable_output	<= 1'b0;
 		end
 		else begin
 			case(state)
@@ -47,12 +49,14 @@ module read_rom_mem
 				end
 				READ: begin
 
-					rom_data_register[current_index] <= rom_q_data_in;
+					rom_data 								<= rom_q_data_in;
+					enable_output							<= 1'b1;
 					state 									<= INC;
 					
 					if(current_index == (DEP-1))		done 	<= 1'b1;
 				end
 				INC: begin
+					enable_output							<= 1'b0;
 					if (!done) begin
 						current_index	<= current_index + 1;
 						state				<=	WAIT;

@@ -1,5 +1,5 @@
 
-State Machine - |rom_reader|read_rom_mem:comb_5|state
+State Machine - |rom_reader|read_rom_mem:reader|state
 Name state.DONE state.INC state.READ state.IDLE state.WAIT 
 state.IDLE 0 0 0 0 0 
 state.READ 0 0 1 1 0 
