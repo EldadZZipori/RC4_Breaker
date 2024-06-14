@@ -149,7 +149,6 @@ module decryption_fsm
 			end
 			DONE: begin
 				done <= 1'b1;
-				decrypted_output[index_i] <= f ^ encrypted_input[index_i];
 			end
 
 		endcase
