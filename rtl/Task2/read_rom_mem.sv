@@ -8,7 +8,7 @@ module read_rom_mem
 	input logic 		clk,
 	input logic			reset,
 	input logic			start,
-	input	logic[7:0]	rom_q_data_in,
+	input	logic[WID-1:0]	rom_q_data_in,
 	
 	output logic 		done,
 	output logic[8:0]	address,

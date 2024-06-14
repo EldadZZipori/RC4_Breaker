@@ -20,6 +20,8 @@ module ksa
 	localparam STRAT_SEC_SHUFFLE	= 7'b1000_111;
 	localparam SEC_SHUFFLE			= 7'b1000_000;
 	localparam FINAL					= 7'b0000_110;
+	localparam READ_S_DATA			= 7'b1111_000;
+
 	
 	
 	logic [7:0] current_state;
@@ -66,6 +68,11 @@ module ksa
 					s_memory_data_enable = sec_shuffle_mem_write_enable;
 					s_memory_data_in		= sec_shuffle_mem_data_out;
 					s_memory_address_in	= sec_shuffle_mem_address_out;
+				end
+				READ_S_DATA: begin
+					s_memory_data_enable = 1'b0;
+					s_memory_data_in		= 1'b0;
+					s_memory_address_in	= s_data_address_out;
 				end
 				default: begin
 					s_memory_address_in	=	0;
@@ -221,15 +228,15 @@ module ksa
 	
 	
 	logic[7:0] 	s_data[255:0];								// Registers all the ROMS data so it can be taken for several parallel computation
-	logic[5:0]	s_data_address_out;
+	logic[7:0]	s_data_address_out;
 	logic			s_data_read_done;
 	
 	
 	read_rom_mem #(.DEP(256),.WID(8)) s_data_reader(
 		.clk				(CLOCK_50),
-		.reset			(1'b0),
+		.reset			(reset_all),
 		.start			(start_read_s_data),
-		.rom_q_data_in	(rom_q_data_out),	
+		.rom_q_data_in	(s_memory_q_data_out),	
 		.done				(s_data_read_done),
 		.address			(s_data_address_out),
 		.rom_data		(s_data)
