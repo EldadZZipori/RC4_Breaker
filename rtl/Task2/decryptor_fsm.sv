@@ -9,6 +9,7 @@ module decryptor_fsm
 	input logic [MSG_WIDTH-1:0]	encrypted_input[MSG_DEP-1:0],
 	input logic [MSG_WIDTH-1:0]	s_data[S_DEP-1:0],
 	input logic							start,
+	input	logic	[7:0]					j_before_swaps[31:0],
 	
 	output logic [MSG_WIDTH-1:0]	decrypted_output[MSG_DEP-1:0],	
 	output logic						done
@@ -64,8 +65,8 @@ module decryptor_fsm
 					next_state = DETERMINE;
 				end
 				DETERMINE: begin
-					if (index_i == ({MSG_WIDTH{1'b1}}))  			next_state = DONE;					// when all data is read stop 
-					else															next_state = INCREMENT_INDEX_I;	
+					if (index_i == ({MSG_WIDTH{1'b1}}))  	next_state = DONE;					// when all data is read stop 
+					else												next_state = INCREMENT_INDEX_I;	
 				end
 				DONE: begin
 					next_state = DONE;
@@ -78,21 +79,21 @@ module decryptor_fsm
 	always_ff @ (posedge clk) begin
 		case (current_state)
 			IDLE: begin
-				index_i 	<= 0;
+				index_i 	<= 0;																									
 				index_j	<= 0;
 				done 		<= 1'b0;
 			end
 			INCREMENT_INDEX_I: begin
-				index_i <= index_i + 1;
+				index_i <= index_i + 1;													 // i = i + 1 in the begining of the loop. i.e. i starts at 1
 			end
 			INCREMENT_INDEX_J: begin
-				index_j <= index_j + s_data[index_i];
+				index_j <= j_before_swaps[index_i-1];
 			end
 			ASSIGN_F: begin
 				f <= s_data[s_data[index_i] +s_data[index_j]];
 			end
 			DECRYPT: begin
-				decrypted_output[index_i] <= f ^ encrypted_input[index_i];
+				decrypted_output[index_i-1] <= f ^ encrypted_input[index_i-1]; // k = i -1 always
 			end
 			DONE: begin
 				done <= 1'b1;

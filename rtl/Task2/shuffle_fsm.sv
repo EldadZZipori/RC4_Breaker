@@ -8,7 +8,10 @@
 `default_nettype none
 
 module shuffle_fsm
-#( parameter KEY_LENGTH = 3)
+#( parameter KEY_LENGTH 	= 3,
+	parameter START_INDEX 	= 0,
+	parameter END_INDEX		= 255
+)
      
 (    // inputs
     input logic 			CLOCK_50,
@@ -23,14 +26,13 @@ module shuffle_fsm
     output logic [7:0] 	data_for_s_write,
     output logic [7:0] 	address_out,
     output logic 			shuffle_finished
+
 );
 	
-	logic 	  [7:0] address_i 	/*synthesis keep*/;
-	logic 	  [7:0] address_j 	/*synthesis keep*/;
-	logic 	  [7:0] s_data_at_i 	/*synthesis keep*/;
-	logic 	  [7:0] s_data_at_j 	/*synthesis keep*/;
-	logic 	  [7:0] temp			/*synthesis keep*/;
-	
+	logic 	  [7:0] 		address_i 	/*synthesis keep*/;
+	logic 	  [7:0] 		address_j 	/*synthesis keep*/;
+	logic 	  [7:0] 		s_data_at_i 	/*synthesis keep*/;
+	logic 	  [7:0] 		s_data_at_j 	/*synthesis keep*/;	
     
    // State register to hold the current state
    logic [3:0] state /*synthesis keep*/;     
@@ -64,7 +66,7 @@ module shuffle_fsm
     always_ff @(posedge CLOCK_50) begin
         if (reset) begin
             state 		<= IDLE;
-            address_j 	<= 0;
+            address_j 	<= START_INDEX;
 				address_i	<=	0;
         end 
 		  else begin
@@ -72,7 +74,7 @@ module shuffle_fsm
                 IDLE: begin
 						if(start) state <= SETUP_SI_J;
 						else		 state <= IDLE;
-                  address_i	<= 0;			
+                  address_i	<= INDEX;			
 					   address_j	<= 0;				
 	
                 end
@@ -89,15 +91,10 @@ module shuffle_fsm
                 end
 
                 ASSIGN_J: begin
-						/*case (address_i % 3)																	// pick up the correct amount of BYTES!!!!
-							0:	address_j 		<= address_j + s_data_at_i + secret_key[23:16];	// calculating the nex address j	
-							1: address_j 		<= address_j + s_data_at_i + secret_key[15:8];
-							2: address_j 		<= address_j + s_data_at_i + secret_key[7:0];
-						endcase*/
 						if (secret_key != 0)
-							address_j = (address_j + s_data_at_i + secret_key[5'd23 - (4'd8 * (address_i % 2'd3)) -: 8]);
+							address_j <= (address_j + s_data_at_i + secret_key[5'd23 - (4'd8 * (address_i % 2'd3)) -: 8]);
 						else 
-							address_j = (address_j + s_data_at_i );
+							address_j <= (address_j + s_data_at_i );
 														
 						state 				<= SETUPT_SJ;
                 end
@@ -131,7 +128,7 @@ module shuffle_fsm
 						state					<= WAIT_FOR_I;
 					 end
                 WAIT_FOR_I: begin
-                    if (address_i == 8'd255) begin
+                    if (address_i == END_INDEX) begin
                         state <= FINISH;
                     end 
 						  else begin

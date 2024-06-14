@@ -157,6 +157,7 @@ module ksa
 	);
 	
 	assign secret_key = {{14{1'b0}},LEDR};
+	
 	/*
 		Shuffle memory control
 	*/
@@ -202,7 +203,7 @@ module ksa
 		.reset			(1'b0),
 		.start			(1'b1),
 		.rom_q_data_in	(rom_q_data_out),	
-		.done				(rom_reader_done),
+		.done				(rom_reader_done),				// TODO: add to time machine to check this is actually done before reading rom_data!!!
 		.address			(rom_reader_address_out),
 		.rom_data		(rom_data)
 	);
@@ -211,8 +212,8 @@ module ksa
 	/*
 		Second Shuffle for decryption
 	*/
-	
-		/*
+	// TODO - remove second shuffle and integrate with decryptor
+	/*
 		Shuffle memory control
 	*/
 	logic	[7:0]	sec_shuffle_mem_data_out;
@@ -221,7 +222,11 @@ module ksa
 	logic			sec_shuffle_mem_finished;
 	logic			sec_shuffle_mem_write_enable;
 	
-	shuffle_fsm #(.KEY_LENGTH(3)) 
+	shuffle_fsm 
+	# (	.KEY_LENGTH	(3),
+			.START_INDEX(1),
+			.END_INDEX	(31)
+	) 
 	sec_shuffle_control
 	(    
 		 .CLOCK_50				(CLOCK_50),
