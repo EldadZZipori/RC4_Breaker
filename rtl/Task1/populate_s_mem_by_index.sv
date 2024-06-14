@@ -61,7 +61,7 @@ module populate_s_mem_by_index(
 	end
 	
 
-	logic	[8:0] address;								// data_in and address_in is going to be exactlly the same s[i] = i
+	logic	[8:0] address;											// data_in and address_in is going to be exactlly the same s[i] = i
 	logic 		write_enable;
 	
 	assign address_out 		= 	address[7:0];

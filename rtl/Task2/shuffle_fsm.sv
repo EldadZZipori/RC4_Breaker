@@ -1,9 +1,21 @@
 /*
     SHUFFLE S MEMORY (FINITE STATE MACHINE)
     
-    Uses a state machine that shuffles the memory
+   This module implements the second loop in the decryption algorithe.
+	
+	j = 0
+	for i = 1 to 255
+		j = (j + s[i] + secret_key[i mode keylength])
+		swap value of s[i] and s[j]
+		
+	NOTE: this fsm does not directly changes s. This must be done externally from the signals
+			provided by this fsm.
     
-    
+   This module has three paramters -
+	KEY_LENGTH				the amount of bytes to be used from secret key
+	START_INDEX				allow to implement this loop with different bounds i from START_INDEX
+	END_INDEX				i to END_INDEX
+	 
 */
 `default_nettype none
 
