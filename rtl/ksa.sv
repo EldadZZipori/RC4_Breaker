@@ -17,8 +17,6 @@ module ksa
 	localparam S_I_I					= 7'b0100_011;
 	localparam START_SHUFFLE		= 7'b0010_100;
 	localparam SHUFFLE				= 7'b0010_101;
-	localparam STRAT_SEC_SHUFFLE	= 7'b1000_111;
-	localparam SEC_SHUFFLE			= 7'b1000_000;
 	localparam FINAL					= 7'b0000_110;
 	localparam READ_S_DATA			= 7'b1111_000;
 	localparam DECRYPT				= 7'b1111_111;
@@ -73,11 +71,6 @@ module ksa
 					s_memory_data_enable = shuffle_mem_write_enable;
 					s_memory_data_in		=	shuffle_mem_data_out;
 					s_memory_address_in	= shuffle_mem_address_out;
-				end
-				SEC_SHUFFLE: begin						
-					s_memory_data_enable = sec_shuffle_mem_write_enable;
-					s_memory_data_in		= sec_shuffle_mem_data_out;
-					s_memory_address_in	= sec_shuffle_mem_address_out;
 				end
 				READ_S_DATA: begin
 					s_memory_data_enable = 1'b0;
@@ -208,39 +201,6 @@ module ksa
 		.rom_data		(rom_data)
 	);
 
-	
-	/*
-		Second Shuffle for decryption
-	*/
-	// TODO - remove second shuffle and integrate with decryptor
-	/*
-		Shuffle memory control
-	*/
-	logic	[7:0]	sec_shuffle_mem_data_out;
-	logic [7:0]	sec_shuffle_mem_address_out;
-	logic 		sec_shuffle_mem_s_i_j_avail;
-	logic			sec_shuffle_mem_finished;
-	logic			sec_shuffle_mem_write_enable;
-	
-	shuffle_fsm 
-	# (	.KEY_LENGTH	(3),
-			.START_INDEX(1),
-			.END_INDEX	(31)
-	) 
-	sec_shuffle_control
-	(    
-		 .CLOCK_50				(CLOCK_50),
-		 .reset					(reset_all),
-		 .start					(start_sec_shuffle),
-		 .secret_key			(24'b0),
-		 //.secret_key			(24'b00000000_00000010_01001001),
-		 .s_data_in				(s_memory_q_data_out),
-		 .write_enable_out	(sec_shuffle_mem_write_enable),
-		 .data_for_s_write	(sec_shuffle_mem_data_out),
-		 .address_out			(sec_shuffle_mem_address_out),
-		 .sij_ready				(sec_shuffle_mem_s_i_j_avail),
-		 .shuffle_finished	(sec_shuffle_mem_finished)
-	); 
 	
 	/*
 		read and register reshuffled memory

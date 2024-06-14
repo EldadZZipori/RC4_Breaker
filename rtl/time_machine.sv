@@ -38,8 +38,8 @@ module time_machine(
 	localparam S_I_I					= 7'b0100_011;
 	localparam START_SHUFFLE		= 7'b0010_100;
 	localparam SHUFFLE				= 7'b0010_101;
-	localparam STRAT_SEC_SHUFFLE	= 7'b1000_111;
-	localparam SEC_SHUFFLE			= 7'b1000_000; 
+	//localparam STRAT_SEC_SHUFFLE	= 7'b1000_111;
+	//localparam SEC_SHUFFLE			= 7'b1000_000; 
 	localparam FINAL					= 7'b0000_110;
 	localparam READ_S_DATA			= 7'b1111_000;
 	localparam DECRYPT				= 7'b1111_111;
@@ -54,7 +54,7 @@ module time_machine(
 	assign reset_all 				= (current_state == RESET);
 	assign start_shuffle 		= (current_state == START_SHUFFLE) | (current_state == SHUFFLE);
 	assign start_s_i_i			= (current_state == START_S_I_I) | (current_state == S_I_I);
-	assign start_sec_shuffle 	= (current_state == STRAT_SEC_SHUFFLE) | (current_state == SEC_SHUFFLE);
+	//assign start_sec_shuffle 	= (current_state == STRAT_SEC_SHUFFLE) | (current_state == SEC_SHUFFLE);
 	assign s_data_read_start	= (current_state == READ_S_DATA);
 	assign start_decrypt			= (current_state == DECRYPT);
 	
@@ -91,16 +91,16 @@ module time_machine(
 																next_state = SHUFFLE;
 				end
 				SHUFFLE: begin																			// only read the data from s to local register when the second loop is done
-					if (shuffle_mem_finished) 			next_state = STRAT_SEC_SHUFFLE;
+					if (shuffle_mem_finished) 			next_state = READ_S_DATA;
 					else										next_state = SHUFFLE;
 				end
-				STRAT_SEC_SHUFFLE: begin
-																next_state = SEC_SHUFFLE;
-				end
-				SEC_SHUFFLE: begin
-					if (sec_shuffle_done)				next_state = READ_S_DATA;
-					else										next_state = SEC_SHUFFLE;
-				end
+				//STRAT_SEC_SHUFFLE: begin
+				//											next_state = SEC_SHUFFLE;
+				//end
+				//SEC_SHUFFLE: begin
+					//if (sec_shuffle_done)				next_state = READ_S_DATA;
+					//else										next_state = SEC_SHUFFLE;
+				//end
 				READ_S_DATA: begin
 					if(s_data_read_done)					next_state = DECRYPT;				// Start decryption only when when a local s register is available
 					else										next_state = READ_S_DATA;

@@ -9,8 +9,10 @@ module decryptor_fsm
 	input logic [MSG_WIDTH-1:0]	encrypted_input[MSG_DEP-1:0],
 	input logic [MSG_WIDTH-1:0]	s_data[S_DEP-1:0],
 	input logic							start,
-	input	logic	[7:0]					j_before_swaps[31:0],
 	
+	output logic [S_DEP-1:0]		address_out,
+	output logic [MSG_WIDTH-1:0]	data_out,	
+	output logic 						enable_write,
 	output logic [MSG_WIDTH-1:0]	decrypted_output[MSG_DEP-1:0],	
 	output logic						done
 );
@@ -23,13 +25,19 @@ module decryptor_fsm
 		3			available flag
 		4			counter_finished flag
 	*/
-	localparam IDLE 					= 3'b000;
-	localparam ASSIGN_F				= 3'b001;
-	localparam DECRYPT				= 3'b010;
-	localparam INCREMENT_INDEX_I	= 3'b011;
-	localparam INCREMENT_INDEX_J	= 3'b100;
-	localparam DETERMINE				= 3'b101;
-	localparam DONE					= 3'b110;
+	localparam IDLE 					= 4'b0000;
+	localparam ASSIGN_F				= 4'b0001;
+	localparam DECRYPT				= 4'b0010;
+	localparam INCREMENT_INDEX_I	= 4'b0011;
+	localparam INCREMENT_INDEX_J	= 4'b0100;
+	localparam I_TO_J					= 4'b0111;
+	localparam WAIT_I_TO_J			= 4'b1001;
+	localparam DIS_I_TO_J			= 4'b1011;
+	localparam J_TO_I					= 4'b1000;
+	localparam WAIT_J_TO_I			= 4'b1010;
+	localparam DIS_J_TO_I			= 4'b1100;
+	localparam DETERMINE				= 4'b0101;
+	localparam DONE					= 4'b0110;
 	
 	
 	logic [4:0] current_state/*synthesis keep*/;
@@ -37,6 +45,8 @@ module decryptor_fsm
 	
 	logic [MSG_WIDTH-1:0] 	f;	
 	logic	[7:0]					index_i, index_j;
+	
+	logic [MSG_WIDTH] temp_i;
 	
 	// Flip flop to register the current state
 	always_ff @(posedge clk) begin
@@ -56,6 +66,24 @@ module decryptor_fsm
 					next_state = INCREMENT_INDEX_J;
 				end
 				INCREMENT_INDEX_J: begin
+					next_state = ASSIGN_F;
+				end
+				I_TO_J: begin
+					next_state = WAIT_I_TO_J;
+				end
+				WAIT_I_TO_J: begin
+					next_state = DIS_I_TO_J;
+				end
+				DIS_I_TO_J: begin
+					next_state = J_TO_I;
+				end
+				J_TO_I: begin
+					next_state = WAIT_J_TO_I;
+				end
+				WAIT_J_TO_I: begin
+					next_state = DIS_J_TO_I;
+				end
+				DIS_J_TO_I: begin
 					next_state = ASSIGN_F;
 				end
 				ASSIGN_F: begin
@@ -79,15 +107,39 @@ module decryptor_fsm
 	always_ff @ (posedge clk) begin
 		case (current_state)
 			IDLE: begin
-				index_i 	<= 0;																									
-				index_j	<= 0;
-				done 		<= 1'b0;
+				index_i 			<= 0;																									
+				index_j			<= 0;
+				enable_write 	<= 1'b0;
+				done 				<= 1'b0;
 			end
 			INCREMENT_INDEX_I: begin
 				index_i <= index_i + 1;													 // i = i + 1 in the begining of the loop. i.e. i starts at 1
 			end
 			INCREMENT_INDEX_J: begin
-				index_j <= j_before_swaps[index_i-1];
+				index_j <= index_j + s_data[index_i];
+			end
+			I_TO_J: begin
+				address_out 	<= index_j;
+				data_out			<= s_data[index_i];
+				enable_write 	<= 1'b0;
+			end
+			WAIT_I_TO_J: begin	
+				// just letting it settle
+				enable_write 	<= 1'b1;
+			end
+			DIS_I_TO_J: begin
+				enable_write 	<= 1'b0;
+			end
+			J_TO_I: begin
+				enable_write 	<= 1'b0;
+				address_out 	<= index_i;
+				data_out			<= s_data[index_j];
+			end
+			WAIT_J_TO_I: begin
+				enable_write 	<= 1'b1;
+			end
+			DIS_J_TO_I: begin
+				enable_write 	<= 1'b0;
 			end
 			ASSIGN_F: begin
 				f <= s_data[s_data[index_i] +s_data[index_j]];
