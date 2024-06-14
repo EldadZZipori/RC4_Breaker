@@ -14,9 +14,11 @@ module time_machine(
 	input logic CLOCK_50,						
 	input logic reset,
 	input logic key_from_switches_changed,					// Indicating that the position of the switches have been changes.
+	input logic ROM_mem_read,
 	input logic key_from_switches_available,				// Indicating the secret key have been synchronized
 	input logic assign_by_index_done,						// Indicating s[i] = i is done
 	input logic shuffle_mem_finished,						// Indicating the second loop that swaps s[i] and s[j] is done
+	input logic	new_key_available,							// Allow state to move one from a reset
 
 	input logic sec_shuffle_done,
 	input logic s_data_read_done,								// Indicated that the s data has been read to a local register to be used in decryption
@@ -29,7 +31,9 @@ module time_machine(
 	output logic start_sec_shuffle,
 	output logic s_data_read_start,							//	Initiates the FSM that read the data in s into a local register (read_rom_mem)
 	output logic start_decrypt,								// Tells last for loop to start (decryptor_fsm)
-	output logic[7:0] current_state							// For use outside this FSM to determine bus switching to read/write from memory locations
+	output logic[7:0] current_state,							// For use outside this FSM to determine bus switching to read/write from memory locations
+	
+	output logic done
 );
 
 	localparam IDLE 					= 7'b0000_000;
@@ -38,8 +42,6 @@ module time_machine(
 	localparam S_I_I					= 7'b0100_011;
 	localparam START_SHUFFLE		= 7'b0010_100;
 	localparam SHUFFLE				= 7'b0010_101;
-	//localparam STRAT_SEC_SHUFFLE	= 7'b1000_111;
-	//localparam SEC_SHUFFLE			= 7'b1000_000; 
 	localparam FINAL					= 7'b0000_110;
 	localparam READ_S_DATA			= 7'b1111_000;
 	localparam DECRYPT				= 7'b1111_111;
@@ -54,9 +56,9 @@ module time_machine(
 	assign reset_all 				= (current_state == RESET);
 	assign start_shuffle 		= (current_state == START_SHUFFLE) | (current_state == SHUFFLE);
 	assign start_s_i_i			= (current_state == START_S_I_I) | (current_state == S_I_I);
-	//assign start_sec_shuffle 	= (current_state == STRAT_SEC_SHUFFLE) | (current_state == SEC_SHUFFLE);
 	assign s_data_read_start	= (current_state == READ_S_DATA);
 	assign start_decrypt			= (current_state == DECRYPT);
+	assign done						= (current_state == FINAL);
 	
 	
 	// FF to register next_state
@@ -73,10 +75,12 @@ module time_machine(
 		else begin
 			case (current_state)
 				IDLE: begin
-																next_state = START_S_I_I;
+					if(ROM_mem_read)						next_state = START_S_I_I;
+					else										next_state = IDLE;
 				end
 				RESET: begin//TODO !!! add case for when new key is available
-					if(key_from_switches_available) 	next_state = IDLE;					// Only move on from reset when a new key is actually available
+					if(key_from_switches_available | new_key_available) 	
+																next_state = IDLE;					// Only move on from reset when a new key is actually available
 					else										next_state = RESET;
 				end
 				START_S_I_I: begin
@@ -94,13 +98,6 @@ module time_machine(
 					if (shuffle_mem_finished) 			next_state = READ_S_DATA;
 					else										next_state = SHUFFLE;
 				end
-				//STRAT_SEC_SHUFFLE: begin
-				//											next_state = SEC_SHUFFLE;
-				//end
-				//SEC_SHUFFLE: begin
-					//if (sec_shuffle_done)				next_state = READ_S_DATA;
-					//else										next_state = SEC_SHUFFLE;
-				//end
 				READ_S_DATA: begin
 					if(s_data_read_done)					next_state = DECRYPT;				// Start decryption only when when a local s register is available
 					else										next_state = READ_S_DATA;

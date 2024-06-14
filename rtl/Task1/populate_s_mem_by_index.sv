@@ -6,9 +6,9 @@
 	for (i in 255) s[i] = i
 */
 module populate_s_mem_by_index(
-	input 	logic 	clk,
-	input 	logic		reset,
-	input		logic		start,
+	input 	logic 			clk,
+	input 	logic				reset,
+	input		logic				start,
 	
 	output	logic[7:0]		address_out,
 	output	logic[7:0]		data_out,
@@ -31,31 +31,33 @@ module populate_s_mem_by_index(
 	
 	always_comb begin
 		if(reset) begin
-			next_state = IDLE;
+									next_state = IDLE;
 		end
 		else begin
 			case (current_state) 
 				IDLE: begin
-					if(start) 	next_state = FIRST;
+					if(start) 	next_state = FIRST;		// only start the state machine when directed by the time machine
 					else 			next_state = IDLE;
 				end
 				FIRST: begin
 					next_state = WAIT;
 				end
 				ASSIGN: begin
-					if (address < 255) 		next_state = WAIT;
-					else						next_state = FINISH;
+					if (address < 255) 						// When the address reaches the final address state goes into an idle finish state
+									next_state = WAIT;
+					else						
+									next_state = FINISH;
 				end
 				WAIT: begin
-					next_state = DISEBLE;
+									next_state = DISEBLE;
 				end
 				DISEBLE: begin
-					next_state = ASSIGN;
+									next_state = ASSIGN;
 				end
 				FINISH: begin
-						next_state = FINISH;
+									next_state = FINISH;
 				end
-				default: next_state = IDLE;
+				default: 		next_state = IDLE;
 			endcase
 		end
 	end
@@ -70,15 +72,15 @@ module populate_s_mem_by_index(
 	
 	always_ff @(posedge clk) begin
 		if (reset) begin
-			address <= 0;
-			assign_by_index_done <= 1'b0;
+				address <= 0;
+				assign_by_index_done <= 1'b0;
 		end
 		else if (current_state == ASSIGN) begin
 				address 					<= address + 1;
 				assign_by_index_done <= 1'b0;
 		end
-		else if (current_state == WAIT) begin
-			write_enable_out 		<= 1'b1;
+		else if (current_state == WAIT) begin				// This state ensures a one clock cycle of enable 
+				write_enable_out 		<= 1'b1;
 		end
 		else if (current_state == DISEBLE) begin
 				write_enable_out 		<= 1'b0;
