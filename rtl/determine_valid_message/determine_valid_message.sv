@@ -11,7 +11,7 @@ module determine_valid_message
     parameter LOW_THRESHOLD = 97,    // ASCII value for 'a'
     parameter HIGH_THRESHOLD = 122,  // ASCII value for 'z'
     parameter SPECIAL = 32,          // ASCII value for space ' '
-    parameter END_INDEX = 32        // Last index to check (the entire message is 32)
+    parameter END_INDEX = 5        // Last index to check (the entire message is 32)
 )
 (
     input  logic        CLOCK_50,              // Clock signal                        
@@ -53,6 +53,7 @@ module determine_valid_message
                         if (!((decrypted_data[index] >= LOW_THRESHOLD && decrypted_data[index] <= HIGH_THRESHOLD) ||
                               (decrypted_data[index] == SPECIAL))) begin
                             key_valid <= 0;  // Set valid to 0 if an invalid character is found
+									 state <= FINISH;
                         end
                         index <= index + 1;  // Increment index during CHECKING state
                     end else begin
