@@ -1,0 +1,1 @@
+Info (10281): Verilog HDL Declaration information at determine_valid_message.sv(23): object "finish" differs only in case from object "FINISH" in the same scope File: C:/Users/joshl/Documents/CPEN 311/lab4/determine_valid_message/determine_valid_message.sv Line: 23
