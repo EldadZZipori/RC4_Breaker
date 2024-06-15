@@ -6670,6 +6670,7 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to time_machine|vcc -section_id time_machine
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to time_machine|vcc -section_id time_machine
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to time_machine|gnd -section_id time_machine
+set_global_assignment -name SYSTEMVERILOG_FILE "Task 3/determine_valid_message.sv"
 set_global_assignment -name SYSTEMVERILOG_FILE Task2/decryptor_fsm.sv
 set_global_assignment -name SDC_FILE timing_constraints.sdc
 set_global_assignment -name QIP_FILE s_memory.qip
@@ -6685,5 +6686,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE time_machine.sv
 set_global_assignment -name SYSTEMVERILOG_FILE "Task 3/decryption_core.sv"
 set_global_assignment -name SYSTEMVERILOG_FILE Task2/de_data_writer.sv
 set_global_assignment -name QIP_FILE decrypted_data_memory.qip
+set_global_assignment -name SYSTEMVERILOG_FILE Task4/parallel_cores.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/SignalTap_auto_stripped.stp

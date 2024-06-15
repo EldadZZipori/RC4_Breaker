@@ -24,6 +24,8 @@ module time_machine(
 	input logic s_data_read_done,								// Indicated that the s data has been read to a local register to be used in decryption
 	input logic decrypt_done,									// Indicating decryption with some key is done
 	
+	input logic stop,
+	
 	output logic reset_all,										// Tells all FSM they need to reset as secret_key was changed
 	
 	output logic start_s_i_i,									// Initiates s[i] = i FSM (populate_s_mem_by_index)
@@ -75,7 +77,7 @@ module time_machine(
 		else begin
 			case (current_state)
 				IDLE: begin
-					if(ROM_mem_read)						next_state = START_S_I_I;
+					if(ROM_mem_read & (!stop))			next_state = START_S_I_I;
 					else										next_state = IDLE;
 				end
 				RESET: begin

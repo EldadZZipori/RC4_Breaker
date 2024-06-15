@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rc4
-Fri Jun 14 15:32:00 2024
+Sat Jun 15 09:38:35 2024
 Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 
 
@@ -22,8 +22,8 @@ Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
  14. Inverted Register Statistics
  15. Multiplexer Restructuring Statistics (Restructuring Performed)
  16. Source assignments for switches_fsm:key_switches_control
- 17. Source assignments for encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|altsyncram_e803:altsyncram1
- 18. Source assignments for decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|altsyncram_kq83:altsyncram1
+ 17. Source assignments for s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|altsyncram_kq83:altsyncram1
+ 18. Source assignments for encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|altsyncram_e803:altsyncram1
  19. Source assignments for decryption_core:decryption_core1|shuffle_fsm:shuffle_control
  20. Source assignments for decryption_core:decryption_core1|decryptor_fsm:decryptor_1
  21. Source assignments for de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|altsyncram_22p2:altsyncram1
@@ -34,9 +34,9 @@ Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
  26. Source assignments for sld_signaltap:sec_shuffle_mem
  27. Source assignments for sld_signaltap:switches
  28. Source assignments for sld_signaltap:time_machine
- 29. Parameter Settings for User Entity Instance: encrypted_data_memory:rom_memory|altsyncram:altsyncram_component
- 30. Parameter Settings for User Entity Instance: read_rom_mem:rom_d
- 31. Parameter Settings for User Entity Instance: decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component
+ 29. Parameter Settings for User Entity Instance: s_memory:s_memory_controller|altsyncram:altsyncram_component
+ 30. Parameter Settings for User Entity Instance: encrypted_data_memory:rom_memory|altsyncram:altsyncram_component
+ 31. Parameter Settings for User Entity Instance: read_rom_mem:rom_d
  32. Parameter Settings for User Entity Instance: decryption_core:decryption_core1|shuffle_fsm:shuffle_control
  33. Parameter Settings for User Entity Instance: decryption_core:decryption_core1|read_rom_mem:s_data_reader
  34. Parameter Settings for User Entity Instance: decryption_core:decryption_core1|decryptor_fsm:decryptor_1
@@ -52,25 +52,26 @@ Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
  44. altsyncram Parameter Settings by Entity Instance
  45. Port Connectivity Checks: "de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller"
  46. Port Connectivity Checks: "de_data_writer:comb_1089"
- 47. Port Connectivity Checks: "decryption_core:decryption_core1|shuffle_fsm:shuffle_control"
- 48. Port Connectivity Checks: "decryption_core:decryption_core1|time_machine:time_controller"
- 49. Port Connectivity Checks: "decryption_core:decryption_core1"
- 50. Port Connectivity Checks: "read_rom_mem:rom_d"
- 51. Port Connectivity Checks: "encrypted_data_memory:rom_memory"
- 52. Port Connectivity Checks: "switches_fsm:key_switches_control"
- 53. SignalTap II Logic Analyzer Settings
- 54. In-System Memory Content Editor Settings
- 55. Post-Synthesis Netlist Statistics for Top Partition
- 56. Elapsed Time Per Partition
- 57. Connections to In-System Debugging Instance "Shuffle_mem"
- 58. Connections to In-System Debugging Instance "s_memory"
- 59. Connections to In-System Debugging Instance "time_machine"
- 60. Connections to In-System Debugging Instance "decrypted"
- 61. Connections to In-System Debugging Instance "ROM_memory"
- 62. Connections to In-System Debugging Instance "sec_shuffle_mem"
- 63. Connections to In-System Debugging Instance "switches"
- 64. Analysis & Synthesis Messages
- 65. Analysis & Synthesis Suppressed Messages
+ 47. Port Connectivity Checks: "decryption_core:decryption_core1|decryptor_fsm:decryptor_1"
+ 48. Port Connectivity Checks: "decryption_core:decryption_core1|shuffle_fsm:shuffle_control"
+ 49. Port Connectivity Checks: "decryption_core:decryption_core1|time_machine:time_controller"
+ 50. Port Connectivity Checks: "decryption_core:decryption_core1"
+ 51. Port Connectivity Checks: "read_rom_mem:rom_d"
+ 52. Port Connectivity Checks: "encrypted_data_memory:rom_memory"
+ 53. Port Connectivity Checks: "switches_fsm:key_switches_control"
+ 54. SignalTap II Logic Analyzer Settings
+ 55. In-System Memory Content Editor Settings
+ 56. Post-Synthesis Netlist Statistics for Top Partition
+ 57. Elapsed Time Per Partition
+ 58. Connections to In-System Debugging Instance "Shuffle_mem"
+ 59. Connections to In-System Debugging Instance "s_memory"
+ 60. Connections to In-System Debugging Instance "time_machine"
+ 61. Connections to In-System Debugging Instance "decrypted"
+ 62. Connections to In-System Debugging Instance "ROM_memory"
+ 63. Connections to In-System Debugging Instance "sec_shuffle_mem"
+ 64. Connections to In-System Debugging Instance "switches"
+ 65. Analysis & Synthesis Messages
+ 66. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -97,7 +98,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Fri Jun 14 15:31:59 2024       ;
+; Analysis & Synthesis Status     ; Successful - Sat Jun 15 09:38:34 2024       ;
 ; Quartus Prime Version           ; 16.1.2 Build 203 01/18/2017 SJ Lite Edition ;
 ; Revision Name                   ; rc4                                         ;
 ; Top-level Entity Name           ; ksa                                         ;
@@ -259,15 +260,15 @@ agreement for further details.
 ; altrom.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/altrom.inc                                                               ;             ;
 ; altram.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/altram.inc                                                               ;             ;
 ; altdpram.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/altdpram.inc                                                             ;             ;
-; db/altsyncram_1ju1.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf                                             ;             ;
-; db/altsyncram_e803.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_e803.tdf                                             ;             ;
-; ./secret_messages/msg_1_for_task2b/message.mif                     ; yes             ; Auto-Found Memory Initialization File        ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/secret_messages/msg_1_for_task2b/message.mif                       ;             ;
+; db/altsyncram_m5b4.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf                                             ;             ;
+; db/altsyncram_kq83.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_kq83.tdf                                             ;             ;
 ; sld_mod_ram_rom.vhd                                                ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd                                                      ;             ;
 ; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                                            ;             ;
 ; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                                        ;             ;
 ; sld_rom_sr.vhd                                                     ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_rom_sr.vhd                                                           ;             ;
-; db/altsyncram_m5b4.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf                                             ;             ;
-; db/altsyncram_kq83.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_kq83.tdf                                             ;             ;
+; db/altsyncram_1ju1.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf                                             ;             ;
+; db/altsyncram_e803.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_e803.tdf                                             ;             ;
+; ./secret_messages/msg_1_for_task2b/message.mif                     ; yes             ; Auto-Found Memory Initialization File        ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/secret_messages/msg_1_for_task2b/message.mif                       ;             ;
 ; populate_s_mem_by_index.sv                                         ; yes             ; Auto-Found SystemVerilog HDL File            ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task1/populate_s_mem_by_index.sv                                   ;             ;
 ; shuffle_fsm.sv                                                     ; yes             ; Auto-Found SystemVerilog HDL File            ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task2/shuffle_fsm.sv                                               ;             ;
 ; db/altsyncram_8n22.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_8n22.tdf                                             ;             ;
@@ -354,14 +355,14 @@ agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 20464          ;
+; Estimate of Logic utilization (ALMs needed) ; 20481          ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 8079           ;
+; Combinational ALUT usage for logic          ; 8108           ;
 ;     -- 7 input functions                    ; 11             ;
-;     -- 6 input functions                    ; 3466           ;
-;     -- 5 input functions                    ; 3210           ;
-;     -- 4 input functions                    ; 351            ;
-;     -- <=3 input functions                  ; 1041           ;
+;     -- 6 input functions                    ; 3524           ;
+;     -- 5 input functions                    ; 3190           ;
+;     -- 4 input functions                    ; 357            ;
+;     -- <=3 input functions                  ; 1026           ;
 ;                                             ;                ;
 ; Dedicated logic registers                   ; 37073          ;
 ;                                             ;                ;
@@ -373,8 +374,8 @@ agreement for further details.
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
 ; Maximum fan-out                             ; 27487          ;
-; Total fan-out                               ; 197551         ;
-; Average fan-out                             ; 4.12           ;
+; Total fan-out                               ; 197792         ;
+; Average fan-out                             ; 4.13           ;
 +---------------------------------------------+----------------+
 
 
@@ -383,7 +384,7 @@ agreement for further details.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                             ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |ksa                                                                                                                                    ; 8079 (44)           ; 37073 (256)               ; 343936            ; 0          ; 21   ; 0            ; |ksa                                                                                                                                                                                                                                                                                                                                            ; ksa                               ; work         ;
+; |ksa                                                                                                                                    ; 8108 (40)           ; 37073 (256)               ; 343936            ; 0          ; 21   ; 0            ; |ksa                                                                                                                                                                                                                                                                                                                                            ; ksa                               ; work         ;
 ;    |de_data_writer:comb_1089|                                                                                                           ; 141 (105)           ; 53 (21)                   ; 256               ; 0          ; 0    ; 0            ; |ksa|de_data_writer:comb_1089                                                                                                                                                                                                                                                                                                                   ; de_data_writer                    ; work         ;
 ;       |decrypted_data_memory:de_memory_controller|                                                                                      ; 36 (0)              ; 32 (0)                    ; 256               ; 0          ; 0    ; 0            ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller                                                                                                                                                                                                                                                                        ; decrypted_data_memory             ; work         ;
 ;          |altsyncram:altsyncram_component|                                                                                              ; 36 (0)              ; 32 (0)                    ; 256               ; 0          ; 0    ; 0            ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component                                                                                                                                                                                                                                        ; altsyncram                        ; work         ;
@@ -391,16 +392,10 @@ agreement for further details.
 ;                |altsyncram_22p2:altsyncram1|                                                                                            ; 0 (0)               ; 0 (0)                     ; 256               ; 0          ; 0    ; 0            ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|altsyncram_22p2:altsyncram1                                                                                                                                                                             ; altsyncram_22p2                   ; work         ;
 ;                |sld_mod_ram_rom:mgl_prim2|                                                                                              ; 36 (20)             ; 32 (23)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2                                                                                                                                                                               ; sld_mod_ram_rom                   ; work         ;
 ;                   |sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|                                                                  ; 16 (16)             ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr                                                                                                                            ; sld_rom_sr                        ; work         ;
-;    |decryption_core:decryption_core1|                                                                                                   ; 2927 (494)          ; 2491 (2048)               ; 2048              ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1                                                                                                                                                                                                                                                                                                           ; decryption_core                   ; work         ;
+;    |decryption_core:decryption_core1|                                                                                                   ; 2918 (526)          ; 2454 (2048)               ; 0                 ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1                                                                                                                                                                                                                                                                                                           ; decryption_core                   ; work         ;
 ;       |decryptor_fsm:decryptor_1|                                                                                                       ; 2222 (2222)         ; 311 (311)                 ; 0                 ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1                                                                                                                                                                                                                                                                                 ; decryptor_fsm                     ; work         ;
 ;       |populate_s_mem_by_index:task1|                                                                                                   ; 17 (17)             ; 14 (14)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|populate_s_mem_by_index:task1                                                                                                                                                                                                                                                                             ; populate_s_mem_by_index           ; work         ;
 ;       |read_rom_mem:s_data_reader|                                                                                                      ; 20 (20)             ; 22 (22)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|read_rom_mem:s_data_reader                                                                                                                                                                                                                                                                                ; read_rom_mem                      ; work         ;
-;       |s_memory:s_memory_controller|                                                                                                    ; 41 (0)              ; 37 (0)                    ; 2048              ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller                                                                                                                                                                                                                                                                              ; s_memory                          ; work         ;
-;          |altsyncram:altsyncram_component|                                                                                              ; 41 (0)              ; 37 (0)                    ; 2048              ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component                                                                                                                                                                                                                                              ; altsyncram                        ; work         ;
-;             |altsyncram_m5b4:auto_generated|                                                                                            ; 41 (0)              ; 37 (0)                    ; 2048              ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated                                                                                                                                                                                                               ; altsyncram_m5b4                   ; work         ;
-;                |altsyncram_kq83:altsyncram1|                                                                                            ; 0 (0)               ; 0 (0)                     ; 2048              ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|altsyncram_kq83:altsyncram1                                                                                                                                                                                   ; altsyncram_kq83                   ; work         ;
-;                |sld_mod_ram_rom:mgl_prim2|                                                                                              ; 41 (23)             ; 37 (28)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2                                                                                                                                                                                     ; sld_mod_ram_rom                   ; work         ;
-;                   |sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|                                                                  ; 18 (18)             ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr                                                                                                                                  ; sld_rom_sr                        ; work         ;
 ;       |shuffle_fsm:shuffle_control|                                                                                                     ; 91 (52)             ; 52 (52)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control                                                                                                                                                                                                                                                                               ; shuffle_fsm                       ; work         ;
 ;          |lpm_divide:Mod0|                                                                                                              ; 39 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control|lpm_divide:Mod0                                                                                                                                                                                                                                                               ; lpm_divide                        ; work         ;
 ;             |lpm_divide_62m:auto_generated|                                                                                             ; 39 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control|lpm_divide:Mod0|lpm_divide_62m:auto_generated                                                                                                                                                                                                                                 ; lpm_divide_62m                    ; work         ;
@@ -414,12 +409,18 @@ agreement for further details.
 ;             |sld_mod_ram_rom:mgl_prim2|                                                                                                 ; 37 (20)             ; 32 (23)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2                                                                                                                                                                                                                  ; sld_mod_ram_rom                   ; work         ;
 ;                |sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|                                                                     ; 17 (17)             ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr                                                                                                                                                               ; sld_rom_sr                        ; work         ;
 ;    |read_rom_mem:rom_d|                                                                                                                 ; 18 (18)             ; 22 (22)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|read_rom_mem:rom_d                                                                                                                                                                                                                                                                                                                         ; read_rom_mem                      ; work         ;
-;    |sld_hub:auto_hub|                                                                                                                   ; 220 (1)             ; 286 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
-;       |alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric| ; 219 (0)             ; 286 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric                                                                                                                                                                                           ; alt_sld_fab_with_jtag_input       ; altera_sld   ;
-;          |alt_sld_fab:instrumentation_fabric|                                                                                           ; 219 (0)             ; 286 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                                                                                        ; alt_sld_fab                       ; alt_sld_fab  ;
-;             |alt_sld_fab_alt_sld_fab:alt_sld_fab|                                                                                       ; 219 (1)             ; 286 (14)                  ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab                                                                                                                    ; alt_sld_fab_alt_sld_fab           ; alt_sld_fab  ;
-;                |alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|                                                                            ; 218 (0)             ; 272 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric                                                                        ; alt_sld_fab_alt_sld_fab_sldfabric ; alt_sld_fab  ;
-;                   |sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|                                                                        ; 218 (174)           ; 272 (242)                 ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub                           ; sld_jtag_hub                      ; work         ;
+;    |s_memory:s_memory_controller|                                                                                                       ; 41 (0)              ; 37 (0)                    ; 2048              ; 0          ; 0    ; 0            ; |ksa|s_memory:s_memory_controller                                                                                                                                                                                                                                                                                                               ; s_memory                          ; work         ;
+;       |altsyncram:altsyncram_component|                                                                                                 ; 41 (0)              ; 37 (0)                    ; 2048              ; 0          ; 0    ; 0            ; |ksa|s_memory:s_memory_controller|altsyncram:altsyncram_component                                                                                                                                                                                                                                                                               ; altsyncram                        ; work         ;
+;          |altsyncram_m5b4:auto_generated|                                                                                               ; 41 (0)              ; 37 (0)                    ; 2048              ; 0          ; 0    ; 0            ; |ksa|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated                                                                                                                                                                                                                                                ; altsyncram_m5b4                   ; work         ;
+;             |altsyncram_kq83:altsyncram1|                                                                                               ; 0 (0)               ; 0 (0)                     ; 2048              ; 0          ; 0    ; 0            ; |ksa|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|altsyncram_kq83:altsyncram1                                                                                                                                                                                                                    ; altsyncram_kq83                   ; work         ;
+;             |sld_mod_ram_rom:mgl_prim2|                                                                                                 ; 41 (23)             ; 37 (28)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2                                                                                                                                                                                                                      ; sld_mod_ram_rom                   ; work         ;
+;                |sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|                                                                     ; 18 (18)             ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |ksa|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr                                                                                                                                                                   ; sld_rom_sr                        ; work         ;
+;    |sld_hub:auto_hub|                                                                                                                   ; 221 (1)             ; 286 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
+;       |alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric| ; 220 (0)             ; 286 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric                                                                                                                                                                                           ; alt_sld_fab_with_jtag_input       ; altera_sld   ;
+;          |alt_sld_fab:instrumentation_fabric|                                                                                           ; 220 (0)             ; 286 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                                                                                        ; alt_sld_fab                       ; alt_sld_fab  ;
+;             |alt_sld_fab_alt_sld_fab:alt_sld_fab|                                                                                       ; 220 (1)             ; 286 (14)                  ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab                                                                                                                    ; alt_sld_fab_alt_sld_fab           ; alt_sld_fab  ;
+;                |alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|                                                                            ; 219 (0)             ; 272 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric                                                                        ; alt_sld_fab_alt_sld_fab_sldfabric ; alt_sld_fab  ;
+;                   |sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|                                                                        ; 219 (175)           ; 272 (242)                 ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub                           ; sld_jtag_hub                      ; work         ;
 ;                      |sld_rom_sr:hub_info_reg|                                                                                          ; 26 (26)             ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg   ; sld_rom_sr                        ; work         ;
 ;                      |sld_shadow_jsm:shadow_jsm|                                                                                        ; 18 (18)             ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_shadow_jsm:shadow_jsm ; sld_shadow_jsm                    ; altera_sld   ;
 ;    |sld_signaltap:ROM_memory|                                                                                                           ; 525 (2)             ; 3372 (516)                ; 33024             ; 0          ; 0    ; 0            ; |ksa|sld_signaltap:ROM_memory                                                                                                                                                                                                                                                                                                                   ; sld_signaltap                     ; work         ;
@@ -3322,8 +3323,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name                                                                                                                                                                                                 ; Type       ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size   ; MIF                                            ;
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------------+--------------+--------------+--------------+--------------+--------+------------------------------------------------+
 ; de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|altsyncram_22p2:altsyncram1|ALTSYNCRAM                            ; M10K block ; True Dual Port   ; 32           ; 8            ; 32           ; 8            ; 256    ; None                                           ;
-; decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|altsyncram_kq83:altsyncram1|ALTSYNCRAM                                  ; M10K block ; True Dual Port   ; 256          ; 8            ; 256          ; 8            ; 2048   ; None                                           ;
 ; encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|altsyncram_e803:altsyncram1|ALTSYNCRAM                                                               ; AUTO       ; True Dual Port   ; 32           ; 8            ; 32           ; 8            ; 256    ; ./secret_messages/msg_1_for_task2b/message.mif ;
+; s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|altsyncram_kq83:altsyncram1|ALTSYNCRAM                                                                   ; M10K block ; True Dual Port   ; 256          ; 8            ; 256          ; 8            ; 2048   ; None                                           ;
 ; sld_signaltap:ROM_memory|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram|altsyncram_dsh4:auto_generated|ALTSYNCRAM      ; AUTO       ; Simple Dual Port ; 128          ; 258          ; 128          ; 258          ; 33024  ; None                                           ;
 ; sld_signaltap:Shuffle_mem|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram|altsyncram_0ph4:auto_generated|ALTSYNCRAM     ; AUTO       ; Simple Dual Port ; 128          ; 71           ; 128          ; 71           ; 9088   ; None                                           ;
 ; sld_signaltap:decrypted|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram|altsyncram_9sh4:auto_generated|ALTSYNCRAM       ; AUTO       ; Simple Dual Port ; 128          ; 256          ; 128          ; 256          ; 32768  ; None                                           ;
@@ -3345,8 +3346,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Altera ; Signal Tap   ; N/A     ; N/A          ; Licensed     ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric ;                         ;
 ; Altera ; Signal Tap   ; N/A     ; N/A          ; Licensed     ; |ksa|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_splitter:splitter   ;                         ;
 ; Altera ; RAM: 1-PORT  ; 16.1    ; N/A          ; N/A          ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller                                                                                                                                                                                                 ; decrypted_data_memory.v ;
-; Altera ; RAM: 1-PORT  ; 16.1    ; N/A          ; N/A          ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller                                                                                                                                                                                                       ; s_memory.vhd            ;
 ; Altera ; ROM: 1-PORT  ; 16.1    ; N/A          ; N/A          ; |ksa|encrypted_data_memory:rom_memory                                                                                                                                                                                                                                    ; encrypted_data_memory.v ;
+; Altera ; RAM: 1-PORT  ; 16.1    ; N/A          ; N/A          ; |ksa|s_memory:s_memory_controller                                                                                                                                                                                                                                        ; s_memory.vhd            ;
 +--------+--------------+---------+--------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+
 
 
@@ -3412,8 +3413,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; de_data_writer:comb_1089|current_state[3..7]                                                                                                                                                ; Stuck at GND due to stuck port data_in ;
 ; decryption_core:decryption_core1|populate_s_mem_by_index:task1|current_state[3..7]                                                                                                          ; Stuck at GND due to stuck port data_in ;
 ; decryption_core:decryption_core1|time_machine:time_controller|current_state[7]                                                                                                              ; Stuck at GND due to stuck port data_in ;
+; s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[3]                                        ; Stuck at GND due to stuck port data_in ;
 ; encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[3]                                    ; Stuck at GND due to stuck port data_in ;
-; decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[3]       ; Stuck at GND due to stuck port data_in ;
 ; de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[3] ; Stuck at GND due to stuck port data_in ;
 ; Total Number of Removed Registers = 14                                                                                                                                                      ;                                        ;
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+
@@ -3506,34 +3507,34 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                                                           ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|populate_s_mem_by_index:task1|address[0]                                                                                                                                                       ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[7]                                                                                   ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[0]                                                                        ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[4]                                                      ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[1]                                           ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[7]                                                ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[2]                                     ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[4]                                                                                   ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[4]                                                      ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|populate_s_mem_by_index:task1|address[5]                                                                                                                                                       ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |ksa|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[5]                                                                                       ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |ksa|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[2]                                                                            ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[1]                                                                                   ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[3]                                                                        ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[0]                                                ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[0]                                     ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |ksa|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[3]                                                                                       ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[3]                                                                                   ;
 ; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[4]                                                ;
-; 8:1                ; 9 bits    ; 45 LEs        ; 0 LEs                ; 45 LEs                 ; Yes        ; |ksa|read_rom_mem:rom_d|current_index[7]                                                                                                                                                                                             ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[2]                                    ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[4]       ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[4] ;
-; 16:1               ; 8 bits    ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control|data_for_s_write[2]                                                                                                                                                ;
+; 8:1                ; 9 bits    ; 45 LEs        ; 0 LEs                ; 45 LEs                 ; Yes        ; |ksa|read_rom_mem:rom_d|current_index[2]                                                                                                                                                                                             ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |ksa|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[4]                                        ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[3]                                    ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[0] ;
+; 16:1               ; 8 bits    ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control|data_for_s_write[3]                                                                                                                                                ;
 ; 9:1                ; 9 bits    ; 54 LEs        ; 0 LEs                ; 54 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|read_rom_mem:s_data_reader|current_index[6]                                                                                                                                                    ;
-; 8:1                ; 8 bits    ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control|address_out[0]                                                                                                                                                     ;
-; 17:1               ; 8 bits    ; 88 LEs        ; 0 LEs                ; 88 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|index_j[1]                                                                                                                                                           ;
-; 32:1               ; 8 bits    ; 168 LEs       ; 0 LEs                ; 168 LEs                ; Yes        ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|data_out[0]                                                                                                                                                          ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control|address_out[4]                                                                                                                                                     ;
+; 17:1               ; 8 bits    ; 88 LEs        ; 0 LEs                ; 88 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|index_j[2]                                                                                                                                                           ;
+; 32:1               ; 8 bits    ; 168 LEs       ; 0 LEs                ; 168 LEs                ; Yes        ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|data_out[7]                                                                                                                                                          ;
 ; 32:1               ; 8 bits    ; 168 LEs       ; 168 LEs              ; 0 LEs                  ; Yes        ; |ksa|de_data_writer:comb_1089|data[7]                                                                                                                                                                                                ;
-; 18:1               ; 8 bits    ; 96 LEs        ; 0 LEs                ; 96 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|index_i[6]                                                                                                                                                           ;
-; 18:1               ; 8 bits    ; 96 LEs        ; 0 LEs                ; 96 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|address_out[3]                                                                                                                                                       ;
+; 18:1               ; 8 bits    ; 96 LEs        ; 0 LEs                ; 96 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|index_i[2]                                                                                                                                                           ;
+; 18:1               ; 8 bits    ; 96 LEs        ; 0 LEs                ; 96 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|address_out[4]                                                                                                                                                       ;
 ; 12:1               ; 8 bits    ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control|address_i[2]                                                                                                                                                       ;
-; 12:1               ; 8 bits    ; 64 LEs        ; 8 LEs                ; 56 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control|address_j[1]                                                                                                                                                       ;
-; 26:1               ; 4 bits    ; 68 LEs        ; 40 LEs               ; 28 LEs                 ; Yes        ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[3]                                         ;
-; 26:1               ; 4 bits    ; 68 LEs        ; 40 LEs               ; 28 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[3]            ;
+; 12:1               ; 8 bits    ; 64 LEs        ; 8 LEs                ; 56 LEs                 ; Yes        ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control|address_j[4]                                                                                                                                                       ;
+; 26:1               ; 4 bits    ; 68 LEs        ; 40 LEs               ; 28 LEs                 ; Yes        ; |ksa|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[1]                                             ;
+; 26:1               ; 4 bits    ; 68 LEs        ; 40 LEs               ; 28 LEs                 ; Yes        ; |ksa|encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[1]                                         ;
 ; 26:1               ; 4 bits    ; 68 LEs        ; 40 LEs               ; 28 LEs                 ; Yes        ; |ksa|de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[1]      ;
-; 256:1              ; 8 bits    ; 1360 LEs      ; 1360 LEs             ; 0 LEs                  ; Yes        ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|f[5]                                                                                                                                                                 ;
+; 256:1              ; 8 bits    ; 1360 LEs      ; 1360 LEs             ; 0 LEs                  ; Yes        ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|f[7]                                                                                                                                                                 ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |ksa|decryption_core:decryption_core1|shuffle_fsm:shuffle_control|Mux6                                                                                                                                                               ;
 ; 16:1               ; 2 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; No         ; |ksa|switches_fsm:key_switches_control|Mux1                                                                                                                                                                                          ;
 ; 32:1               ; 8 bits    ; 168 LEs       ; 168 LEs              ; 0 LEs                  ; No         ; |ksa|decryption_core:decryption_core1|decryptor_fsm:decryptor_1|Mux32                                                                                                                                                                ;
@@ -3555,6 +3556,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------+-------+------+-----------------------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|altsyncram_kq83:altsyncram1 ;
++---------------------------------+-------+------+-----------------------------------------------------------------------------------------------+
+; Assignment                      ; Value ; From ; To                                                                                            ;
++---------------------------------+-------+------+-----------------------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; OFF   ; -    ; -                                                                                             ;
++---------------------------------+-------+------+-----------------------------------------------------------------------------------------------+
+
+
 +----------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Source assignments for encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|altsyncram_e803:altsyncram1 ;
 +---------------------------------+-------+------+---------------------------------------------------------------------------------------------------+
@@ -3562,15 +3572,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------+-------+------+---------------------------------------------------------------------------------------------------+
 ; OPTIMIZE_POWER_DURING_SYNTHESIS ; OFF   ; -    ; -                                                                                                 ;
 +---------------------------------+-------+------+---------------------------------------------------------------------------------------------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Source assignments for decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|altsyncram_kq83:altsyncram1 ;
-+---------------------------------+-------+------+--------------------------------------------------------------------------------------------------------------------------------+
-; Assignment                      ; Value ; From ; To                                                                                                                             ;
-+---------------------------------+-------+------+--------------------------------------------------------------------------------------------------------------------------------+
-; OPTIMIZE_POWER_DURING_SYNTHESIS ; OFF   ; -    ; -                                                                                                                              ;
-+---------------------------------+-------+------+--------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------+
@@ -3702,6 +3703,67 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------+-------+------+------------------+
 
 
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: s_memory:s_memory_controller|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-----------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                          ;
++------------------------------------+----------------------+-----------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                       ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                    ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                  ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                  ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                       ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                                       ;
+; WIDTH_A                            ; 8                    ; Signed Integer                                ;
+; WIDTHAD_A                          ; 8                    ; Signed Integer                                ;
+; NUMWORDS_A                         ; 256                  ; Signed Integer                                ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                       ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                       ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                       ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                       ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                       ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                       ;
+; WIDTH_B                            ; 1                    ; Signed Integer                                ;
+; WIDTHAD_B                          ; 1                    ; Signed Integer                                ;
+; NUMWORDS_B                         ; 0                    ; Signed Integer                                ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                       ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                       ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                       ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                       ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                       ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                       ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                       ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                       ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                       ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                       ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                       ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                       ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Signed Integer                                ;
+; RAM_BLOCK_TYPE                     ; M10K                 ; Untyped                                       ;
+; BYTE_SIZE                          ; 8                    ; Signed Integer                                ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                       ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                       ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                       ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                       ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                       ;
+; MAXIMUM_DEPTH                      ; 0                    ; Signed Integer                                ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                       ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                       ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                       ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                       ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                       ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                       ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                       ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                       ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Signed Integer                                ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                       ;
+; CBXI_PARAMETER                     ; altsyncram_m5b4      ; Untyped                                       ;
++------------------------------------+----------------------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +---------------------------------------------------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: encrypted_data_memory:rom_memory|altsyncram:altsyncram_component ;
 +------------------------------------+------------------------------------------------+-------------------------+
@@ -3771,67 +3833,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; DEP            ; 32    ; Signed Integer                         ;
 ; WID            ; 8     ; Signed Integer                         ;
 +----------------+-------+----------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component ;
-+------------------------------------+----------------------+--------------------------------------------------------------------------------+
-; Parameter Name                     ; Value                ; Type                                                                           ;
-+------------------------------------+----------------------+--------------------------------------------------------------------------------+
-; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                                        ;
-; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                                     ;
-; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                                   ;
-; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                                   ;
-; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                                 ;
-; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                                        ;
-; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                                                                        ;
-; WIDTH_A                            ; 8                    ; Signed Integer                                                                 ;
-; WIDTHAD_A                          ; 8                    ; Signed Integer                                                                 ;
-; NUMWORDS_A                         ; 256                  ; Signed Integer                                                                 ;
-; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                                        ;
-; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                                        ;
-; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                                        ;
-; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                                        ;
-; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                                        ;
-; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                                        ;
-; WIDTH_B                            ; 1                    ; Signed Integer                                                                 ;
-; WIDTHAD_B                          ; 1                    ; Signed Integer                                                                 ;
-; NUMWORDS_B                         ; 0                    ; Signed Integer                                                                 ;
-; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                                        ;
-; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                                        ;
-; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                                        ;
-; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                                                        ;
-; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                                        ;
-; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                                        ;
-; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                                        ;
-; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                        ;
-; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                                        ;
-; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                                        ;
-; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                        ;
-; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                                        ;
-; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                                                 ;
-; WIDTH_BYTEENA_B                    ; 1                    ; Signed Integer                                                                 ;
-; RAM_BLOCK_TYPE                     ; M10K                 ; Untyped                                                                        ;
-; BYTE_SIZE                          ; 8                    ; Signed Integer                                                                 ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                                        ;
-; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                        ;
-; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                        ;
-; INIT_FILE                          ; UNUSED               ; Untyped                                                                        ;
-; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                                        ;
-; MAXIMUM_DEPTH                      ; 0                    ; Signed Integer                                                                 ;
-; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                                                        ;
-; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                                        ;
-; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                                                        ;
-; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                                        ;
-; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                                        ;
-; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                                        ;
-; ENABLE_ECC                         ; FALSE                ; Untyped                                                                        ;
-; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                                        ;
-; WIDTH_ECCSTATUS                    ; 3                    ; Signed Integer                                                                 ;
-; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                                                        ;
-; CBXI_PARAMETER                     ; altsyncram_m5b4      ; Untyped                                                                        ;
-+------------------------------------+----------------------+--------------------------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -4422,6 +4423,17 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Name                                      ; Value                                                                                               ;
 +-------------------------------------------+-----------------------------------------------------------------------------------------------------+
 ; Number of entity instances                ; 3                                                                                                   ;
+; Entity Instance                           ; s_memory:s_memory_controller|altsyncram:altsyncram_component                                        ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                                                                         ;
+;     -- WIDTH_A                            ; 8                                                                                                   ;
+;     -- NUMWORDS_A                         ; 256                                                                                                 ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                                        ;
+;     -- WIDTH_B                            ; 1                                                                                                   ;
+;     -- NUMWORDS_B                         ; 0                                                                                                   ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                              ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                        ;
+;     -- RAM_BLOCK_TYPE                     ; M10K                                                                                                ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                           ;
 ; Entity Instance                           ; encrypted_data_memory:rom_memory|altsyncram:altsyncram_component                                    ;
 ;     -- OPERATION_MODE                     ; ROM                                                                                                 ;
 ;     -- WIDTH_A                            ; 8                                                                                                   ;
@@ -4432,17 +4444,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                              ;
 ;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                        ;
 ;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                                ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                           ;
-; Entity Instance                           ; decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component       ;
-;     -- OPERATION_MODE                     ; SINGLE_PORT                                                                                         ;
-;     -- WIDTH_A                            ; 8                                                                                                   ;
-;     -- NUMWORDS_A                         ; 256                                                                                                 ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                                        ;
-;     -- WIDTH_B                            ; 1                                                                                                   ;
-;     -- NUMWORDS_B                         ; 0                                                                                                   ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                              ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                        ;
-;     -- RAM_BLOCK_TYPE                     ; M10K                                                                                                ;
 ;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                           ;
 ; Entity Instance                           ; de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component ;
 ;     -- OPERATION_MODE                     ; SINGLE_PORT                                                                                         ;
@@ -4478,6 +4479,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------+--------+----------+--------------------------+
 
 
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "decryption_core:decryption_core1|decryptor_fsm:decryptor_1"                                                                                        ;
++-------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                                                                                      ;
++-------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; s_q_data_in ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++-------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
 +---------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "decryption_core:decryption_core1|shuffle_fsm:shuffle_control"                            ;
 +-----------+--------+----------+-------------------------------------------------------------------------------------+
@@ -4503,6 +4513,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Port               ; Type  ; Severity ; Details                                                                                                                                      ;
 +--------------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 ; reset              ; Input ; Info     ; Stuck at GND                                                                                                                                 ;
+; stop               ; Input ; Info     ; Stuck at GND                                                                                                                                 ;
 ; secret_key[23..10] ; Input ; Info     ; Stuck at GND                                                                                                                                 ;
 ; new_key_available  ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
 +--------------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
@@ -4558,8 +4569,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------------+-------+-------+------------+------------------------------------------------------------------------------------------------------------------------------------+
 ; Instance Index ; Instance ID ; Width ; Depth ; Mode       ; Hierarchy Location                                                                                                                 ;
 +----------------+-------------+-------+-------+------------+------------------------------------------------------------------------------------------------------------------------------------+
-; 0              ; D           ; 8     ; 32    ; Read/Write ; encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated                                    ;
-; 1              ; S           ; 8     ; 256   ; Read/Write ; decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated       ;
+; 0              ; S           ; 8     ; 256   ; Read/Write ; s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated                                        ;
+; 1              ; D           ; 8     ; 32    ; Read/Write ; encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated                                    ;
 ; 2              ; DE          ; 8     ; 32    ; Read/Write ; de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated ;
 +----------------+-------------+-------+-------+------------+------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -4578,7 +4589,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA SLD           ; 56                          ;
 ;     SLD               ; 9                           ;
 ;     plain             ; 41                          ;
-; arriav_lcell_comb     ; 3175                        ;
+; arriav_lcell_comb     ; 3203                        ;
 ;     arith             ; 127                         ;
 ;         0 data inputs ; 8                           ;
 ;         1 data inputs ; 72                          ;
@@ -4588,19 +4599,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;         5 data inputs ; 2                           ;
 ;     extend            ; 6                           ;
 ;         7 data inputs ; 6                           ;
-;     normal            ; 3042                        ;
+;     normal            ; 3070                        ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 1                           ;
-;         2 data inputs ; 69                          ;
+;         2 data inputs ; 56                          ;
 ;         3 data inputs ; 65                          ;
-;         4 data inputs ; 126                         ;
-;         5 data inputs ; 252                         ;
-;         6 data inputs ; 2527                        ;
+;         4 data inputs ; 130                         ;
+;         5 data inputs ; 233                         ;
+;         6 data inputs ; 2583                        ;
 ; boundary_port         ; 2766                        ;
 ; stratixv_ram_block    ; 24                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 12.10                       ;
-; Average LUT depth     ; 7.19                        ;
+; Average LUT depth     ; 7.16                        ;
 +-----------------------+-----------------------------+
 
 
@@ -10240,16 +10251,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
-    Info: Processing started: Fri Jun 14 15:31:08 2024
+    Info: Processing started: Sat Jun 15 09:37:38 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rc4 -c rc4
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file task 3/determine_valid_message.sv
+    Info (12023): Found entity 1: determine_valid_message File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/determine_valid_message.sv Line: 9
 Info (12021): Found 1 design units, including 1 entities, in source file task2/decryptor_fsm.sv
-    Info (12023): Found entity 1: decryptor_fsm File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/decryptor_fsm.sv Line: 4
+    Info (12023): Found entity 1: decryptor_fsm File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/decryptor_fsm.sv Line: 23
 Info (12021): Found 2 design units, including 1 entities, in source file s_memory.vhd
     Info (12022): Found design unit 1: s_memory-SYN File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/s_memory.vhd Line: 55
     Info (12023): Found entity 1: s_memory File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/s_memory.vhd Line: 43
-Warning (10275): Verilog HDL Module Instantiation warning at ksa.sv(64): ignored dangling comma in List of Port Connections File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 64
+Warning (10275): Verilog HDL Module Instantiation warning at ksa.sv(82): ignored dangling comma in List of Port Connections File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 82
 Info (12021): Found 1 design units, including 1 entities, in source file ksa.sv
     Info (12023): Found entity 1: ksa File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 6
 Warning (12019): Can't analyze file -- file Task1/rc4.sv is missing
@@ -10260,64 +10273,26 @@ Info (12021): Found 1 design units, including 1 entities, in source file task2/r
 Info (12021): Found 1 design units, including 1 entities, in source file time_machine.sv
     Info (12023): Found entity 1: time_machine File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine.sv Line: 13
 Info (12021): Found 1 design units, including 1 entities, in source file task 3/decryption_core.sv
-    Info (12023): Found entity 1: decryption_core File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 5
+    Info (12023): Found entity 1: decryption_core File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 10
 Info (12021): Found 1 design units, including 1 entities, in source file task2/de_data_writer.sv
     Info (12023): Found entity 1: de_data_writer File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/de_data_writer.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file decrypted_data_memory.v
     Info (12023): Found entity 1: decrypted_data_memory File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/decrypted_data_memory.v Line: 40
-Critical Warning (10846): Verilog HDL Instantiation warning at ksa.sv(88): instance has no name File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 88
+Warning (10275): Verilog HDL Module Instantiation warning at parallel_cores.sv(39): ignored dangling comma in List of Port Connections File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task4/parallel_cores.sv Line: 39
+Warning (10275): Verilog HDL Module Instantiation warning at parallel_cores.sv(103): ignored dangling comma in List of Port Connections File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task4/parallel_cores.sv Line: 103
+Info (12021): Found 1 design units, including 1 entities, in source file task4/parallel_cores.sv
+    Info (12023): Found entity 1: parallel_cores File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task4/parallel_cores.sv Line: 1
+Critical Warning (10846): Verilog HDL Instantiation warning at ksa.sv(115): instance has no name File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 115
+Critical Warning (10846): Verilog HDL Instantiation warning at parallel_cores.sv(103): instance has no name File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task4/parallel_cores.sv Line: 103
+Critical Warning (10846): Verilog HDL Instantiation warning at parallel_cores.sv(126): instance has no name File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task4/parallel_cores.sv Line: 126
 Info (12127): Elaborating entity "ksa" for the top level hierarchy
 Warning (12125): Using design file task2/switches_fsm.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: switches_fsm File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task2/switches_fsm.sv Line: 9
 Info (12128): Elaborating entity "switches_fsm" for hierarchy "switches_fsm:key_switches_control" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 30
-Info (12128): Elaborating entity "encrypted_data_memory" for hierarchy "encrypted_data_memory:rom_memory" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 49
-Info (12128): Elaborating entity "altsyncram" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/encrypted_data_memory.v Line: 82
-Info (12130): Elaborated megafunction instantiation "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/encrypted_data_memory.v Line: 82
-Info (12133): Instantiated megafunction "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/encrypted_data_memory.v Line: 82
-    Info (12134): Parameter "address_aclr_a" = "NONE"
-    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
-    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
-    Info (12134): Parameter "init_file" = "./secret_messages/msg_1_for_task2b/message.mif"
-    Info (12134): Parameter "intended_device_family" = "Cyclone V"
-    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=D"
-    Info (12134): Parameter "lpm_type" = "altsyncram"
-    Info (12134): Parameter "numwords_a" = "32"
-    Info (12134): Parameter "operation_mode" = "ROM"
-    Info (12134): Parameter "outdata_aclr_a" = "NONE"
-    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
-    Info (12134): Parameter "widthad_a" = "5"
-    Info (12134): Parameter "width_a" = "8"
-    Info (12134): Parameter "width_byteena_a" = "1"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_1ju1.tdf
-    Info (12023): Found entity 1: altsyncram_1ju1 File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_1ju1" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_e803.tdf
-    Info (12023): Found entity 1: altsyncram_e803 File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_e803.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_e803" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|altsyncram_e803:altsyncram1" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf Line: 35
-Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf Line: 36
-Info (12130): Elaborated megafunction instantiation "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf Line: 36
-Info (12133): Instantiated megafunction "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf Line: 36
-    Info (12134): Parameter "CVALUE" = "00000000"
-    Info (12134): Parameter "IS_DATA_IN_RAM" = "1"
-    Info (12134): Parameter "IS_READABLE" = "1"
-    Info (12134): Parameter "NODE_NAME" = "1140850688"
-    Info (12134): Parameter "NUMWORDS" = "32"
-    Info (12134): Parameter "SHIFT_COUNT_BITS" = "4"
-    Info (12134): Parameter "WIDTH_WORD" = "8"
-    Info (12134): Parameter "WIDTHAD" = "5"
-Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 302
-Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
-Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 828
-Info (12128): Elaborating entity "read_rom_mem" for hierarchy "read_rom_mem:rom_d" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 64
-Warning (10230): Verilog HDL assignment warning at read_rom_mem.sv(31): truncated value with size 9 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/read_rom_mem.sv Line: 31
-Warning (10230): Verilog HDL assignment warning at read_rom_mem.sv(61): truncated value with size 32 to match size of target (9) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/read_rom_mem.sv Line: 61
-Info (12128): Elaborating entity "decryption_core" for hierarchy "decryption_core:decryption_core1" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 77
-Info (12128): Elaborating entity "time_machine" for hierarchy "decryption_core:decryption_core1|time_machine:time_controller" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 75
-Warning (10034): Output port "start_sec_shuffle" at time_machine.sv(31) has no driver File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine.sv Line: 31
-Info (12128): Elaborating entity "s_memory" for hierarchy "decryption_core:decryption_core1|s_memory:s_memory_controller" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 127
-Info (12128): Elaborating entity "altsyncram" for hierarchy "decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/s_memory.vhd Line: 62
-Info (12130): Elaborated megafunction instantiation "decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/s_memory.vhd Line: 62
-Info (12133): Instantiated megafunction "decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/s_memory.vhd Line: 62
+Info (12128): Elaborating entity "s_memory" for hierarchy "s_memory:s_memory_controller" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 49
+Info (12128): Elaborating entity "altsyncram" for hierarchy "s_memory:s_memory_controller|altsyncram:altsyncram_component" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/s_memory.vhd Line: 62
+Info (12130): Elaborated megafunction instantiation "s_memory:s_memory_controller|altsyncram:altsyncram_component" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/s_memory.vhd Line: 62
+Info (12133): Instantiated megafunction "s_memory:s_memory_controller|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/s_memory.vhd Line: 62
     Info (12134): Parameter "address_aclr_a" = "UNUSED"
     Info (12134): Parameter "address_aclr_b" = "NONE"
     Info (12134): Parameter "address_reg_b" = "CLOCK1"
@@ -10370,13 +10345,13 @@ Info (12133): Instantiated megafunction "decryption_core:decryption_core1|s_memo
     Info (12134): Parameter "lpm_type" = "altsyncram"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_m5b4.tdf
     Info (12023): Found entity 1: altsyncram_m5b4 File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_m5b4" for hierarchy "decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12128): Elaborating entity "altsyncram_m5b4" for hierarchy "s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_kq83.tdf
     Info (12023): Found entity 1: altsyncram_kq83 File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_kq83.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_kq83" for hierarchy "decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|altsyncram_kq83:altsyncram1" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf Line: 37
-Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf Line: 38
-Info (12130): Elaborated megafunction instantiation "decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf Line: 38
-Info (12133): Instantiated megafunction "decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf Line: 38
+Info (12128): Elaborating entity "altsyncram_kq83" for hierarchy "s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|altsyncram_kq83:altsyncram1" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf Line: 37
+Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf Line: 38
+Info (12130): Elaborated megafunction instantiation "s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf Line: 38
+Info (12133): Instantiated megafunction "s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_m5b4.tdf Line: 38
     Info (12134): Parameter "CVALUE" = "00000000"
     Info (12134): Parameter "IS_DATA_IN_RAM" = "1"
     Info (12134): Parameter "IS_READABLE" = "1"
@@ -10385,9 +10360,53 @@ Info (12133): Instantiated megafunction "decryption_core:decryption_core1|s_memo
     Info (12134): Parameter "SHIFT_COUNT_BITS" = "4"
     Info (12134): Parameter "WIDTH_WORD" = "8"
     Info (12134): Parameter "WIDTHAD" = "8"
+Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 302
+Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
+Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 828
+Info (12128): Elaborating entity "encrypted_data_memory" for hierarchy "encrypted_data_memory:rom_memory" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 67
+Info (12128): Elaborating entity "altsyncram" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/encrypted_data_memory.v Line: 82
+Info (12130): Elaborated megafunction instantiation "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/encrypted_data_memory.v Line: 82
+Info (12133): Instantiated megafunction "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/encrypted_data_memory.v Line: 82
+    Info (12134): Parameter "address_aclr_a" = "NONE"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "./secret_messages/msg_1_for_task2b/message.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=D"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "32"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "widthad_a" = "5"
+    Info (12134): Parameter "width_a" = "8"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_1ju1.tdf
+    Info (12023): Found entity 1: altsyncram_1ju1 File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_1ju1" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated" File: c:/intelfpga_lite/16.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_e803.tdf
+    Info (12023): Found entity 1: altsyncram_e803 File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_e803.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_e803" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|altsyncram_e803:altsyncram1" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf Line: 35
+Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf Line: 36
+Info (12130): Elaborated megafunction instantiation "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf Line: 36
+Info (12133): Instantiated megafunction "encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/altsyncram_1ju1.tdf Line: 36
+    Info (12134): Parameter "CVALUE" = "00000000"
+    Info (12134): Parameter "IS_DATA_IN_RAM" = "1"
+    Info (12134): Parameter "IS_READABLE" = "1"
+    Info (12134): Parameter "NODE_NAME" = "1140850688"
+    Info (12134): Parameter "NUMWORDS" = "32"
+    Info (12134): Parameter "SHIFT_COUNT_BITS" = "4"
+    Info (12134): Parameter "WIDTH_WORD" = "8"
+    Info (12134): Parameter "WIDTHAD" = "5"
+Info (12128): Elaborating entity "read_rom_mem" for hierarchy "read_rom_mem:rom_d" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 82
+Warning (10230): Verilog HDL assignment warning at read_rom_mem.sv(31): truncated value with size 9 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/read_rom_mem.sv Line: 31
+Warning (10230): Verilog HDL assignment warning at read_rom_mem.sv(61): truncated value with size 32 to match size of target (9) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/read_rom_mem.sv Line: 61
+Info (12128): Elaborating entity "decryption_core" for hierarchy "decryption_core:decryption_core1" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 100
+Info (12128): Elaborating entity "time_machine" for hierarchy "decryption_core:decryption_core1|time_machine:time_controller" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 97
+Warning (10034): Output port "start_sec_shuffle" at time_machine.sv(33) has no driver File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine.sv Line: 33
 Warning (12125): Using design file task1/populate_s_mem_by_index.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: populate_s_mem_by_index File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task1/populate_s_mem_by_index.sv Line: 8
-Info (12128): Elaborating entity "populate_s_mem_by_index" for hierarchy "decryption_core:decryption_core1|populate_s_mem_by_index:task1" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 148
+Info (12128): Elaborating entity "populate_s_mem_by_index" for hierarchy "decryption_core:decryption_core1|populate_s_mem_by_index:task1" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 160
 Warning (10230): Verilog HDL assignment warning at populate_s_mem_by_index.sv(34): truncated value with size 32 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task1/populate_s_mem_by_index.sv Line: 34
 Warning (10230): Verilog HDL assignment warning at populate_s_mem_by_index.sv(39): truncated value with size 32 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task1/populate_s_mem_by_index.sv Line: 39
 Warning (10230): Verilog HDL assignment warning at populate_s_mem_by_index.sv(40): truncated value with size 32 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task1/populate_s_mem_by_index.sv Line: 40
@@ -10401,16 +10420,16 @@ Warning (10230): Verilog HDL assignment warning at populate_s_mem_by_index.sv(60
 Warning (10230): Verilog HDL assignment warning at populate_s_mem_by_index.sv(79): truncated value with size 32 to match size of target (9) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task1/populate_s_mem_by_index.sv Line: 79
 Warning (12125): Using design file task2/shuffle_fsm.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: shuffle_fsm File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task2/shuffle_fsm.sv Line: 22
-Info (12128): Elaborating entity "shuffle_fsm" for hierarchy "decryption_core:decryption_core1|shuffle_fsm:shuffle_control" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 173
+Info (12128): Elaborating entity "shuffle_fsm" for hierarchy "decryption_core:decryption_core1|shuffle_fsm:shuffle_control" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 185
 Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(81): truncated value with size 32 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task2/shuffle_fsm.sv Line: 81
 Warning (10230): Verilog HDL assignment warning at shuffle_fsm.sv(89): truncated value with size 32 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/task2/shuffle_fsm.sv Line: 89
-Info (12128): Elaborating entity "read_rom_mem" for hierarchy "decryption_core:decryption_core1|read_rom_mem:s_data_reader" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 209
+Info (12128): Elaborating entity "read_rom_mem" for hierarchy "decryption_core:decryption_core1|read_rom_mem:s_data_reader" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 225
 Warning (10230): Verilog HDL assignment warning at read_rom_mem.sv(31): truncated value with size 9 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/read_rom_mem.sv Line: 31
 Warning (10230): Verilog HDL assignment warning at read_rom_mem.sv(61): truncated value with size 32 to match size of target (9) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/read_rom_mem.sv Line: 61
-Info (12128): Elaborating entity "decryptor_fsm" for hierarchy "decryption_core:decryption_core1|decryptor_fsm:decryptor_1" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 233
-Warning (10230): Verilog HDL assignment warning at decryptor_fsm.sv(120): truncated value with size 32 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/decryptor_fsm.sv Line: 120
-Warning (10230): Verilog HDL assignment warning at decryptor_fsm.sv(143): truncated value with size 9 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/decryptor_fsm.sv Line: 143
-Info (12128): Elaborating entity "de_data_writer" for hierarchy "de_data_writer:comb_1089" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 88
+Info (12128): Elaborating entity "decryptor_fsm" for hierarchy "decryption_core:decryption_core1|decryptor_fsm:decryptor_1" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task 3/decryption_core.sv Line: 250
+Warning (10230): Verilog HDL assignment warning at decryptor_fsm.sv(139): truncated value with size 32 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/decryptor_fsm.sv Line: 139
+Warning (10230): Verilog HDL assignment warning at decryptor_fsm.sv(161): truncated value with size 9 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/decryptor_fsm.sv Line: 161
+Info (12128): Elaborating entity "de_data_writer" for hierarchy "de_data_writer:comb_1089" File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/ksa.sv Line: 115
 Warning (10230): Verilog HDL assignment warning at de_data_writer.sv(35): truncated value with size 32 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/de_data_writer.sv Line: 35
 Warning (10230): Verilog HDL assignment warning at de_data_writer.sv(40): truncated value with size 32 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/de_data_writer.sv Line: 40
 Warning (10230): Verilog HDL assignment warning at de_data_writer.sv(41): truncated value with size 32 to match size of target (8) File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/Task2/de_data_writer.sv Line: 41
@@ -10513,7 +10532,7 @@ Info (12033): Analysis and Synthesis generated SignalTap II or debug node instan
 Info (12033): Analysis and Synthesis generated SignalTap II or debug node instance "switches"
 Info (12033): Analysis and Synthesis generated SignalTap II or debug node instance "time_machine"
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2024.06.14.15:31:36 Progress: Loading sld73f98f60/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2024.06.15.09:38:09 Progress: Loading sld73f98f60/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -10550,7 +10569,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_9kh File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/sign_div_unsign_9kh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ose.tdf
     Info (12023): Found entity 1: alt_u_div_ose File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/db/alt_u_div_ose.tdf Line: 23
-Warning (12241): 5 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (12241): 6 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (286031): Timing-Driven Synthesis is running on partition "Top"
 Info (144001): Generated suppressed messages file C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/output_files/rc4.map.smsg
 Info (35024): Successfully connected in-system debug instance "Shuffle_mem" to all 175 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
@@ -10575,16 +10594,16 @@ Warning (15752): Ignored 12 Virtual Pin logic option assignments
     Warning (15751): Ignored Virtual Pin assignment to "LCD_ON".
     Warning (15751): Ignored Virtual Pin assignment to "LCD_DATA[7]".
     Warning (15751): Ignored Virtual Pin assignment to "LCD_DATA[4]".
-Info (21057): Implemented 44178 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 44207 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 14 input pins
     Info (21059): Implemented 11 output pins
-    Info (21061): Implemented 41461 logic cells
+    Info (21061): Implemented 41490 logic cells
     Info (21064): Implemented 2691 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 55 warnings
-    Info: Peak virtual memory: 5393 megabytes
-    Info: Processing ended: Fri Jun 14 15:32:00 2024
-    Info: Elapsed time: 00:00:52
-    Info: Total CPU time (on all processors): 00:01:10
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 59 warnings
+    Info: Peak virtual memory: 5340 megabytes
+    Info: Processing ended: Sat Jun 15 09:38:35 2024
+    Info: Elapsed time: 00:00:57
+    Info: Total CPU time (on all processors): 00:01:21
 
 
 +------------------------------------------+

@@ -10,14 +10,26 @@
 module decryption_core(
 	input logic 			clk,									
 	input logic 			reset,								// reset must be given before new_key_available can be used again to check a new key
+	input logic				stop,
 	
 	input logic 			key_from_switches_changed,		// resets the state machine when switches have changed
 	input logic 			key_from_switches_available,	// another start flag for this fsm only when the new switches position are available, for switches control
 	input logic				new_key_available,				// start flag for this start machine, only when a new key is available, LFSR control
 	
 	input logic 			ROM_mem_read,						// Flag to ensure that the ROM data was actually registered already
-	input logic[7:0] 		rom_data_d[31:0],					// Encrypted data to be decrpted by this FSM
+	input logic [7:0] 	rom_data_d[31:0],					// Encrypted data to be decrpted by this FSM
 	input logic [23:0] 	secret_key,							// Secret key provided by switches or LFSR
+	
+	
+	/*
+		S Data signals
+	*/
+	input logic	[7:0]		s_memory_q_data_out,
+	
+	output logic [7:0]	s_memory_address_in,
+	output logic [7:0] 	s_memory_data_in,
+	output logic			s_memory_data_enable,
+	
 	
 	output logic[7:0] 	decrypted_data[31:0],			// Result decrpted data to be determined if right by another FSM
 	output logic 			done									// asserted when this core has finished processing a given key
@@ -59,6 +71,7 @@ module decryption_core(
 		.key_from_switches_available	(key_from_switches_available),
 		.new_key_available				(new_key_available),
 		.reset_all							(reset_all),
+		.stop									(stop),
 		
 		/*
 			Done flags for all the internal state machines
@@ -111,6 +124,11 @@ module decryption_core(
 					s_memory_data_in		= 1'b0;
 					s_memory_address_in	= s_reader_address_out;
 				end
+				/*DECRYPT: begin
+					s_memory_data_enable = decrypt_enable;
+					s_memory_data_in		= decryptor_data_out;
+					s_memory_address_in	= decryptor_address_out;
+				end*/
 				default: begin															// No change to S in any other case
 					s_memory_address_in	=	0;
 					s_memory_data_in		=	0;
@@ -119,22 +137,6 @@ module decryption_core(
 			endcase
 		end
 	end
-	
-	/*
-		S Memory Instance Controls
-	*/
-	logic	[7:0]	s_memory_address_in;
-	logic [7:0] s_memory_data_in;
-	logic			s_memory_data_enable;
-	logic	[7:0]	s_memory_q_data_out;
-	
-	s_memory s_memory_controller(
-		.address	(s_memory_address_in),
-		.clock	(clk),
-		.data		(s_memory_data_in),
-		.wren		(s_memory_data_enable),				
-		.q			(s_memory_q_data_out)									
-	);
 	
 	
 	/*

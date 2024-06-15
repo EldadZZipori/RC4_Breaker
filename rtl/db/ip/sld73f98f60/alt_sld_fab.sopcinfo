@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="alt_sld_fab" kind="alt_sld_fab" version="1.0" fabric="QSYS">
  <!-- Format version 16.1 203 (Future versions may contain additional information.) -->
- <!-- 2024.06.14.15:31:38 -->
+ <!-- 2024.06.15.09:38:12 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_DEVICE_FAMILY">
   <type>java.lang.String</type>
@@ -56,7 +56,7 @@
 the requested settings for a module instance. -->
   <parameter name="DESIGN_HASH">
    <type>java.lang.String</type>
-   <value>804ffe3e2c0222d421b9</value>
+   <value>74e7c6ab1a85c7550981</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -104,7 +104,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="EP_INFOS">
    <type>java.lang.String</type>
-   <value>{hpath {encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2} } {hpath {decryption_core:decryption_core1|s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2} } {hpath {de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2} } {hpath {sld_signaltap:ROM_memory} } {hpath {sld_signaltap:Shuffle_mem} } {hpath {sld_signaltap:decrypted} } {hpath {sld_signaltap:s_memory} } {hpath {sld_signaltap:sec_shuffle_mem} } {hpath {sld_signaltap:switches} } {hpath {sld_signaltap:time_machine} } </value>
+   <value>{hpath {s_memory:s_memory_controller|altsyncram:altsyncram_component|altsyncram_m5b4:auto_generated|sld_mod_ram_rom:mgl_prim2} } {hpath {encrypted_data_memory:rom_memory|altsyncram:altsyncram_component|altsyncram_1ju1:auto_generated|sld_mod_ram_rom:mgl_prim2} } {hpath {de_data_writer:comb_1089|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2} } {hpath {sld_signaltap:ROM_memory} } {hpath {sld_signaltap:Shuffle_mem} } {hpath {sld_signaltap:decrypted} } {hpath {sld_signaltap:s_memory} } {hpath {sld_signaltap:sec_shuffle_mem} } {hpath {sld_signaltap:switches} } {hpath {sld_signaltap:time_machine} } </value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -6613,7 +6613,7 @@ parameters are a RESULT of the module parameters. -->
 the requested settings for a module instance. -->
   <parameter name="DESIGN_HASH">
    <type>java.lang.String</type>
-   <value>804ffe3e2c0222d421b9</value>
+   <value>74e7c6ab1a85c7550981</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>

@@ -31,6 +31,7 @@ module decryptor_fsm
 	input logic							reset,
 	input logic [MSG_WIDTH-1:0]	encrypted_input[MSG_DEP-1:0],			// the ROM memory containing the encrpted data
 	input logic [MSG_WIDTH-1:0]	s_data[S_DEP-1:0],						// locally registred S memory
+	input logic [MSG_WIDTH-1:0]	s_q_data_in,
 	input logic							start,										// flag indicating this FSM can start operation, Master should insure all other FSM's are done
 	
 	output logic [MSG_WIDTH-1:0]	address_out,								// Address of local registred S memory to be written to

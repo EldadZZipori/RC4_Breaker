@@ -32,7 +32,25 @@ module ksa
 	assign secret_key = {{14{1'b0}},LEDR};
 	
 	/*
-		Reading from ROM memory
+		RAM Memory (s) - Working Memory (256 words x 8 bit)
+	*/
+	
+	logic	[7:0]		s_memory_q_data_out;
+	
+	logic [7:0]	s_memory_address_in;
+	logic [7:0] 	s_memory_data_in;
+	logic			s_memory_data_enable;
+	s_memory s_memory_controller(
+		.address	(s_memory_address_in),
+		.clock	(CLOCK_50),
+		.data		(s_memory_data_in),
+		.wren		(s_memory_data_enable),				
+		.q			(s_memory_q_data_out)									
+	);
+	
+	
+	/*
+		ROM memory (D) - Encrypted data (32 words x 8bits)
 	*/
 	
 	logic[7:0] 	rom_data_d[31:0];								// Registers all the ROMS data so it can be taken for several parallel computation
@@ -67,6 +85,11 @@ module ksa
 	decryption_core decryption_core1(
 	  .clk								(CLOCK_50),
 	  .reset								(1'b0),
+	  .stop								(1'b0),
+	  .s_memory_address_in			(s_memory_address_in),
+	  .s_memory_data_in				(s_memory_data_in),
+	  .s_memory_data_enable			(s_memory_data_enable),
+	  .s_memory_q_data_out			(s_memory_q_data_out),
 	  .key_from_switches_changed	(key_from_switches_changed),
 	  .key_from_switches_available(key_from_switches_available),
 	  .ROM_mem_read					(rom_reader_done),
@@ -79,6 +102,10 @@ module ksa
 	logic[7:0] 	decrypted_data[31:0];
 	logic decryption_done;
 	
+	
+	/*
+		RAM Memory (DE) - Decrypted Data (32 words x 8bits)
+	*/
 	de_data_writer(
 	.clk				(CLOCK_50),
 	.reset			(1'b0),

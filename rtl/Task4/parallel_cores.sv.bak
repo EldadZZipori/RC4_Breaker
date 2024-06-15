@@ -1,0 +1,6 @@
+module parallel_cores 
+# (parameter CORES = 4)
+();
+
+
+endmodule
