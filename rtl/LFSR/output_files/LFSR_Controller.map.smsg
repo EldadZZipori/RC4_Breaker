@@ -1,1 +1,0 @@
-Warning (10268): Verilog HDL information at LFSR_Controller.sv(118): always construct contains both blocking and non-blocking assignments File: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/LFSR/LFSR_Controller.sv Line: 118
