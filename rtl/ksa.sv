@@ -116,7 +116,7 @@ module ksa
 				DECRYPT: begin
 					new_key_available <= 1'b1;
 					
-					if(secret_key == 24'b1001001001) LEDR[5] <= 1'b1;
+					//if(secret_key == 24'b1001001001) LEDR[5] <= 1'b1;
 				end
 				NOT_FOUND: begin
 					if (out_of_keys)			LEDR[9] <= 1'b1;							
