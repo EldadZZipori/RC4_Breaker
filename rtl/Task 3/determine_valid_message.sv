@@ -26,6 +26,7 @@ module determine_valid_message
     localparam IDLE      = 2'b00;  // Idle state
     localparam CHECKING  = 2'b01;  // Checking state
     localparam FINISH    = 2'b10;  // Finish state
+	 localparam	INC		 = 2'b11;
 
     reg [1:0] state /*synthesis keep*/;             // Current state of the state machine
     reg [7:0] out_data /*synthesis keep*/;           // Specific character being determined if valid
@@ -39,7 +40,7 @@ module determine_valid_message
             index        			<= 0;     // Reset index to 0
             key_valid_internal   <= 1;     // Assume valid initially
 				key_valid				<= 0;
-				finish <= 1'b1;
+				finish <= 1'b0;
         end else begin
             case (state)
                 IDLE: begin
@@ -47,26 +48,31 @@ module determine_valid_message
                         state <= CHECKING;  // Move to CHECKING state if decrypt_done is high
                         key_valid_internal <= 1;                 // Initialize valid to 1 at the beginning of checking
                     end
+						  finish <= 1'b0;
+						  index	<= 1'b0;
                 end
                 CHECKING: begin
-                    if (index < END_INDEX) begin
-                                out_data <= decrypted_data[index];
-                        // Check if character is not a lowercase letter or space
-                        if (!((decrypted_data[index] >= LOW_THRESHOLD && decrypted_data[index] <= HIGH_THRESHOLD) ||
-                              (decrypted_data[index] == SPECIAL))) begin
-                            key_valid_internal <= 0;  // Set valid to 0 if an invalid character is found
-									 state <= FINISH;
-                        end
-                        index <= index + 1;  // Increment index during CHECKING state
-                    end else begin
-                        state <= FINISH;  // Move to FINISH state after checking all characters
-								finish <= 1'b1;
-                    end
+						out_data <= decrypted_data[index];
+                  // Check if character is not a lowercase letter or space
+                  if (!((decrypted_data[index] >= LOW_THRESHOLD && decrypted_data[index] <= HIGH_THRESHOLD) ||
+							(decrypted_data[index] == SPECIAL))) begin
+								key_valid_internal <= 0;  // Set valid to 0 if an invalid character is found
+								state <= FINISH;
+                   end
+						state <= INC;
+
                 end
+					 INC: begin
+						if (index == END_INDEX) state <= FINISH;
+						else begin
+							state <= CHECKING;
+							index <= index + 1;
+						end
+					 end
                 FINISH: begin
-                    state <= FINISH;  // Move to IDLE state if decrypt_done goes low
-						 
-						  key_valid <= key_valid_internal;
+                  state <= FINISH;  // Move to IDLE state if decrypt_done goes low
+						finish <= 1'b1;
+						key_valid <= key_valid_internal;
                 end
             endcase
         end

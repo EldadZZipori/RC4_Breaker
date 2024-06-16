@@ -1,6 +1,6 @@
 |ksa
 reset <= SW[0].DB_MAX_OUTPUT_PORT_TYPE
-CLOCK_50 => CLOCK_50.IN3
+CLOCK_50 => CLOCK_50.IN4
 SW[0] => next_state[3].OUTPUTSELECT
 SW[0] => next_state[2].OUTPUTSELECT
 SW[0] => next_state[1].OUTPUTSELECT
@@ -12,6 +12,7 @@ SW[0] => LEDR.OUTPUTSELECT
 SW[0] => LEDR.OUTPUTSELECT
 SW[0] => reset_state.OUTPUTSELECT
 SW[0] => new_key_available.OUTPUTSELECT
+SW[0] => start_determine.OUTPUTSELECT
 SW[0] => secret_key.OUTPUTSELECT
 SW[0] => secret_key.OUTPUTSELECT
 SW[0] => secret_key.OUTPUTSELECT
@@ -56,48 +57,48 @@ SW[6] => ~NO_FANOUT~
 SW[7] => ~NO_FANOUT~
 SW[8] => ~NO_FANOUT~
 SW[9] => ~NO_FANOUT~
-HEX0[0] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst0.ssOut
-HEX0[1] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst0.ssOut
-HEX0[2] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst0.ssOut
-HEX0[3] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst0.ssOut
-HEX0[4] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst0.ssOut
-HEX0[5] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst0.ssOut
-HEX0[6] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst0.ssOut
-HEX1[0] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst1.ssOut
-HEX1[1] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst1.ssOut
-HEX1[2] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst1.ssOut
-HEX1[3] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst1.ssOut
-HEX1[4] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst1.ssOut
-HEX1[5] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst1.ssOut
-HEX1[6] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst1.ssOut
-HEX2[0] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst2.ssOut
-HEX2[1] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst2.ssOut
-HEX2[2] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst2.ssOut
-HEX2[3] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst2.ssOut
-HEX2[4] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst2.ssOut
-HEX2[5] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst2.ssOut
-HEX2[6] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst2.ssOut
-HEX3[0] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst3.ssOut
-HEX3[1] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst3.ssOut
-HEX3[2] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst3.ssOut
-HEX3[3] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst3.ssOut
-HEX3[4] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst3.ssOut
-HEX3[5] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst3.ssOut
-HEX3[6] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst3.ssOut
-HEX4[0] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst4.ssOut
-HEX4[1] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst4.ssOut
-HEX4[2] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst4.ssOut
-HEX4[3] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst4.ssOut
-HEX4[4] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst4.ssOut
-HEX4[5] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst4.ssOut
-HEX4[6] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst4.ssOut
-HEX5[0] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst5.ssOut
-HEX5[1] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst5.ssOut
-HEX5[2] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst5.ssOut
-HEX5[3] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst5.ssOut
-HEX5[4] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst5.ssOut
-HEX5[5] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst5.ssOut
-HEX5[6] <= SevenSegmentDisplayDecoder:SevenSegmentDisplayDecoder_inst5.ssOut
+HEX0[0] <= HEX0[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[1] <= HEX0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[2] <= HEX0[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[3] <= HEX0[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[4] <= HEX0[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[5] <= HEX0[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[6] <= HEX0[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[0] <= HEX1[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[1] <= HEX1[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[2] <= HEX1[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[3] <= HEX1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[4] <= HEX1[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[5] <= HEX1[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[6] <= HEX1[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[0] <= HEX2[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[1] <= HEX2[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[2] <= HEX2[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[3] <= HEX2[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[4] <= HEX2[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[5] <= HEX2[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX2[6] <= HEX2[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[0] <= HEX3[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[1] <= HEX3[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[2] <= HEX3[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[3] <= HEX3[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[4] <= HEX3[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[5] <= HEX3[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX3[6] <= HEX3[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[0] <= HEX4[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[1] <= HEX4[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[2] <= HEX4[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[3] <= HEX4[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[4] <= HEX4[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[5] <= HEX4[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX4[6] <= HEX4[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[0] <= HEX5[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[1] <= HEX5[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[2] <= HEX5[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[3] <= HEX5[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[4] <= HEX5[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[5] <= HEX5[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX5[6] <= HEX5[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 LEDR[0] <= LEDR[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 LEDR[1] <= LEDR[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 LEDR[2] <= LEDR[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -192,6 +193,45 @@ nIn[0] => Decoder0.IN3
 nIn[1] => Decoder0.IN2
 nIn[2] => Decoder0.IN1
 nIn[3] => Decoder0.IN0
+
+
+|ksa|Generate_Arbitrary_Divided_Clk32:Gen_100Hz_clk
+inclk => inclk~buf0.DATAIN
+outclk <= outclk~reg0.DB_MAX_OUTPUT_PORT_TYPE
+outclk_not <= outclk_not~buf0.DB_MAX_OUTPUT_PORT_TYPE
+div_clk_count[0] => div_clk_count[0]~buf0.DATAIN
+div_clk_count[1] => div_clk_count[1]~buf0.DATAIN
+div_clk_count[2] => div_clk_count[2]~buf0.DATAIN
+div_clk_count[3] => div_clk_count[3]~buf0.DATAIN
+div_clk_count[4] => div_clk_count[4]~buf0.DATAIN
+div_clk_count[5] => div_clk_count[5]~buf0.DATAIN
+div_clk_count[6] => div_clk_count[6]~buf0.DATAIN
+div_clk_count[7] => div_clk_count[7]~buf0.DATAIN
+div_clk_count[8] => div_clk_count[8]~buf0.DATAIN
+div_clk_count[9] => div_clk_count[9]~buf0.DATAIN
+div_clk_count[10] => div_clk_count[10]~buf0.DATAIN
+div_clk_count[11] => div_clk_count[11]~buf0.DATAIN
+div_clk_count[12] => div_clk_count[12]~buf0.DATAIN
+div_clk_count[13] => div_clk_count[13]~buf0.DATAIN
+div_clk_count[14] => div_clk_count[14]~buf0.DATAIN
+div_clk_count[15] => div_clk_count[15]~buf0.DATAIN
+div_clk_count[16] => div_clk_count[16]~buf0.DATAIN
+div_clk_count[17] => div_clk_count[17]~buf0.DATAIN
+div_clk_count[18] => div_clk_count[18]~buf0.DATAIN
+div_clk_count[19] => div_clk_count[19]~buf0.DATAIN
+div_clk_count[20] => div_clk_count[20]~buf0.DATAIN
+div_clk_count[21] => div_clk_count[21]~buf0.DATAIN
+div_clk_count[22] => div_clk_count[22]~buf0.DATAIN
+div_clk_count[23] => div_clk_count[23]~buf0.DATAIN
+div_clk_count[24] => div_clk_count[24]~buf0.DATAIN
+div_clk_count[25] => div_clk_count[25]~buf0.DATAIN
+div_clk_count[26] => div_clk_count[26]~buf0.DATAIN
+div_clk_count[27] => div_clk_count[27]~buf0.DATAIN
+div_clk_count[28] => div_clk_count[28]~buf0.DATAIN
+div_clk_count[29] => div_clk_count[29]~buf0.DATAIN
+div_clk_count[30] => div_clk_count[30]~buf0.DATAIN
+div_clk_count[31] => div_clk_count[31]~buf0.DATAIN
+Reset => Reset~buf0.DATAIN
 
 
 |ksa|LFSR_Controller:key_generator
@@ -9503,6 +9543,7 @@ done <= done~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |ksa|determine_valid_message:validator
+CLOCK_50 => finish~reg0.CLK
 CLOCK_50 => key_valid~reg0.CLK
 CLOCK_50 => key_valid_internal.CLK
 CLOCK_50 => index[0].CLK
@@ -9512,6 +9553,7 @@ CLOCK_50 => index[3].CLK
 CLOCK_50 => index[4].CLK
 CLOCK_50 => state[0].CLK
 CLOCK_50 => state[1].CLK
+reset => finish~reg0.ACLR
 reset => key_valid~reg0.ACLR
 reset => key_valid_internal.PRESET
 reset => index[0].ACLR
@@ -9781,10 +9823,10 @@ decrypt_done => state.OUTPUTSELECT
 decrypt_done => state.OUTPUTSELECT
 decrypt_done => key_valid_internal.OUTPUTSELECT
 key_valid <= key_valid~reg0.DB_MAX_OUTPUT_PORT_TYPE
-finish <= <VCC>
+finish <= finish~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|ksa|de_data_writer:comb_1379
+|ksa|de_data_writer:de_writer
 clk => clk.IN1
 reset => next_state[2].OUTPUTSELECT
 reset => next_state[1].OUTPUTSELECT
@@ -10067,7 +10109,7 @@ decrypted_data[31][7] => Mux0.IN0
 done <= <GND>
 
 
-|ksa|de_data_writer:comb_1379|decrypted_data_memory:de_memory_controller
+|ksa|de_data_writer:de_writer|decrypted_data_memory:de_memory_controller
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -10093,7 +10135,7 @@ q[6] <= altsyncram:altsyncram_component.q_a
 q[7] <= altsyncram:altsyncram_component.q_a
 
 
-|ksa|de_data_writer:comb_1379|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component
+|ksa|de_data_writer:de_writer|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component
 wren_a => altsyncram_8n22:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -10139,7 +10181,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|ksa|de_data_writer:comb_1379|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated
+|ksa|de_data_writer:de_writer|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated
 address_a[0] => altsyncram_22p2:altsyncram1.address_a[0]
 address_a[1] => altsyncram_22p2:altsyncram1.address_a[1]
 address_a[2] => altsyncram_22p2:altsyncram1.address_a[2]
@@ -10165,7 +10207,7 @@ q_a[7] <= altsyncram_22p2:altsyncram1.q_a[7]
 wren_a => altsyncram_22p2:altsyncram1.wren_a
 
 
-|ksa|de_data_writer:comb_1379|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|altsyncram_22p2:altsyncram1
+|ksa|de_data_writer:de_writer|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|altsyncram_22p2:altsyncram1
 address_a[0] => ram_block3a0.PORTAADDR
 address_a[0] => ram_block3a1.PORTAADDR
 address_a[0] => ram_block3a2.PORTAADDR
@@ -10312,7 +10354,7 @@ wren_b => ram_block3a6.PORTBWE
 wren_b => ram_block3a7.PORTBWE
 
 
-|ksa|de_data_writer:comb_1379|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2
+|ksa|de_data_writer:de_writer|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2
 tck_usr <= sld_jtag_endpoint_adapter:jtag_signal_adapter.adapted_tck
 address[0] <= ram_rom_addr_reg[0].DB_MAX_OUTPUT_PORT_TYPE
 address[1] <= ram_rom_addr_reg[1].DB_MAX_OUTPUT_PORT_TYPE
@@ -10377,7 +10419,7 @@ ir_out[7] <= sld_jtag_endpoint_adapter:jtag_signal_adapter.ir_out[7]
 tdo <= sld_jtag_endpoint_adapter:jtag_signal_adapter.tdo
 
 
-|ksa|de_data_writer:comb_1379|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter
+|ksa|de_data_writer:de_writer|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter
 raw_tck => sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst.raw_tck
 raw_tms => sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst.raw_tms
 tdi => sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst.tdi
@@ -10460,7 +10502,7 @@ adapted_ir_out[6] => sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_im
 adapted_ir_out[7] => sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst.adapted_ir_out[7]
 
 
-|ksa|de_data_writer:comb_1379|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst
+|ksa|de_data_writer:de_writer|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst
 raw_tck => adapted_tck.DATAIN
 raw_tms => adapted_tms.DATAIN
 tdi => adapted_tdi.DATAIN
@@ -10543,7 +10585,7 @@ adapted_ir_out[6] => ir_out[6].DATAIN
 adapted_ir_out[7] => ir_out[7].DATAIN
 
 
-|ksa|de_data_writer:comb_1379|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr
+|ksa|de_data_writer:de_writer|decrypted_data_memory:de_memory_controller|altsyncram:altsyncram_component|altsyncram_8n22:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr
 ROM_DATA[0] => Mux3.IN131
 ROM_DATA[1] => Mux2.IN131
 ROM_DATA[2] => Mux1.IN131

@@ -1,46 +1,23 @@
 module parallel_cores 
 # (parameter CORES = 4)
 (
-	input logic CLOCK_50,
-	output logic LED_GOOD,
-	output logic LED_BAD
+	input logic 			CLOCK_50,
+	
+	input logic [7:0] 	rom_data[31:0],
+	input logic				rom_data_read,
+	
+	output logic[7:0] 	decrypted_data[31:0],
+	output logic 			correct_decryption,
+	output logic[31:0]   secret_key,
+	
+	output logic 			LED_GOOD,
+	output logic 			LED_BAD
 );
-
-	/*
-		ROM memory (D) - Encrypted data (32 words x 8bits)
-	*/
-				
-	logic[7:0] 	rom_data_d[31:0];								// Registers all the ROMS data so it can be taken for several parallel computation
-	logic[7:0] 	rom_q_data_out;
-	logic[5:0]	rom_reader_address_out;
-	logic[7:0] 	rom_reader_data_out;
-	logic			rom_reader_done;
-	logic 		rom_reader_enable;
-				
-	encrypted_data_memory rom_memory(
-		.address	(rom_reader_address_out),
-		.clock	(CLOCK_50 & (!rom_reader_done)),			// When rom_read_done flag is up stop reading
-		.q			(rom_q_data_out)
-	);
-				
-	always_ff @(posedge CLOCK_50) begin
-		if (rom_reader_enable) rom_data_d[rom_reader_address_out] <= rom_reader_data_out;
-	end
-				
-	read_rom_mem rom_d(
-		.clk				(CLOCK_50),
-		.reset			(1'b0),
-		.start			(1'b1),
-		.rom_q_data_in	(rom_q_data_out),	
-		.done				(rom_reader_done),				
-		.address			(rom_reader_address_out),
-		.rom_data		(rom_reader_data_out),
-		.enable_output	(rom_reader_enable),
-	);
 
 	logic [(CORES-1):0] 	found_msg;
 	logic [31:0]			corret_decrypted_data;
 	
+	//assign correct_decryption = |found_msg;
 	
 	genvar i;
 	generate
@@ -49,7 +26,7 @@ module parallel_cores
 				/*
 					RAM Memory (s) - Working Memory (256 words x 8 bit)
 				*/
-				
+				/*
 				logic	[7:0]	s_memory_q_data_out;
 				
 				logic [7:0]	s_memory_address_in;
@@ -77,11 +54,11 @@ module parallel_cores
 				  .key_from_switches_changed	(1'b0),
 				  .key_from_switches_available(1'b0),
 				  .new_key_available				(new_key_available),
-				  .ROM_mem_read					(rom_reader_done),
-				  .rom_data_d						(rom_data_d),
+				  .ROM_mem_read					(),
+				  .rom_data_d						(rom_data),
 				  .secret_key						(secret_key),
 				  .decrypted_data					(decrypted_data),
-				  .done								(decryption_done)
+				  .done								()
 				);
 				
 				
@@ -107,22 +84,10 @@ module parallel_cores
 					if(found_msg[i] & determine_valid_finised) 	reset_core <= 1'b0;
 					else														reset_core <= 1'b1;
 				end
+				*/
 		end
 		
 	endgenerate
 	
-	logic[7:0] 	decrypted_data[31:0];
-	logic decryption_done;
-	
-	/*
-		RAM Memory (DE) - Decrypted Data (32 words x 8bits)
-	*/
-	de_data_writer(
-	.clk				(CLOCK_50),
-	.reset			(1'b0),
-	.start			(|found_msg),
-	.decrypted_data(decrypted_data),
-	.done				()
-	);
 
 endmodule

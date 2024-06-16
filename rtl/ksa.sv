@@ -20,6 +20,7 @@ module ksa
 );
 	
 	assign reset = SW[0];
+	
 	localparam IDLE 					= 0;
 	localparam START_READ_ROM_D 	= 1;
 	localparam READ_ROM_D			= 2;
@@ -37,7 +38,7 @@ module ksa
 		current_state <= next_state;
 	end
 	
-	logic read_rom_start, read_rom_done;
+	logic read_rom_start, read_rom_done, start_determine;
 	
 	always_comb begin
 		if (reset) begin
@@ -86,11 +87,13 @@ module ksa
 	
 	always_ff @(posedge CLOCK_50) begin
 		if(reset) begin
-			key_read <= 1'b0;
-			read_rom_start <= 0;
-			LEDR <= 0;
-			reset_state <= 1'b0;
+			key_read 			<= 1'b0;
+			read_rom_start 	<= 1'b0;
+			LEDR 					<= 0;
+			reset_state 		<= 1'b0;
 			new_key_available <= 1'b0;
+			start_determine 	<= 1'b0;
+			write_to_DE			<= 1'b0;
 		end
 		else begin
 			case(current_state)
@@ -102,12 +105,14 @@ module ksa
 					if(key_available) begin
 						secret_key <= {2'b00, key_counter};
 						key_read <= 1'b1;
+						 start_determine <= 1'b0;
 					end
 					
 					
 					reset_state <= 1'b0;
 				end
 				GEN_KEY: key_read <= 1'b0;
+				DETERMINE: start_determine <= 1'b1;
 				DECRYPT: begin
 					new_key_available <= 1'b1;
 					
@@ -136,12 +141,24 @@ module ksa
 	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst4(.ssOut(Seven_Seg_Val[4]), .nIn(secret_key[19:16]));
 	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst5(.ssOut(Seven_Seg_Val[5]), .nIn(secret_key[23:20]));
 	
-	assign HEX0 = Seven_Seg_Val[0];
-   assign HEX1 = Seven_Seg_Val[1];
-	assign HEX2 = Seven_Seg_Val[2];
-   assign HEX3 = Seven_Seg_Val[3];
-   assign HEX4 = Seven_Seg_Val[4];
-   assign HEX5 = Seven_Seg_Val[5];
+	logic Clock_10Hz;
+	Generate_Arbitrary_Divided_Clk32 
+	Gen_100Hz_clk
+	(.inclk(CLOCK_50),
+	.outclk(Clock_10Hz),
+	.outclk_Not(),
+	.div_clk_count(5000000 >> 1),
+	.Reset(1'h1)
+); 
+	
+	always_ff @(posedge Clock_10Hz) begin
+		HEX0 <= Seven_Seg_Val[0];
+		HEX1 <= Seven_Seg_Val[1];
+		HEX2 <= Seven_Seg_Val[2];
+		HEX3 <= Seven_Seg_Val[3];
+		HEX4 <= Seven_Seg_Val[4];
+		HEX5 <= Seven_Seg_Val[5];
+	end
 	
 	
 	logic [23:0] secret_key;
@@ -250,13 +267,12 @@ module ksa
 	
 	logic determine_valid_finised;
 	logic msg_valid;
-	logic start_determine;
 	determine_valid_message
 		# (
 		.LOW_THRESHOLD			(97),    						// ASCII value for 'a'
 		.HIGH_THRESHOLD		(122),  							// ASCII value for 'z'
 		.SPECIAL					(32),          				// ASCII value for space ' '
-		.END_INDEX				(32)        					// Last index to check (the entire message is 32)
+		.END_INDEX				(31)        					// Last index to check (the entire message is 32)
 	)
 	validator
 	(
@@ -264,20 +280,21 @@ module ksa
 		.reset					(reset_state | reset),     // Reset signal
 		.decrypted_data		(decrypted_data),  			// Input decrypted data array
 		.decrypt_done			(start_determine), 		 	// Signal indicating decryption is done                                                                    
-		.key_valid				(msg_valid),      		// Output signal indicating if the key is valid
+		.key_valid				(msg_valid),      			// Output signal indicating if the key is valid
 		.finish					(determine_valid_finised), // Output signal indicating the checking process is finished
 	);
 	
 
 	logic write_to_DE;
+	logic done_writing_to_de;
 	/*
 		RAM Memory (DE) - Decrypted Data (32 words x 8bits)
 	*/
-	de_data_writer(
-	.clk				(CLOCK_50),
-	.reset			(1'b0),
-	.start			(write_to_DE),
-	.decrypted_data(decrypted_data),
-	.done				()
+	de_data_writer de_writer(
+		.clk				(CLOCK_50),
+		.reset			(1'b0),
+		.start			(write_to_DE),
+		.decrypted_data(decrypted_data),
+		.done				(done_writing_to_de)
 	);
 endmodule 

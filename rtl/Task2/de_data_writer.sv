@@ -71,6 +71,7 @@ module de_data_writer(
 	always_ff @(posedge clk) begin
 		if (reset) begin
 			address <= 0;
+			done	  <= 1'b0;
 		end
 		else if (current_state == ASSIGN) begin
 				address 					<= address + 1;
@@ -84,6 +85,7 @@ module de_data_writer(
 		end
 		else if (current_state == FINISH) begin	
 				write_enable_out		<= 1'b0;
+				done						<= 1'b1;
 		end		
 	end
 endmodule

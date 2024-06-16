@@ -1,16 +1,16 @@
-Fitter Status : Successful - Sat Jun 15 18:56:42 2024
+Fitter Status : Successful - Sun Jun 16 08:31:24 2024
 Quartus Prime Version : 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 Revision Name : rc4
 Top-level Entity Name : ksa
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 13,954 / 32,070 ( 44 % )
-Total registers : 38581
+Logic utilization (in ALMs) : 15,325 / 32,070 ( 48 % )
+Total registers : 43090
 Total pins : 66 / 457 ( 14 % )
 Total virtual pins : 0
-Total block memory bits : 349,440 / 4,065,280 ( 9 % )
-Total RAM Blocks : 76 / 397 ( 19 % )
+Total block memory bits : 389,376 / 4,065,280 ( 10 % )
+Total RAM Blocks : 85 / 397 ( 21 % )
 Total DSP Blocks : 0 / 87 ( 0 % )
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
