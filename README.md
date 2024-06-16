@@ -4,20 +4,20 @@ Digital design - Codebreaking Hardware Acceleration/Parallel processing
 # SOF file location
 
 # Lab status
-    ### TasK 1 [V]
+### TasK 1 [V]
     Creating RAM, instantiating it, and writing to it.
 
-    #### Pseudocode
+#### Pseudocode
     for i in 0 to 255 {
         s[i] = i;
     }  
-    ### Task 2 [V]
+### Task 2 [V]
     Building a single Decryption Core.
     Shuffling working memory (S), reading ROM (D) of encrypted data, decrypting data, write decrypted message to RAM (DE).
 
-    ![Diagram of Task 2](https://github.com/EldadZZipori/RC4_Breaker/tree/main/doc/task_2_diagram.png)
+![Diagram of Task 2](https://github.com/EldadZZipori/RC4_Breaker/tree/main/doc/task_2_diagram.png)
 
-    #### Pseudocode
+#### Pseudocode
     j = 0
     for i = 0 to 255 {
         j = (j + s[i] + secret_key[i mod keylength] ) 
@@ -31,8 +31,8 @@ Digital design - Codebreaking Hardware Acceleration/Parallel processing
         f = s[ (s[i]+s[j]) ]
         decrypted_output[k] = f xor encrypted_input[k]
     }
-    ### Task 3 [V]
-    ### Task 4 [in progress]
+### Task 3 [V]
+### Task 4 [in progress]
 # Important location
 
 # Diagrams 
