@@ -5,17 +5,163 @@
 
 module ksa
 (
-	input logic CLOCK_50,
-	input  logic[9:0] SW,
+	output	logic		 	reset,
+	input 	logic 		CLOCK_50,
+	input  	logic[9:0] 	SW,
 	
-	output logic[9:0] LEDR
+	output 	logic[6:0] 	HEX0,
+   output 	logic[6:0] 	HEX1,
+   output 	logic[6:0] 	HEX2,
+   output 	logic[6:0] 	HEX3,
+   output 	logic[6:0] 	HEX4,
+   output 	logic[6:0] 	HEX5,
+	
+	output 	logic[9:0] 	LEDR
 );
-
 	
+	assign reset = SW[0];
+	localparam IDLE 					= 0;
+	localparam START_READ_ROM_D 	= 1;
+	localparam READ_ROM_D			= 2;
+	localparam START_GEN_KEY		= 3;
+	localparam GEN_KEY				= 4;
+	localparam DECRYPT				= 5;
+	localparam DETERMINE				= 6;
+	localparam FOUND					= 7;
+	localparam NOT_FOUND				= 8;
+	localparam RESET					= 9;
+	
+	logic [5:0] current_state, next_state;
+	
+	always_ff @(posedge CLOCK_50) begin
+		current_state <= next_state;
+	end
+	
+	logic read_rom_start, read_rom_done;
+	
+	always_comb begin
+		if (reset) begin
+			next_state = IDLE;
+		end
+		else begin
+			case(current_state)
+				IDLE: next_state = START_READ_ROM_D;
+				START_READ_ROM_D: begin
+						next_state = READ_ROM_D;
+				end
+				READ_ROM_D: begin
+					if(read_rom_done) 	next_state = START_GEN_KEY;
+					else						next_state = READ_ROM_D;
+				end
+				START_GEN_KEY: begin
+					if (key_available)	next_state = GEN_KEY;
+					else						next_state = START_GEN_KEY;
+				end
+				GEN_KEY: 					next_state = DECRYPT;
+				DECRYPT: begin
+					if(decryption_done) 	next_state = DETERMINE;
+					else						next_state = DECRYPT;
+				end
+				DETERMINE: begin
+					if(determine_valid_finised) begin
+						if(msg_valid)			next_state = FOUND;
+						else if(out_of_keys) next_state = NOT_FOUND;
+						else 						next_state = RESET;
+					end
+					else 							next_state = DETERMINE;
+					
+				end
+				RESET: next_state = START_GEN_KEY;
+				FOUND: next_state = FOUND;
+				NOT_FOUND: begin
+					next_state = NOT_FOUND;
+				end
+				default:	next_state = IDLE;
+			endcase
+		end
+	end
+	
+	
+	logic reset_state;
+	
+	always_ff @(posedge CLOCK_50) begin
+		if(reset) begin
+			key_read <= 1'b0;
+			read_rom_start <= 0;
+			LEDR <= 0;
+			reset_state <= 1'b0;
+			new_key_available <= 1'b0;
+		end
+		else begin
+			case(current_state)
+				START_READ_ROM_D: begin
+											read_rom_start <= 1'b1;
+				end
+				READ_ROM_D:				read_rom_start <= 1'b0;
+				START_GEN_KEY: begin
+					if(key_available) begin
+						secret_key <= {2'b00, key_counter};
+						key_read <= 1'b1;
+					end
+					
+					
+					reset_state <= 1'b0;
+				end
+				GEN_KEY: key_read <= 1'b0;
+				DECRYPT: begin
+					new_key_available <= 1'b1;
+					
+					if(secret_key == 24'b1001001001) LEDR[5] <= 1'b1;
+				end
+				NOT_FOUND: begin
+					if (out_of_keys)			LEDR[9] <= 1'b1;							
+				end
+				FOUND: begin
+					LEDR[0] <= 1'b1;
+					write_to_DE <= 1'b1;
+				end
+				RESET: reset_state <= 1'b1;
+			endcase
+		end
+	end
 	/*
 		Switch controls
 	*/
+	logic [7:0] Seven_Seg_Val[5:0];
+		 
+	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst0(.ssOut(Seven_Seg_Val[0]), .nIn(secret_key[3:0]));
+	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst1(.ssOut(Seven_Seg_Val[1]), .nIn(secret_key[7:4]));
+	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst2(.ssOut(Seven_Seg_Val[2]), .nIn(secret_key[11:8]));
+	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst3(.ssOut(Seven_Seg_Val[3]), .nIn(secret_key[15:12]));
+	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst4(.ssOut(Seven_Seg_Val[4]), .nIn(secret_key[19:16]));
+	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst5(.ssOut(Seven_Seg_Val[5]), .nIn(secret_key[23:20]));
+	
+	assign HEX0 = Seven_Seg_Val[0];
+   assign HEX1 = Seven_Seg_Val[1];
+	assign HEX2 = Seven_Seg_Val[2];
+   assign HEX3 = Seven_Seg_Val[3];
+   assign HEX4 = Seven_Seg_Val[4];
+   assign HEX5 = Seven_Seg_Val[5];
+	
+	
 	logic [23:0] secret_key;
+	logic [21:0] key_counter;
+	logic key_available;
+	logic out_of_keys;
+	logic key_read;
+	
+	LFSR_Controller # (.OP_MODE(0))
+	key_generator
+	(
+		.clk					(CLOCK_50),
+		.reset				(1'b0),
+		.counter_read		(key_read),
+		.counter				(key_counter),
+		.available			(key_available),
+		.counter_finished	(out_of_keys)
+	);
+	
+	/*
 	logic key_from_switches_available;
 	logic key_from_switches_changed;
 	
@@ -30,15 +176,15 @@ module ksa
 	);
 	
 	assign secret_key = {{14{1'b0}},LEDR};
-	
+	*/
 	/*
 		RAM Memory (s) - Working Memory (256 words x 8 bit)
 	*/
 	
-	logic	[7:0]		s_memory_q_data_out;
+	logic	[7:0]	s_memory_q_data_out;
 	
 	logic [7:0]	s_memory_address_in;
-	logic [7:0] 	s_memory_data_in;
+	logic [7:0] s_memory_data_in;
 	logic			s_memory_data_enable;
 	s_memory s_memory_controller(
 		.address	(s_memory_address_in),
@@ -57,12 +203,11 @@ module ksa
 	logic[7:0] 	rom_q_data_out;
 	logic[5:0]	rom_reader_address_out;
 	logic[7:0] 	rom_reader_data_out;
-	logic			rom_reader_done;
 	logic 		rom_reader_enable;
 	
 	encrypted_data_memory rom_memory(
 		.address	(rom_reader_address_out),
-		.clock	(CLOCK_50 & (!rom_reader_done)),			// When rom_read_done flag is up stop reading
+		.clock	(CLOCK_50 & (!read_rom_done)),			// When rom_read_done flag is up stop reading
 		.q			(rom_q_data_out)
 	);
 	
@@ -73,43 +218,65 @@ module ksa
 	read_rom_mem rom_d(
 		.clk				(CLOCK_50),
 		.reset			(1'b0),
-		.start			(1'b1),
+		.start			(read_rom_start),
 		.rom_q_data_in	(rom_q_data_out),	
-		.done				(rom_reader_done),				
+		.done				(read_rom_done),				
 		.address			(rom_reader_address_out),
 		.rom_data		(rom_reader_data_out),
 		.enable_output	(rom_reader_enable),
 	);
 
+	logic[7:0] 	decrypted_data[31:0];
+	logic decryption_done;
+	logic new_key_available;
 	
 	decryption_core decryption_core1(
 	  .clk								(CLOCK_50),
-	  .reset								(1'b0),
+	  .reset								(reset_state | reset),
 	  .stop								(1'b0),
 	  .s_memory_address_in			(s_memory_address_in),
 	  .s_memory_data_in				(s_memory_data_in),
 	  .s_memory_data_enable			(s_memory_data_enable),
 	  .s_memory_q_data_out			(s_memory_q_data_out),
-	  .key_from_switches_changed	(key_from_switches_changed),
-	  .key_from_switches_available(key_from_switches_available),
-	  .ROM_mem_read					(rom_reader_done),
+	  .key_from_switches_changed	(1'b0),
+	  .key_from_switches_available(1'b0),
+	  .new_key_available				(new_key_available),
+	  .ROM_mem_read					(read_rom_done),
 	  .rom_data_d						(rom_data_d),
 	  .secret_key						(secret_key),
 	  .decrypted_data					(decrypted_data),
 	  .done								(decryption_done)
 	);
 	
-	logic[7:0] 	decrypted_data[31:0];
-	logic decryption_done;
+	logic determine_valid_finised;
+	logic msg_valid;
+	logic start_determine;
+	determine_valid_message
+		# (
+		.LOW_THRESHOLD			(97),    						// ASCII value for 'a'
+		.HIGH_THRESHOLD		(122),  							// ASCII value for 'z'
+		.SPECIAL					(32),          				// ASCII value for space ' '
+		.END_INDEX				(32)        					// Last index to check (the entire message is 32)
+	)
+	validator
+	(
+		.CLOCK_50				(CLOCK_50),          		// Clock signal                        
+		.reset					(reset_state | reset),     // Reset signal
+		.decrypted_data		(decrypted_data),  			// Input decrypted data array
+		.decrypt_done			(start_determine), 		 	// Signal indicating decryption is done                                                                    
+		.key_valid				(msg_valid),      		// Output signal indicating if the key is valid
+		.finish					(determine_valid_finised), // Output signal indicating the checking process is finished
+	);
 	
-	
+
+	logic write_to_DE;
 	/*
 		RAM Memory (DE) - Decrypted Data (32 words x 8bits)
 	*/
 	de_data_writer(
 	.clk				(CLOCK_50),
 	.reset			(1'b0),
-	.start			(decryption_done),
+	.start			(write_to_DE),
 	.decrypted_data(decrypted_data),
 	.done				()
 	);

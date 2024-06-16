@@ -30,20 +30,22 @@ module determine_valid_message
     reg [1:0] state /*synthesis keep*/;             // Current state of the state machine
     reg [7:0] out_data /*synthesis keep*/;           // Specific character being determined if valid
     logic [4:0] index /*synthesis keep*/;           // Index to loop through the decrypted_data array
-
+	 logic key_valid_internal;
 
     // State machine sequential and combinational logic
     always_ff @(posedge CLOCK_50 or posedge reset) begin
         if (reset) begin
             state <= IDLE;  // Initialize state machine to IDLE on reset
-            index         <= 0;     // Reset index to 0
-            key_valid         <= 1;     // Assume valid initially
+            index        			<= 0;     // Reset index to 0
+            key_valid_internal   <= 1;     // Assume valid initially
+				key_valid				<= 0;
+				finish <= 1'b1;
         end else begin
             case (state)
                 IDLE: begin
                     if (decrypt_done) begin
                         state <= CHECKING;  // Move to CHECKING state if decrypt_done is high
-                        key_valid <= 1;                 // Initialize valid to 1 at the beginning of checking
+                        key_valid_internal <= 1;                 // Initialize valid to 1 at the beginning of checking
                     end
                 end
                 CHECKING: begin
@@ -52,25 +54,26 @@ module determine_valid_message
                         // Check if character is not a lowercase letter or space
                         if (!((decrypted_data[index] >= LOW_THRESHOLD && decrypted_data[index] <= HIGH_THRESHOLD) ||
                               (decrypted_data[index] == SPECIAL))) begin
-                            key_valid <= 0;  // Set valid to 0 if an invalid character is found
+                            key_valid_internal <= 0;  // Set valid to 0 if an invalid character is found
 									 state <= FINISH;
                         end
                         index <= index + 1;  // Increment index during CHECKING state
                     end else begin
                         state <= FINISH;  // Move to FINISH state after checking all characters
+								finish <= 1'b1;
                     end
                 end
                 FINISH: begin
-                    if (!decrypt_done) begin
-                        state <= IDLE;  // Move to IDLE state if decrypt_done goes low
-                    end
+                    state <= FINISH;  // Move to IDLE state if decrypt_done goes low
+						 
+						  key_valid <= key_valid_internal;
                 end
             endcase
         end
     end
 
     // Output assignment
-    always_comb begin
+    /*always_comb begin
         finish = state[1];  // Set finish signal high in FINISH state
-    end
+    end*/
 endmodule
