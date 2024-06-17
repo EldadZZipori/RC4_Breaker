@@ -1,4 +1,4 @@
-module parallel_cores 
+module parallel_cores
 # (parameter CORES = 4)
 (
 	input logic 			CLOCK_50,

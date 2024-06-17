@@ -1,5 +1,5 @@
 Assembler report for rc4
-Sun Jun 16 23:57:59 2024
+Mon Jun 17 06:17:11 2024
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -39,7 +39,7 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun Jun 16 23:57:59 2024 ;
+; Assembler Status      ; Successful - Mon Jun 17 06:17:11 2024 ;
 ; Revision Name         ; rc4                                   ;
 ; Top-level Entity Name ; ksa                                   ;
 ; Family                ; Cyclone V                             ;
@@ -90,14 +90,14 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Sun Jun 16 23:57:35 2024
+    Info: Processing started: Mon Jun 17 06:16:41 2024
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off rc4 -c rc4
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 5209 megabytes
-    Info: Processing ended: Sun Jun 16 23:58:00 2024
-    Info: Elapsed time: 00:00:25
-    Info: Total CPU time (on all processors): 00:00:21
+    Info: Peak virtual memory: 5224 megabytes
+    Info: Processing ended: Mon Jun 17 06:17:12 2024
+    Info: Elapsed time: 00:00:31
+    Info: Total CPU time (on all processors): 00:00:23
 
 
