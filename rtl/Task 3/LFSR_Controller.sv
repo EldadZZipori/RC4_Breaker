@@ -12,8 +12,7 @@
 
 module LFSR_Controller
 # (
-	parameter OP_MODE = 2,
-	parameter SEED 	= {24{1'b1}}
+	parameter OP_MODE = 2
 )
 (
 	input		logic										clk,
@@ -26,7 +25,9 @@ module LFSR_Controller
 	
 	// Setting the counter to the currect width based on OP_MODE
 	localparam COUNTER_WIDTH = (OP_MODE == 0)	?	22 :	
-										(OP_MODE == 1) ?  24 : 4;										
+										(OP_MODE == 1) ?  24 : 4;
+	localparam SEED = {COUNTER_WIDTH{1'b1}};
+										
 										
 	/* 
 			TAP SELECTION TABLE 
@@ -54,8 +55,7 @@ module LFSR_Controller
 		4			counter_finished flag
 	*/
 	localparam IDLE 		= 5'b00_000;
-	localparam FIRST 		= 5'b00_001;
-	localparam SEED_S		= 5'b00_111;
+	//localparam FIRST 		= 5'b00_001;
 	localparam WAIT_READ	= 5'b01_010;
 	localparam INCREMENT	= 5'b00_011;
 	localparam LAST		= 5'b10_100;
@@ -78,18 +78,14 @@ module LFSR_Controller
 		else begin
 			case(current_state) 
 				IDLE: begin
-					next_state = FIRST;
-				end
-				FIRST: begin
 					next_state = WAIT_READ;
 				end
-				SEED_S: begin
+				/*FIRST: begin
 					next_state = WAIT_READ;
-				end
+				end*/
 				WAIT_READ: begin
 					if ((counter == SEED) & can_finish) 	next_state = LAST;			// when the counter reached the SEED value assert counter_finished
-					else if (!counter_read)						next_state = WAIT_READ;		// only increment to the next value when it was read by Master machine
-					else if (counter == 0)						next_state = SEED_S;			// after we create the all zero state, start LFSR opertation
+					else if (!counter_read)			next_state = WAIT_READ;	// only increment to the next value when it was read by Master machine
 					else next_state = INCREMENT;		
 				end
 				INCREMENT: begin
@@ -113,9 +109,6 @@ module LFSR_Controller
 		end
 		else if ((current_state == WAIT_READ) & (counter != SEED)) begin  // Allow counter to finish only when out all 1's state
 			can_finish <= 1;
-		end
-		else if ((current_state == SEED_S)) begin
-			counter <= SEED;
 		end
 	end
 	

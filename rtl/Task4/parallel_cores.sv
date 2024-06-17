@@ -1,149 +1,93 @@
 module parallel_cores
 # (parameter CORES = 4)
 (
-	input logic				reset,
 	input logic 			CLOCK_50,
 	
-	input logic [7:0] 	rom_data_d[31:0],
-	input logic				read_rom_done,
+	input logic [7:0] 	rom_data[31:0],
+	input logic				rom_data_read,
 	
-	output logic[7:0] 	activated_decrypted_data[31:0],	
-	output logic [23:0] 	secret_key_for_hex,
-	output logic 			write_to_DE,
-	output logic			LEDR_GOOD,
-	output logic 			LEDR_BAD
+	output logic[7:0] 	decrypted_data[31:0],
+	output logic 			correct_decryption,
+	output logic[31:0]   secret_key,
+	
+	output logic 			LED_GOOD,
+	output logic 			LED_BAD
 );
 
-	localparam IDLE 				= 0;
-	localparam READ_ROM 			= 1;
-	localparam START_CORES 		= 2;
-	localparam WAIT_FOR_FIND 	= 3;
-	localparam FOUND				= 4;
-	localparam WRITE_DE			= 6;
-	localparam NOT_FOUND			= 5;
+	logic [(CORES-1):0] 	found_msg;
+	logic [31:0]			corret_decrypted_data;
 	
-	logic start_cores, stop_cores;
-	logic [(CORES-1):0] key_found;
-	logic [(CORES-1):0] core_done;
-	
-	logic[7:0] 	decrypted_data[3:0][31:0];
-	logic[23:0] secret_key [3:0];
-	
-	logic [4:0] current_state, next_state;
-	
-	always_ff @(posedge CLOCK_50) begin
-		current_state <= next_state;
-	end
-	
-	always_comb begin
-		if(reset) next_state = IDLE;
-		else begin
-			case (current_state)
-				IDLE: begin
-					if (read_rom_done)	next_state = START_CORES;
-					else 						next_state = IDLE;
-				end
-				START_CORES: begin
-					next_state = WAIT_FOR_FIND;
-				end
-				WAIT_FOR_FIND: begin
-					if (|key_found) 			next_state = FOUND;							// If any core finds the key
-					else if (&core_done)		next_state = NOT_FOUND;						// If all cores are done but no key was found
-					else							next_state = WAIT_FOR_FIND; 
-				end
-				FOUND: next_state = WRITE_DE;
-				NOT_FOUND: next_state = NOT_FOUND;
-				WRITE_DE: next_state = WRITE_DE;
-				default: next_state = IDLE;
-			endcase
-		end
-	end
-	
-	always_ff @(posedge CLOCK_50) begin
-		if (reset) begin
-			start_cores		<= 1'b0;
-			LEDR_GOOD		<= 1'b0;
-			LEDR_BAD			<= 1'b0;
-			write_to_DE 	<= 1'b0;
-			stop_cores		<= 1'b0;
-		end
-		else begin
-			case (current_state) 
-				IDLE: begin
-					start_cores		<= 1'b0;
-					stop_cores		<= 1'b0;
-				end
-				START_CORES: begin
-					start_cores		<= 1'b1;
-				end
-				WAIT_FOR_FIND: begin
-					start_cores 	<= 1'b0;
-				end
-				FOUND: begin
-					LEDR_GOOD		<= 1'b1;
-					stop_cores		<= 1'b1;
-				end
-				WRITE_DE: begin
-					write_to_DE		<= 1'b1;
-				end
-				NOT_FOUND: begin
-					LEDR_GOOD		<= 1'b1;
-				end
-			endcase
-		end
-	end	
+	//assign correct_decryption = |found_msg;
 	
 	genvar i;
+	generate
 	
-	/*
-		NOTE: to find the initial values for each LFSR inside the decryption core we used a python code to determine
-				what bit values occures at 1/4, 2/4, and 3/4 of the sequance.
-	*/
-	generate 
-		for (i=0; i<4; i++) begin				:GENERATE_CORES
-			full_decryption_core										
-			# (.SEED((i == 0) ? 22'h3FFFFF :
-						(i == 1) ? 22'h3F07FF :
-						(i == 2) ? 22'h3FF800 :
-						22'h1F001F))
-			(
-				.CLOCK_50			(CLOCK_50),
-				.reset				(reset),
-				.read_rom_done		(read_rom_done),
-				.rom_data_d			(rom_data_d),
-				.start_core			(start_cores),
-				.stop_core			(stop_cores),
-						
-				.secret_key			(secret_key[i]),		
-				.decrypted_data   (decrypted_data[i]),		
-				.core_done			(core_done[i]),
-				.found				(key_found[i])
+		for (i=0; i < CORES; i++) begin				: GENERTATE_CORE
+				/*
+					RAM Memory (s) - Working Memory (256 words x 8 bit)
+				*/
+				/*
+				logic	[7:0]	s_memory_q_data_out;
+				
+				logic [7:0]	s_memory_address_in;
+				logic [7:0] s_memory_data_in;
+				logic			s_memory_data_enable;
+				s_memory s_memory_controller(
+					.address	(s_memory_address_in),
+					.clock	(CLOCK_50),
+					.data		(s_memory_data_in),
+					.wren		(s_memory_data_enable),				
+					.q			(s_memory_q_data_out)									
+				);
+
+				logic 			new_key_available;
+				logic [23:0] 	secret_key;
+				
+				decryption_core decryption_core1(
+				  .clk								(CLOCK_50),
+				  .reset								(reset_core),
+				  .stop								(1'b0),
+				  .s_memory_address_in			(s_memory_address_in),
+				  .s_memory_data_in				(s_memory_data_in),
+				  .s_memory_data_enable			(s_memory_data_enable),
+				  .s_memory_q_data_out			(s_memory_q_data_out),
+				  .key_from_switches_changed	(1'b0),
+				  .key_from_switches_available(1'b0),
+				  .new_key_available				(new_key_available),
+				  .ROM_mem_read					(),
+				  .rom_data_d						(rom_data),
+				  .secret_key						(secret_key),
+				  .decrypted_data					(decrypted_data),
+				  .done								()
 				);
 				
-			end		
+				
+				logic determine_valid_finised;
+				determine_valid_message
+				# (
+					.LOW_THRESHOLD			(97),    						// ASCII value for 'a'
+					.HIGH_THRESHOLD		(122),  							// ASCII value for 'z'
+					.SPECIAL					(32),          				// ASCII value for space ' '
+					.END_INDEX				(32)        					// Last index to check (the entire message is 32)
+				)
+				(
+					.CLOCK_50				(CLOCK_50),          		// Clock signal                        
+					.reset					(reset_core),              // Reset signal
+					.decrypted_data		(decrypted_data),  			// Input decrypted data array
+					.decrypt_done			(decryption_done), 		 	// Signal indicating decryption is done                                                                    
+					.key_valid				(found_msg[i]),      		// Output signal indicating if the key is valid
+					.finish					(determine_valid_finised), // Output signal indicating the checking process is finished
+				);
+		
+				logic reset_core;
+				always_ff @(posedge CLOCK_50) begin
+					if(found_msg[i] & determine_valid_finised) 	reset_core <= 1'b0;
+					else														reset_core <= 1'b1;
+				end
+				*/
+		end
+		
 	endgenerate
-	
-	
-	int j;
-	always_ff @(posedge CLOCK_50) begin												
-		for (j=0; j<4; j++) begin : DETERMINE_DECRYPTED_DATA
-			if (key_found[j] == 1'b1) begin
-				activated_secret_key_found <= secret_key[j];
-				activated_decrypted_data	<= decrypted_data[j];
-			end
-		end
-	end
-	
-	assign activated_secret_key = secret_key[0];
-	always_comb begin
-		if (|key_found) secret_key_for_hex = activated_secret_key_found;
-		else begin
-			secret_key_for_hex = activated_secret_key;
-		end
-	end
-	
-	logic [23:0] activated_secret_key_found;
-	logic [23:0] activated_secret_key;
 	
 
 endmodule
