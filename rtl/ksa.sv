@@ -61,6 +61,9 @@ module ksa
 					else if (&core_done)		next_state = NOT_FOUND;
 					else							next_state = WAIT_FOR_FIND; 
 				end
+				FOUND: next_state = FOUND;
+				NOT_FOUND: next_state = NOT_FOUND;
+				default: next_state = IDLE;
 			endcase
 		end
 	end
@@ -85,15 +88,15 @@ module ksa
 				end
 				START_CORES: begin
 					read_rom_start <= 1'b0;
-					start_core		<= 1'b1;
+					start_cores		<= 1'b1;
 				end
 				WAIT_FOR_FIND: begin
-					start_core 		<= 1'b0;
+					start_cores 	<= 1'b0;
 				end
 				FOUND: begin
 					LEDR[0] 			<= 1'b1;
 					write_to_DE		<= 1'b1;
-					stop_core		<= 1'b1;
+					stop_cores		<= 1'b1;
 					case (key_found)
 						0:	found_index <= 0;
 						1:	found_index <= 1;
@@ -111,7 +114,7 @@ module ksa
 	
 	genvar i;
 	generate 
-		for (i=0; i<4; i++) begin
+		for (i=0; i<4; i++) begin				:GENERATE_CORES
 			full_decryption_core
 			# (.SEED((i == 0) ? 22'h3FFFFF :
 						(i == 1) ? 22'h3FFFED :
@@ -120,10 +123,10 @@ module ksa
 			(
 				.CLOCK_50			(CLOCK_50),
 				.reset				(reset),
-				.read_rom_done		(read_rome_done),
+				.read_rom_done		(read_rom_done),
 				.rom_data_d			(rom_data_d),
-				.start_core			(start_core),
-				.stop_core			(stop_core),
+				.start_core			(start_cores),
+				.stop_core			(stop_cores),
 						
 				.secret_key			(secret_key[i]),		
 				.decrypted_data   (decrypted_data[i]),		
@@ -167,7 +170,7 @@ module ksa
 	HEX_Control Hex_Control_inst
 	(
 		.orig_clk			(CLOCK_50),
-		.secret_key 		(secret_key),
+		.secret_key 		(activated_secret_key),
 		.HEX0 				(HEX0),
 		.HEX1 				(HEX1),
 		.HEX2 				(HEX2),

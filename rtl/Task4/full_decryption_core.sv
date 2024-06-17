@@ -1,3 +1,7 @@
+/*
+	FULL DECRYPTION CORE
+*/
+
 module full_decryption_core
 # (parameter SEED = {24{1'b1}})
 (
@@ -135,7 +139,7 @@ module full_decryption_core
 		.counter_finished	(out_of_keys)
 	);
 	
-	*/
+	
 	/*
 		RAM Memory (s) - Working Memory (256 words x 8 bit)
 	*/
