@@ -71,6 +71,7 @@ Simulation for this and pyhthon code to confirm use of the LFSR for our purposes
 1. Simulation code - /sim/LFSR_Python_simulation.ipynb
 2. Simulation image - /doc/LFSR_Python_simulation.png
 # Diagrams 
+System level diagram is provided. For more detailed diagram of the FSM's see /doc/fsm_diag
 
 # Simulations
 
