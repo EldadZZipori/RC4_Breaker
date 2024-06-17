@@ -1,15 +1,23 @@
+/*
+	PARALLEL CORES
+	
+	This is an FSM to instintiate multiple cores to decrypt a message
+	
+	It takes one paramer CORES that determine how many cores to create.
+*/
+
 module parallel_cores
 # (parameter CORES = 4)
 (
 	input logic				reset,
 	input logic 			CLOCK_50,
 	
-	input logic [7:0] 	rom_data_d[31:0],
-	input logic				read_rom_done,
+	input logic [7:0] 	rom_data_d[31:0],						// The data from the ROM memory
+	input logic				read_rom_done,							// indication the ROM data is ready
 	
-	output logic[7:0] 	activated_decrypted_data[31:0],	
-	output logic [23:0] 	secret_key_for_hex,
-	output logic 			write_to_DE,
+	output logic[7:0] 	activated_decrypted_data[31:0],	// the decrypted data of a correct message
+	output logic [23:0] 	secret_key_for_hex,					// a secret key that is currently beening processed to display on the HEX display
+	output logic 			write_to_DE,							// Asserted when a valid key is found to write the decrypted message to the RAM (DE) memory
 	output logic			LEDR_GOOD,
 	output logic 			LEDR_BAD
 );
@@ -80,14 +88,14 @@ module parallel_cores
 					start_cores 	<= 1'b0;
 				end
 				FOUND: begin
-					LEDR_GOOD		<= 1'b1;
+					LEDR_GOOD		<= 1'b1;			// Indication that a valid key was found
 					stop_cores		<= 1'b1;
 				end
 				WRITE_DE: begin
 					write_to_DE		<= 1'b1;
 				end
 				NOT_FOUND: begin
-					LEDR_GOOD		<= 1'b1;
+					LEDR_BAD			<= 1'b1;			// Indication that no valid key was found in the search space.
 				end
 			endcase
 		end

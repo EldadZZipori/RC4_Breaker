@@ -84,7 +84,7 @@ module encrypted_data_memory (
 		altsyncram_component.address_aclr_a = "NONE",
 		altsyncram_component.clock_enable_input_a = "BYPASS",
 		altsyncram_component.clock_enable_output_a = "BYPASS",
-		altsyncram_component.init_file = "./secret_messages/msg_7_for_task3/message.mif",
+		altsyncram_component.init_file = "./secret_messages/msg_5_for_task3/message.mif",
 		altsyncram_component.intended_device_family = "Cyclone V",
 		altsyncram_component.lpm_hint = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=D",
 		altsyncram_component.lpm_type = "altsyncram",
@@ -119,7 +119,7 @@ endmodule
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "1"
 // Retrieval info: PRIVATE: JTAG_ID STRING "D"
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
-// Retrieval info: PRIVATE: MIFfilename STRING "./secret_messages/msg_7_for_task3/message.mif"
+// Retrieval info: PRIVATE: MIFfilename STRING "./secret_messages/msg_5_for_task3/message.mif"
 // Retrieval info: PRIVATE: NUMWORDS_A NUMERIC "32"
 // Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
 // Retrieval info: PRIVATE: RegAddr NUMERIC "1"
@@ -134,7 +134,7 @@ endmodule
 // Retrieval info: CONSTANT: ADDRESS_ACLR_A STRING "NONE"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
-// Retrieval info: CONSTANT: INIT_FILE STRING "./secret_messages/msg_7_for_task3/message.mif"
+// Retrieval info: CONSTANT: INIT_FILE STRING "./secret_messages/msg_5_for_task3/message.mif"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 // Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=D"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"

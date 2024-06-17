@@ -52,22 +52,22 @@ module full_decryption_core
 			if(!stop_core) begin
 				case(current_state)
 					IDLE: begin
-						if (start_core) 	next_state = START_GEN_KEY;
+						if (start_core) 	next_state = START_GEN_KEY;			// start operation only when Master asserts start
 						else					next_state = IDLE;
 					end
 					START_GEN_KEY: begin
-						if (key_available)	next_state = GEN_KEY;
+						if (key_available)	next_state = GEN_KEY;				// start processing a key only when key generator fsm has the new key ready
 						else						next_state = START_GEN_KEY;
 					end
 					GEN_KEY: 					next_state = DECRYPT;
 					DECRYPT: begin
-						if(decryption_done) 	next_state = DETERMINE;
+						if(decryption_done) 	next_state = DETERMINE;				// Assert that the decryption algorithem has finished
 						else						next_state = DECRYPT;
 					end
 					DETERMINE: begin
-						if(determine_valid_finised) begin
-							if(msg_valid)			next_state = FOUND;
-							else if(out_of_keys) next_state = NOT_FOUND;
+						if(determine_valid_finised) begin							//	Determine weather should keep tryping to find valid keys or not
+							if(msg_valid)			next_state = FOUND;				// if the message is valid change state to found to alert other 
+							else if(out_of_keys) next_state = NOT_FOUND;			// when out of keys go to to not found state
 							else 						next_state = RESET;
 						end
 						else 							next_state = DETERMINE;
@@ -102,7 +102,7 @@ module full_decryption_core
 		else begin
 			case(current_state)
 				START_GEN_KEY: begin
-					if(key_available) begin
+					if(key_available) begin											// read key only when it is available
 						secret_key <= {2'b00, key_counter};
 						key_read <= 1'b1;
 						 start_determine <= 1'b0;
@@ -119,7 +119,7 @@ module full_decryption_core
 					//if(secret_key == 24'b1001001001) LEDR[5] <= 1'b1;
 				end
 				NOT_FOUND: begin
-					if (out_of_keys)			core_done <= 1'b1;							
+					if (out_of_keys)			core_done <= 1'b1;				// Only determine that core is done if it is completly out of keys						
 				end
 				FOUND: begin
 					found <= 1'b1;
