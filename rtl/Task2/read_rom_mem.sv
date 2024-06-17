@@ -1,11 +1,5 @@
 /*
 	ROM READER
-	
-	This module reads the data from of the encrypted message from ROM memory (D)
-	
-	It takes the following parameters
-	DEP	- The amount of words in the memory
-	WID	- The number of bits in each word
 */
 
 module read_rom_mem
@@ -48,21 +42,22 @@ module read_rom_mem
 				IDLE:begin
 					current_index 	<= 0;
 					done 				<= 0;
-					if(start) state 			<= WAIT;							// Only move out of ideal state when start is asserted by Master
+					if(start) state 			<= WAIT;
 				end
 				WAIT: begin
 					state <= READ;
 				end
 				READ: begin
+
 					rom_data 								<= rom_q_data_in;
 					enable_output							<= 1'b1;
 					state 									<= INC;
 					
-					if(current_index == (DEP-1))		done 	<= 1'b1;		// Asserted FSM has finished opertation when all words are read
+					if(current_index == (DEP-1))		done 	<= 1'b1;
 				end
 				INC: begin
 					enable_output							<= 1'b0;
-					if (!done) begin												// Read ROM data into register until reaches number of words defined by module parameter
+					if (!done) begin
 						current_index	<= current_index + 1;
 						state				<=	WAIT;
 					end
