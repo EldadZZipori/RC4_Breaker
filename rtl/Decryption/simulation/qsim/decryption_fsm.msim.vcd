@@ -1,0 +1,664 @@
+$comment
+	File created using the following command:
+		vcd file decryption_fsm.msim.vcd -direction
+$end
+$date
+	Mon Jun 17 16:29:19 2024
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module decryption_fsm_vlg_vec_tst $end
+$var reg 1 ! clk $end
+$var reg 1 " encrypted_input_1_1 $end
+$var reg 1 # encrypted_input_1_0 $end
+$var reg 1 $ encrypted_input_0_1 $end
+$var reg 1 % encrypted_input_0_0 $end
+$var reg 1 & reset $end
+$var reg 1 ' s_data_0_1 $end
+$var reg 1 ( s_data_0_0 $end
+$var reg 1 ) s_data_1_1 $end
+$var reg 1 * s_data_1_0 $end
+$var reg 1 + s_data_2_1 $end
+$var reg 1 , s_data_2_0 $end
+$var reg 1 - s_data_3_1 $end
+$var reg 1 . s_data_3_0 $end
+$var reg 1 / s_data_4_1 $end
+$var reg 1 0 s_data_4_0 $end
+$var reg 1 1 start $end
+$var wire 1 2 address_out [4] $end
+$var wire 1 3 address_out [3] $end
+$var wire 1 4 address_out [2] $end
+$var wire 1 5 address_out [1] $end
+$var wire 1 6 address_out [0] $end
+$var wire 1 7 current_state [3] $end
+$var wire 1 8 current_state [2] $end
+$var wire 1 9 current_state [1] $end
+$var wire 1 : current_state [0] $end
+$var wire 1 ; data_out [1] $end
+$var wire 1 < data_out [0] $end
+$var wire 1 = decrypted_output_1_1 $end
+$var wire 1 > decrypted_output_1_0 $end
+$var wire 1 ? decrypted_output_0_1 $end
+$var wire 1 @ decrypted_output_0_0 $end
+$var wire 1 A done $end
+$var wire 1 B enable_write $end
+$var wire 1 C f [1] $end
+$var wire 1 D f [0] $end
+
+$scope module i1 $end
+$var wire 1 E gnd $end
+$var wire 1 F vcc $end
+$var wire 1 G unknown $end
+$var tri1 1 H devclrn $end
+$var tri1 1 I devpor $end
+$var tri1 1 J devoe $end
+$var wire 1 K encrypted_input[0][0]~input_o $end
+$var wire 1 L encrypted_input[0][1]~input_o $end
+$var wire 1 M encrypted_input[1][0]~input_o $end
+$var wire 1 N encrypted_input[1][1]~input_o $end
+$var wire 1 O address_out[0]~output_o $end
+$var wire 1 P address_out[1]~output_o $end
+$var wire 1 Q address_out[2]~output_o $end
+$var wire 1 R address_out[3]~output_o $end
+$var wire 1 S address_out[4]~output_o $end
+$var wire 1 T data_out[0]~output_o $end
+$var wire 1 U data_out[1]~output_o $end
+$var wire 1 V enable_write~output_o $end
+$var wire 1 W decrypted_output[0][0]~output_o $end
+$var wire 1 X decrypted_output[0][1]~output_o $end
+$var wire 1 Y decrypted_output[1][0]~output_o $end
+$var wire 1 Z decrypted_output[1][1]~output_o $end
+$var wire 1 [ f[0]~output_o $end
+$var wire 1 \ f[1]~output_o $end
+$var wire 1 ] current_state[0]~output_o $end
+$var wire 1 ^ current_state[1]~output_o $end
+$var wire 1 _ current_state[2]~output_o $end
+$var wire 1 ` current_state[3]~output_o $end
+$var wire 1 a done~output_o $end
+$var wire 1 b clk~input_o $end
+$var wire 1 c start~input_o $end
+$var wire 1 d reset~input_o $end
+$var wire 1 e next_state[0]~3_combout $end
+$var wire 1 f current_state[0]~reg0_q $end
+$var wire 1 g next_state[1]~0_combout $end
+$var wire 1 h current_state[1]~reg0_q $end
+$var wire 1 i next_state[2]~2_combout $end
+$var wire 1 j current_state[2]~reg0_q $end
+$var wire 1 k next_state[3]~1_combout $end
+$var wire 1 l current_state[3]~reg0_q $end
+$var wire 1 m Add0~1_sumout $end
+$var wire 1 n index_i[1]~0_combout $end
+$var wire 1 o Add0~2 $end
+$var wire 1 p Add0~5_sumout $end
+$var wire 1 q Add0~6 $end
+$var wire 1 r Add0~9_sumout $end
+$var wire 1 s s_data[3][0]~input_o $end
+$var wire 1 t s_data[1][0]~input_o $end
+$var wire 1 u s_data[0][0]~input_o $end
+$var wire 1 v Mux3~0_combout $end
+$var wire 1 w s_data[4][0]~input_o $end
+$var wire 1 x s_data[2][0]~input_o $end
+$var wire 1 y Mux3~1_combout $end
+$var wire 1 z Mux3~2_combout $end
+$var wire 1 { Add1~1_sumout $end
+$var wire 1 | index_j[0]~0_combout $end
+$var wire 1 } Selector5~0_combout $end
+$var wire 1 ~ address_out[0]~0_combout $end
+$var wire 1 !! address_out[0]~reg0_q $end
+$var wire 1 "! s_data[3][1]~input_o $end
+$var wire 1 #! s_data[1][1]~input_o $end
+$var wire 1 $! s_data[0][1]~input_o $end
+$var wire 1 %! Mux2~0_combout $end
+$var wire 1 &! s_data[4][1]~input_o $end
+$var wire 1 '! s_data[2][1]~input_o $end
+$var wire 1 (! Mux2~1_combout $end
+$var wire 1 )! Mux2~2_combout $end
+$var wire 1 *! Add1~2 $end
+$var wire 1 +! Add1~5_sumout $end
+$var wire 1 ,! Selector4~0_combout $end
+$var wire 1 -! address_out[1]~reg0_q $end
+$var wire 1 .! Add1~6 $end
+$var wire 1 /! Add1~9_sumout $end
+$var wire 1 0! Selector3~0_combout $end
+$var wire 1 1! address_out[2]~reg0_q $end
+$var wire 1 2! Add0~10 $end
+$var wire 1 3! Add0~13_sumout $end
+$var wire 1 4! Add1~10 $end
+$var wire 1 5! Add1~13_sumout $end
+$var wire 1 6! Selector2~0_combout $end
+$var wire 1 7! address_out[3]~reg0_q $end
+$var wire 1 8! Add0~14 $end
+$var wire 1 9! Add0~17_sumout $end
+$var wire 1 :! Add1~14 $end
+$var wire 1 ;! Add1~17_sumout $end
+$var wire 1 <! Selector1~0_combout $end
+$var wire 1 =! address_out[4]~reg0_q $end
+$var wire 1 >! Selector7~0_combout $end
+$var wire 1 ?! Selector7~1_combout $end
+$var wire 1 @! Selector7~2_combout $end
+$var wire 1 A! Selector7~3_combout $end
+$var wire 1 B! data_out[0]~reg0_q $end
+$var wire 1 C! Selector6~0_combout $end
+$var wire 1 D! Selector6~1_combout $end
+$var wire 1 E! Selector6~2_combout $end
+$var wire 1 F! data_out[1]~reg0_q $end
+$var wire 1 G! enable_write~0_combout $end
+$var wire 1 H! enable_write~reg0_q $end
+$var wire 1 I! Decoder0~0_combout $end
+$var wire 1 J! f[0]~reg0_q $end
+$var wire 1 K! f[1]~reg0_q $end
+$var wire 1 L! done~0_combout $end
+$var wire 1 M! done~reg0_q $end
+$var wire 1 N! index_i [7] $end
+$var wire 1 O! index_i [6] $end
+$var wire 1 P! index_i [5] $end
+$var wire 1 Q! index_i [4] $end
+$var wire 1 R! index_i [3] $end
+$var wire 1 S! index_i [2] $end
+$var wire 1 T! index_i [1] $end
+$var wire 1 U! index_i [0] $end
+$var wire 1 V! index_j [7] $end
+$var wire 1 W! index_j [6] $end
+$var wire 1 X! index_j [5] $end
+$var wire 1 Y! index_j [4] $end
+$var wire 1 Z! index_j [3] $end
+$var wire 1 [! index_j [2] $end
+$var wire 1 \! index_j [1] $end
+$var wire 1 ]! index_j [0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+1"
+0#
+0$
+0%
+0&
+0'
+0(
+1)
+0*
+0+
+0,
+0-
+1.
+1/
+10
+01
+06
+05
+04
+03
+02
+0:
+09
+08
+07
+0<
+0;
+z=
+z>
+z?
+z@
+0A
+0B
+0D
+0C
+0E
+1F
+xG
+1H
+1I
+1J
+0K
+0L
+0M
+1N
+0O
+0P
+0Q
+0R
+0S
+0T
+0U
+0V
+1W
+1X
+0Y
+0Z
+0[
+0\
+0]
+0^
+0_
+0`
+0a
+0b
+0c
+0d
+0e
+0f
+0g
+0h
+0i
+0j
+0k
+0l
+1m
+1n
+0o
+0p
+0q
+0r
+1s
+0t
+0u
+0v
+1w
+0x
+0y
+0z
+0{
+1|
+0}
+0~
+0!!
+0"!
+1#!
+0$!
+0%!
+1&!
+0'!
+0(!
+0)!
+0*!
+0+!
+0,!
+0-!
+0.!
+0/!
+00!
+01!
+02!
+03!
+04!
+05!
+06!
+07!
+08!
+09!
+0:!
+0;!
+0<!
+0=!
+0>!
+0?!
+0@!
+0A!
+0B!
+0C!
+0D!
+0E!
+0F!
+0G!
+0H!
+0I!
+0J!
+0K!
+0L!
+0M!
+0U!
+0T!
+0S!
+0R!
+0Q!
+zP!
+zO!
+zN!
+0]!
+0\!
+0[!
+0Z!
+0Y!
+zX!
+zW!
+zV!
+$end
+#10000
+1&
+1d
+#20000
+1!
+11
+1c
+1b
+#40000
+0!
+0b
+#60000
+1!
+1b
+#80000
+0!
+0b
+#100000
+1!
+1b
+#120000
+0&
+0!
+0d
+0b
+1g
+1e
+#140000
+1!
+1b
+1h
+1f
+1]
+1^
+0|
+19
+1:
+1i
+0g
+0e
+#160000
+0!
+0b
+#180000
+1!
+1b
+1U!
+1j
+0h
+0f
+0]
+0^
+1_
+1%!
+1o
+1|
+0n
+18
+09
+0:
+0m
+1g
+1e
+1)!
+1p
+1E!
+1+!
+#200000
+0!
+0b
+#220000
+1!
+1b
+1\!
+1h
+1f
+1]
+1^
+1.!
+1~
+0|
+19
+1:
+1,!
+0+!
+1k
+0i
+0g
+1/!
+#240000
+0!
+0b
+#260000
+1!
+1b
+1F!
+1-!
+1l
+0j
+0h
+0^
+0_
+1`
+1P
+1U
+0~
+1@!
+1;
+15
+17
+08
+09
+1G!
+1g
+0E!
+0,!
+1}
+#280000
+0!
+0b
+#300000
+1!
+1b
+1H!
+1h
+1^
+1V
+1B
+19
+0G!
+0g
+0e
+#320000
+0!
+0b
+#340000
+1!
+1b
+0H!
+0h
+0f
+0]
+0^
+0V
+1~
+0B
+09
+0:
+1g
+#360000
+0!
+0b
+#380000
+1!
+1b
+0F!
+0-!
+1!!
+1h
+1^
+1O
+0P
+0U
+0~
+0;
+05
+16
+19
+1G!
+1i
+0g
+#400000
+0!
+0b
+#420000
+1!
+1b
+1H!
+1j
+0h
+0^
+1_
+1V
+1B
+18
+09
+0G!
+0k
+0i
+1e
+#440000
+0!
+0b
+#460000
+1!
+1b
+0H!
+0l
+0j
+1f
+1]
+0_
+0`
+0V
+1I!
+0@!
+0B
+07
+08
+1:
+1g
+0e
+1E!
+1,!
+0}
+#480000
+0!
+0b
+#500000
+1!
+1b
+1J!
+1h
+0f
+0]
+1^
+1[
+0I!
+1D
+19
+0:
+1i
+0g
+1e
+#520000
+0!
+0b
+#540000
+1!
+1b
+1j
+0h
+1f
+1]
+0^
+1_
+18
+09
+1:
+1g
+0e
+#560000
+0!
+0b
+#580000
+1!
+1b
+1h
+0f
+0]
+1^
+19
+0:
+1L!
+#600000
+0!
+0b
+#620000
+1!
+1b
+1M!
+1a
+1A
+#640000
+0!
+0b
+#660000
+1!
+1b
+#680000
+0!
+0b
+#700000
+1!
+1b
+#720000
+0!
+0b
+#740000
+1!
+1b
+#760000
+0!
+0b
+#780000
+1!
+1b
+#800000
+0!
+0b
+#820000
+1!
+1b
+#840000
+0!
+0b
+#860000
+1!
+1b
+#880000
+0!
+0b
+#900000
+1!
+1b
+#920000
+0!
+0b
+#940000
+1!
+1b
+#950000
+01
+0c
+#960000
+0!
+0b
+#980000
+1!
+1b
+#1000000

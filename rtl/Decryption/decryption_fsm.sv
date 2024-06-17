@@ -2,7 +2,7 @@
 
 
 module decryption_fsm
-# (parameter MSG_DEP = 32, parameter S_DEP = 256, parameter MSG_WIDTH = 8)
+# (parameter MSG_DEP = 2, parameter S_DEP = 5, parameter MSG_WIDTH = 2)
 (
 	input logic							clk,
 	input logic							reset,
@@ -13,7 +13,9 @@ module decryption_fsm
 	output logic [S_DEP-1:0]		address_out,
 	output logic [MSG_WIDTH-1:0]	data_out,	
 	output logic 						enable_write,
-	output logic [MSG_WIDTH-1:0]	decrypted_output[MSG_DEP-1:0],	
+	output logic [MSG_WIDTH-1:0]	decrypted_output[MSG_DEP-1:0],
+	output logic [MSG_WIDTH-1:0]	f,
+	output logic [3:0]				current_state,
 	output logic						done
 );
 
@@ -40,13 +42,13 @@ module decryption_fsm
 	localparam DONE					= 4'b0110;
 	
 	
-	logic [4:0] current_state/*synthesis keep*/;
-	logic [4:0] next_state;
+	//logic [3:0] current_state/*synthesis keep*/;
+	logic [3:0] next_state;
 	
-	logic [MSG_WIDTH-1:0] 	f;	
+	//logic [MSG_WIDTH-1:0] 	f;	
 	logic	[7:0]					index_i, index_j;
 	
-	logic [MSG_WIDTH] temp_i;
+	//logic [MSG_WIDTH] temp_i;
 	
 	// Flip flop to register the current state
 	always_ff @(posedge clk) begin
@@ -66,7 +68,7 @@ module decryption_fsm
 					next_state = INCREMENT_INDEX_J;
 				end
 				INCREMENT_INDEX_J: begin
-					next_state = ASSIGN_F;
+					next_state = I_TO_J;
 				end
 				I_TO_J: begin
 					next_state = WAIT_I_TO_J;
@@ -93,8 +95,9 @@ module decryption_fsm
 					next_state = DETERMINE;
 				end
 				DETERMINE: begin
-					if (index_i == ({MSG_WIDTH{1'b1}}))  	next_state = DONE;					// when all data is read stop 
-					else												next_state = INCREMENT_INDEX_I;	
+					next_state = DONE;
+					//if (index_i == ({MSG_WIDTH{1'b1}}))  	next_state = DONE;					// when all data is read stop 
+					//else												next_state = INCREMENT_INDEX_I;	
 				end
 				DONE: begin
 					next_state = DONE;
@@ -142,7 +145,7 @@ module decryption_fsm
 				enable_write 	<= 1'b0;
 			end
 			ASSIGN_F: begin
-				f <= s_data[s_data[index_i] +s_data[index_j]];
+				f <= s_data[3];
 			end
 			DECRYPT: begin
 				decrypted_output[index_i-1] <= f ^ encrypted_input[index_i-1]; // k = i -1 always
