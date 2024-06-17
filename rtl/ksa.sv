@@ -21,120 +21,19 @@ module ksa
 	
 	assign reset = SW[0];
 	
-	localparam IDLE 				= 0;
-	localparam READ_ROM 			= 1;
-	localparam START_CORES 		= 2;
-	localparam WAIT_FOR_FIND 	= 3;
-	localparam FOUND				= 4;
-	localparam NOT_FOUND			= 5;
-	
-	logic read_rom_start, read_rom_done, start_cores, stop_cores;
-	logic [3:0] key_found;
-	logic [3:0] core_done;
-	
-	logic[7:0] 	decrypted_data[3:0][31:0];
-	logic[23:0] secret_key [3:0];
-	logic[2:0] 	found_index;
-	
-	logic [4:0] current_state, next_state;
-	
-	always_ff @(posedge CLOCK_50) begin
-		current_state <= next_state;
-	end
-	
-	always_comb begin
-		if(reset) next_state = IDLE;
-		else begin
-			case (current_state)
-				IDLE: begin
-					next_state = READ_ROM;
-				end
-				READ_ROM: begin
-					if (read_rom_done)	next_state = START_CORES;
-					else						next_state = READ_ROM;
-				end
-				START_CORES: begin
-					next_state = WAIT_FOR_FIND;
-				end
-				WAIT_FOR_FIND: begin
-					if (|key_found) 			next_state = FOUND;
-					else if (&core_done)		next_state = NOT_FOUND;
-					else							next_state = WAIT_FOR_FIND; 
-				end
-				FOUND: next_state = FOUND;
-				NOT_FOUND: next_state = NOT_FOUND;
-				default: next_state = IDLE;
-			endcase
-		end
-	end
-	
-	always_ff @(posedge CLOCK_50) begin
-		if (reset) begin
-			read_rom_start <= 1'b0;
-			start_cores		<= 1'b0;
-			LEDR 				<= 0;
-			write_to_DE 	<= 1'b0;
-			stop_cores		<= 1'b0;
-		end
-		else begin
-			case (current_state) 
-				IDLE: begin
-					read_rom_start <= 1'b0;
-					start_cores		<= 1'b0;
-					stop_cores		<= 1'b0;
-				end
-				READ_ROM: begin
-					read_rom_start <= 1'b1;
-				end
-				START_CORES: begin
-					read_rom_start <= 1'b0;
-					start_cores		<= 1'b1;
-				end
-				WAIT_FOR_FIND: begin
-					start_cores 	<= 1'b0;
-				end
-				FOUND: begin
-					LEDR[0] 			<= 1'b1;
-					write_to_DE		<= 1'b1;
-					stop_cores		<= 1'b1;
-					case (key_found)
-						0:	found_index <= 0;
-						1:	found_index <= 1;
-						2: found_index <= 2;
-						3: found_index <= 3;
-					
-					endcase
-				end
-				NOT_FOUND: begin
-					LEDR[9] 			<= 1'b1;
-				end
-			endcase
-		end
-	end	
-	
-	genvar i;
-	generate 
-		for (i=0; i<4; i++) begin				:GENERATE_CORES
-			full_decryption_core
-			# (.SEED((i == 0) ? 22'h3FFFFF :
-						(i == 1) ? 22'h3FFFED :
-						(i == 2) ? 22'h3FF8 :
-						22'h30001))
-			(
-				.CLOCK_50			(CLOCK_50),
-				.reset				(reset),
-				.read_rom_done		(read_rom_done),
-				.rom_data_d			(rom_data_d),
-				.start_core			(start_cores),
-				.stop_core			(stop_cores),
-						
-				.secret_key			(secret_key[i]),		
-				.decrypted_data   (decrypted_data[i]),		
-				.core_done			(core_done[i]),
-				.found				(key_found[i])
-				);
-			end		
-	endgenerate
+	parallel_cores
+	# (.CORES (4)) cores_4
+	(	
+		.reset							(reset),
+		.CLOCK_50						(CLOCK_50),
+		.rom_data_d						(rom_data_d),
+		.read_rom_done					(read_rom_done),
+		.write_to_DE					(write_to_DE),
+		.activated_decrypted_data	(activated_decrypted_data),	
+		.secret_key_for_hex			(secret_key_for_hex),
+		.LEDR_GOOD						(LEDR[0]),
+		.LEDR_BAD						(LEDR[9])
+	);
 	/*
 		ROM memory (D) - Encrypted data (32 words x 8bits)
 	*/
@@ -144,6 +43,9 @@ module ksa
 	logic[5:0]	rom_reader_address_out;
 	logic[7:0] 	rom_reader_data_out;
 	logic 		rom_reader_enable;
+	logic 		read_rom_start, read_rom_done;
+	
+	assign read_rom_start = 1'b1;
 	
 	encrypted_data_memory rom_memory(
 		.address	(rom_reader_address_out),
@@ -166,11 +68,13 @@ module ksa
 		.enable_output	(rom_reader_enable),
 	);
 	
+	logic [23:0] 	secret_key_for_hex;
+	
 	/* Controls the HEX display with secret_key*/
 	HEX_Control Hex_Control_inst
 	(
 		.orig_clk			(CLOCK_50),
-		.secret_key 		(activated_secret_key),
+		.secret_key 		(secret_key_for_hex),
 		.HEX0 				(HEX0),
 		.HEX1 				(HEX1),
 		.HEX2 				(HEX2),
@@ -179,12 +83,8 @@ module ksa
 		.HEX5 				(HEX5)
 	);
 	
-	logic [23:0] activated_secret_key;
-	always_ff @(posedge CLOCK_50) begin
-		if (|key_found) 	activated_secret_key <= secret_key[found_index];
-		else					activated_secret_key <= secret_key[0];
-	end
 
+	logic[7:0] 	activated_decrypted_data[31:0];
 	logic write_to_DE;
 	logic done_writing_to_de;
 	/*
@@ -194,7 +94,7 @@ module ksa
 		.clk				(CLOCK_50),
 		.reset			(1'b0),
 		.start			(write_to_DE),
-		.decrypted_data(decrypted_data[found_index]),
+		.decrypted_data(activated_decrypted_data),
 		.done				(done_writing_to_de)
 	);
 endmodule 
