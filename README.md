@@ -72,20 +72,31 @@ Simulation for this and pyhthon code to confirm use of the LFSR for our purposes
 2. Simulation image - /doc/LFSR_Python_simulation.png
 # Diagrams 
 System level diagram is provided. For more detailed diagram of the FSM's see /doc/fsm_diag
+![System level diagram](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/system_level_diagram.png)
 
 # Simulations
 
-### Assign data to RAM (S) by index - we have
+### Assign data to RAM (S) by index
+![Assign By Index FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/task_1_simulation.png)
 
-### Synchronizing switches for secret key - we have
 
-### Shuffling RAM (S) data - we have
+### Synchronizing switches for secret key
+![Switches Sync](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/switches_fsm_simulation.png)
 
-### Reading ROM (D) data - we have
+
+### Shuffling RAM (S) data 
+![Shuffle FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/shuffle_fsm_simulation.png)
+
+### Reading ROM (D) data 
+![ROM Reader](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/rom_reader_simulation.png)
 
 ### Decrypting message - need to make
 
-### State Machine X - need to make
+### Determine Valid Message 
+![Determine 1](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/determine_valid_message_simulation_1.png)
+
+![Determine 2](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/determine_valid_message_simulation_2.png)
+### Time machine FSM - need to make
 
 ### State Machine Y
 
@@ -93,3 +104,18 @@ System level diagram is provided. For more detailed diagram of the FSM's see /do
 
 ### Linear Feedback Shift Register 
 # SignalTap (signal analyzer)
+
+### Decrypted data RAM writer
+![DE Writer FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/de_writer_fsm.png)
+
+### Decryption (third loop) FSM
+![Decryption FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/decryption_fsm.png)
+
+### ROM data reader
+![ROM Reader FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/rom_reader_signal_tap.png)
+
+### Timing manager of complete algorithem (all three loops)
+![Time machine FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/time_machine_fsm.png)
+
+### Full Decryption Core
+![Decryption Core FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/four_cores_operation_signal_tap.png)
