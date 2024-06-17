@@ -61,6 +61,10 @@ Digital design - Codebreaking Hardware Acceleration/Parallel processing
     /rtl/task3/HEX_Control.sv
     - LFSR for secret key generation
     /rtl/task3/LFSR_Controller.sv
+
+# Linear Feedback Shift Registers (LFSR)
+Linear feeback shift registers are used in this project as an exersice to replace counters. LFSRs require less logic while generating a sequance of 2^m -1. They are very usefull when a brute force sequance is needed for that reason as they require much less logic then an adder, while only creating one less state (the all zeros in our case).
+
 # Diagrams 
 
 # Simulations
