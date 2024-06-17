@@ -41,6 +41,8 @@ Digital design - Codebreaking Hardware Acceleration/Parallel processing
     Cracking an RC-4 decryption using four different cores. Cores operate in parallel to find the key faster.
     
 # Important location
+    - Signal Tap
+    /rtl/SignalTap.stp
     - Assigning data to S memory by index
     /rtl/task1/populate_s_mem_by_index.sv
     - Reading data from D memory
