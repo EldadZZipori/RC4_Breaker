@@ -129,36 +129,19 @@ module ksa
 			endcase
 		end
 	end
-	/*
-		Switch controls
-	*/
-	logic [7:0] Seven_Seg_Val[5:0];
-		 
-	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst0(.ssOut(Seven_Seg_Val[0]), .nIn(secret_key[3:0]));
-	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst1(.ssOut(Seven_Seg_Val[1]), .nIn(secret_key[7:4]));
-	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst2(.ssOut(Seven_Seg_Val[2]), .nIn(secret_key[11:8]));
-	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst3(.ssOut(Seven_Seg_Val[3]), .nIn(secret_key[15:12]));
-	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst4(.ssOut(Seven_Seg_Val[4]), .nIn(secret_key[19:16]));
-	SevenSegmentDisplayDecoder SevenSegmentDisplayDecoder_inst5(.ssOut(Seven_Seg_Val[5]), .nIn(secret_key[23:20]));
 	
-	logic Clock_10Hz;
-	Generate_Arbitrary_Divided_Clk32 
-	Gen_100Hz_clk
-	(.inclk(CLOCK_50),
-	.outclk(Clock_10Hz),
-	.outclk_Not(),
-	.div_clk_count(5000000 >> 1),
-	.Reset(1'h1)
-); 
-	
-	always_ff @(posedge Clock_10Hz) begin
-		HEX0 <= Seven_Seg_Val[0];
-		HEX1 <= Seven_Seg_Val[1];
-		HEX2 <= Seven_Seg_Val[2];
-		HEX3 <= Seven_Seg_Val[3];
-		HEX4 <= Seven_Seg_Val[4];
-		HEX5 <= Seven_Seg_Val[5];
-	end
+	/* Controls the HEX display with secret_key*/
+	HEX_Control Hex_Control_inst
+	(
+		.orig_clk			(CLOCK_50),
+		.secret_key 		(secret_key),
+		.HEX0 				(HEX0),
+		.HEX1 				(HEX1),
+		.HEX2 				(HEX2),
+		.HEX3 				(HEX3),
+		.HEX4 				(HEX4),
+		.HEX5 				(HEX5)
+	);
 	
 	
 	logic [23:0] secret_key;

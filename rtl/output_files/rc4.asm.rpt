@@ -1,6 +1,6 @@
 Assembler report for rc4
-Sun Jun 16 09:12:07 2024
-Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
+Sun Jun 16 23:57:59 2024
+Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
 ---------------------
@@ -11,7 +11,7 @@ Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
   3. Assembler Settings
   4. Assembler Encrypted IP Cores Summary
   5. Assembler Generated Files
-  6. Assembler Device Options: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/output_files/rc4.sof
+  6. Assembler Device Options: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/output_files/rc4.sof
   7. Assembler Messages
 
 
@@ -19,7 +19,7 @@ Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2017  Intel Corporation. All rights reserved.
+Copyright (C) 2016  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -39,7 +39,7 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun Jun 16 09:12:07 2024 ;
+; Assembler Status      ; Successful - Sun Jun 16 23:57:59 2024 ;
 ; Revision Name         ; rc4                                   ;
 ; Top-level Entity Name ; ksa                                   ;
 ; Family                ; Cyclone V                             ;
@@ -64,24 +64,24 @@ agreement for further details.
 +--------+------------------------+--------------+
 
 
-+-----------------------------------------------------------------------------------+
-; Assembler Generated Files                                                         ;
-+-----------------------------------------------------------------------------------+
-; File Name                                                                         ;
-+-----------------------------------------------------------------------------------+
-; C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/output_files/rc4.sof ;
-+-----------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------+
+; Assembler Generated Files                                                   ;
++-----------------------------------------------------------------------------+
+; File Name                                                                   ;
++-----------------------------------------------------------------------------+
+; C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/output_files/rc4.sof ;
++-----------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/output_files/rc4.sof ;
-+----------------+--------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                    ;
-+----------------+--------------------------------------------------------------------------------------------+
-; Device         ; 5CSEMA5F31C6                                                                               ;
-; JTAG usercode  ; 0x04D8A834                                                                                 ;
-; Checksum       ; 0x04D8A834                                                                                 ;
-+----------------+--------------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/joshl/Documents/CPEN 311/lab4/RC4_Breaker/rtl/output_files/rc4.sof ;
++----------------+--------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                              ;
++----------------+--------------------------------------------------------------------------------------+
+; Device         ; 5CSEMA5F31C6                                                                         ;
+; JTAG usercode  ; 0x04C9B33C                                                                           ;
+; Checksum       ; 0x04C9B33C                                                                           ;
++----------------+--------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -89,15 +89,15 @@ agreement for further details.
 +--------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
-    Info: Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
-    Info: Processing started: Sun Jun 16 09:11:45 2024
+    Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+    Info: Processing started: Sun Jun 16 23:57:35 2024
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off rc4 -c rc4
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 5204 megabytes
-    Info: Processing ended: Sun Jun 16 09:12:07 2024
-    Info: Elapsed time: 00:00:22
-    Info: Total CPU time (on all processors): 00:00:22
+    Info: Peak virtual memory: 5209 megabytes
+    Info: Processing ended: Sun Jun 16 23:58:00 2024
+    Info: Elapsed time: 00:00:25
+    Info: Total CPU time (on all processors): 00:00:21
 
 
