@@ -1,5 +1,5 @@
 Flow report for time_machine
-Thu Jun 13 11:32:33 2024
+Mon Jun 17 19:37:58 2024
 Quartus Prime Version 16.1.2 Build 203 01/18/2017 SJ Lite Edition
 
 
@@ -41,7 +41,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Thu Jun 13 11:32:33 2024       ;
+; Flow Status                     ; Successful - Mon Jun 17 19:37:58 2024       ;
 ; Quartus Prime Version           ; 16.1.2 Build 203 01/18/2017 SJ Lite Edition ;
 ; Revision Name                   ; time_machine                                ;
 ; Top-level Entity Name           ; time_machine                                ;
@@ -49,8 +49,8 @@ agreement for further details.
 ; Device                          ; 5CGXFC7C7F23C8                              ;
 ; Timing Models                   ; Final                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 6                                           ;
-; Total pins                      ; 17                                          ;
+; Total registers                 ; 13                                          ;
+; Total pins                      ; 27                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -68,7 +68,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/13/2024 11:32:04 ;
+; Start date & time ; 06/17/2024 19:35:30 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; time_machine        ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 141812765405310.171830352415636        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 141812765405310.171867813014716        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -94,13 +94,14 @@ agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 4841 MB             ; 00:00:16                           ;
-; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4709 MB             ; 00:00:00                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4710 MB             ; 00:00:00                           ;
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4837 MB             ; 00:00:21                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4710 MB             ; 00:00:01                           ;
 ; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4714 MB             ; 00:00:01                           ;
 ; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4710 MB             ; 00:00:01                           ;
 ; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4714 MB             ; 00:00:01                           ;
-; Total                ; 00:00:09     ; --                      ; --                  ; 00:00:19                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4710 MB             ; 00:00:01                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4714 MB             ; 00:00:01                           ;
+; Total                ; 00:00:10     ; --                      ; --                  ; 00:00:27                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -115,6 +116,7 @@ agreement for further details.
 ; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
 ; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
 ; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-JFJUTTP  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -123,6 +125,7 @@ agreement for further details.
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off time_machine -c time_machine
 quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off time_machine -c time_machine --vector_source=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine/time_machine_simulation.vwf --testbench_file=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine/simulation/qsim/time_machine_simulation.vwf.vt
+quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine/simulation/qsim/ time_machine -c time_machine
 quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off time_machine -c time_machine --vector_source=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine/time_machine_simulation.vwf --testbench_file=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine/simulation/qsim/time_machine_simulation.vwf.vt
 quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine/simulation/qsim/ time_machine -c time_machine
 quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off time_machine -c time_machine --vector_source=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine/time_machine_simulation.vwf --testbench_file=C:/Users/eldad/OneDrive/Desktop/CPEN311/LAB4/RC4_Breaker/rtl/time_machine/simulation/qsim/time_machine_simulation.vwf.vt

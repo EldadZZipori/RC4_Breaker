@@ -8,11 +8,19 @@
 					"strict" : false
 				},
 				{
+					"name" : "start_s_i_i",
+					"strict" : false
+				},
+				{
 					"name" : "start_shuffle",
 					"strict" : false
 				},
 				{
-					"name" : "start_s_i_i",
+					"name" : "s_data_read_start",
+					"strict" : false
+				},
+				{
+					"name" : "start_decrypt",
 					"strict" : false
 				},
 				{
@@ -40,11 +48,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "key_from_switches_changed",
+					"name" : "current_state[6]",
 					"strict" : false
 				},
 				{
-					"name" : "key_from_switches_available",
+					"name" : "done",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "key_from_switches_changed",
 					"strict" : false
 				},
 				{
@@ -52,11 +68,31 @@
 					"strict" : false
 				},
 				{
-					"name" : "shuffle_mem_finished",
+					"name" : "s_data_read_done",
 					"strict" : false
 				},
 				{
 					"name" : "assign_by_index_done",
+					"strict" : false
+				},
+				{
+					"name" : "shuffle_mem_finished",
+					"strict" : false
+				},
+				{
+					"name" : "key_from_switches_available",
+					"strict" : false
+				},
+				{
+					"name" : "new_key_available",
+					"strict" : false
+				},
+				{
+					"name" : "ROM_mem_read",
+					"strict" : false
+				},
+				{
+					"name" : "stop",
 					"strict" : false
 				}
 			]

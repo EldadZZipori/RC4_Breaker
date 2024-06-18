@@ -19,7 +19,7 @@
 // the top level entity of the current Quartus project .The user can use this   
 // testbench to simulate his design using a third-party simulation tool .       
 // *****************************************************************************
-// Generated on "06/13/2024 11:32:32"
+// Generated on "06/17/2024 19:37:57"
                                                                                 
 // Verilog Test Bench (with test vectors) for design :                          time_machine
 // 
@@ -31,34 +31,54 @@ module time_machine_vlg_vec_tst();
 // constants                                           
 // general purpose registers
 reg CLOCK_50;
+reg ROM_mem_read;
 reg assign_by_index_done;
+reg decrypt_done;
 reg key_from_switches_available;
 reg key_from_switches_changed;
+reg new_key_available;
 reg reset;
+reg s_data_read_done;
+reg sec_shuffle_done;
 reg shuffle_mem_finished;
+reg stop;
 // wires                                               
 wire [7:0] current_state;
+wire done;
 wire reset_all;
+wire s_data_read_start;
+wire start_decrypt;
 wire start_s_i_i;
+wire start_sec_shuffle;
 wire start_shuffle;
 
 // assign statements (if any)                          
 time_machine i1 (
 // port map - connection between master ports and signals/registers   
 	.CLOCK_50(CLOCK_50),
+	.ROM_mem_read(ROM_mem_read),
 	.assign_by_index_done(assign_by_index_done),
 	.current_state(current_state),
+	.decrypt_done(decrypt_done),
+	.done(done),
 	.key_from_switches_available(key_from_switches_available),
 	.key_from_switches_changed(key_from_switches_changed),
+	.new_key_available(new_key_available),
 	.reset(reset),
 	.reset_all(reset_all),
+	.s_data_read_done(s_data_read_done),
+	.s_data_read_start(s_data_read_start),
+	.sec_shuffle_done(sec_shuffle_done),
 	.shuffle_mem_finished(shuffle_mem_finished),
+	.start_decrypt(start_decrypt),
 	.start_s_i_i(start_s_i_i),
-	.start_shuffle(start_shuffle)
+	.start_sec_shuffle(start_sec_shuffle),
+	.start_shuffle(start_shuffle),
+	.stop(stop)
 );
 initial 
 begin 
-#1000000 $finish;
+#400000 $finish;
 end 
 
 // CLOCK_50
@@ -69,11 +89,25 @@ begin
 	#5000;
 end 
 
+// ROM_mem_read
+initial
+begin
+	ROM_mem_read = 1'b0;
+	ROM_mem_read = #20000 1'b1;
+	ROM_mem_read = #10000 1'b0;
+end 
+
+// stop
+initial
+begin
+	stop = 1'b0;
+end 
+
 // assign_by_index_done
 initial
 begin
 	assign_by_index_done = 1'b0;
-	assign_by_index_done = #190000 1'b1;
+	assign_by_index_done = #70000 1'b1;
 	assign_by_index_done = #10000 1'b0;
 end 
 
@@ -81,24 +115,40 @@ end
 initial
 begin
 	shuffle_mem_finished = 1'b0;
-	shuffle_mem_finished = #440000 1'b1;
+	shuffle_mem_finished = #140000 1'b1;
 	shuffle_mem_finished = #10000 1'b0;
 end 
 
-// key_from_switches_changed
+// s_data_read_done
 initial
 begin
-	key_from_switches_changed = 1'b0;
-	key_from_switches_changed = #610000 1'b1;
-	key_from_switches_changed = #10000 1'b0;
+	s_data_read_done = 1'b0;
+	s_data_read_done = #190000 1'b1;
+	s_data_read_done = #10000 1'b0;
 end 
 
-// key_from_switches_available
+// decrypt_done
 initial
 begin
-	key_from_switches_available = 1'b0;
-	key_from_switches_available = #710000 1'b1;
-	key_from_switches_available = #10000 1'b0;
+	decrypt_done = 1'b0;
+	decrypt_done = #250000 1'b1;
+	decrypt_done = #10000 1'b0;
+end 
+
+// reset
+initial
+begin
+	reset = 1'b0;
+	reset = #300000 1'b1;
+	reset = #10000 1'b0;
+end 
+
+// new_key_available
+initial
+begin
+	new_key_available = 1'b0;
+	new_key_available = #340000 1'b1;
+	new_key_available = #10000 1'b0;
 end 
 endmodule
 
