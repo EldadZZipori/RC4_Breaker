@@ -79,20 +79,21 @@ System level diagram is provided. For more detailed diagram of the FSM's see /do
 # Simulations
 
 ### Assign data to RAM (S) by index
-![Assign By Index FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/task_1_simulation.png)
+![Assign By Index FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/task_1_annotated_simulation.png)
 
 
 ### Synchronizing switches for secret key
-![Switches Sync](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/switches_fsm_simulation.png)
+![Switches Sync](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/switches_fsm_annotated_simulation.png)
 
 
 ### Shuffling RAM (S) data 
-![Shuffle FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/shuffle_fsm_simulation.png)
+![Shuffle FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/shuffle_fsm_annotated_simulation.png)
 
 ### Reading ROM (D) data 
-![ROM Reader](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/rom_reader_simulation.png)
+![ROM Reader](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/rom_reader_annotated_simulation.png)
 
-### Decrypting message - need to make
+### Decrypting message
+![Decrypt Message](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/decryption_fsm_annotated_simulation.png)
 
 ### Determine Valid Message 
 ![Determine 1](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/determine_valid_message_annotated_simulation_1.png)
