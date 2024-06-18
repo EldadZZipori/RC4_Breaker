@@ -74,7 +74,7 @@ Simulation for this and pyhthon code to confirm use of the LFSR for our purposes
 2. Simulation image - /doc/LFSR_Python_simulation.png
 # Diagrams 
 System level diagram is provided. For more detailed diagram of the FSM's see /doc/fsm_diag
-![System level diagram](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/system_level_diagram.png)
+![System level diagram](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/ksa_system_level_diagram.png)
 
 # Simulations
 
