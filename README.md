@@ -109,10 +109,10 @@ System level diagram is provided. For more detailed diagram of the FSM's see /do
 # SignalTap (signal analyzer)
 
 ### Decrypted data RAM writer
-![DE Writer FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/de_writer_fsm.png)
+![DE Writer FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/de_writer_fsm_signal_tap.png)
 
 ### Decryption (third loop) FSM
-![Decryption FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/decryption_fsm.png)
+![Decryption FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/decryption_fsm_signal_tap.png)
 
 ### ROM data reader
 ![ROM Reader FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/rom_reader_signal_tap.png)
