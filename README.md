@@ -106,7 +106,7 @@ System level diagram is provided. For more detailed diagram of the FSM's see /do
 ### State Machine Z
 
 ### Linear Feedback Shift Register 
-![LFSR](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/4_bit_lfsr_simulation.png)
+![LFSR](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/4_bit_lfsr_annotated_simulation.png)
 # SignalTap (signal analyzer)
 
 ### Decrypted data RAM writer
