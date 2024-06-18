@@ -115,10 +115,10 @@ System level diagram is provided. For more detailed diagram of the FSM's see /do
 ![Decryption FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/decryption_fsm_signal_tap.png)
 
 ### ROM data reader
-![ROM Reader FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/rom_reader_signal_tap.png)
+![ROM Reader FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/rom_reader_signal_tap_new.png)
 
 ### Timing manager of complete algorithem (all three loops)
-![Time machine FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/time_machine_fsm.png)
+![Time machine FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/time_machine_fsm_signal_tap.png)
 
 ### Full Decryption Core
-![Decryption Core FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/four_cores_operation_signal_tap.png)
+![Decryption Core FSM](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/four_cores_operation_signal_tap_new.png)
