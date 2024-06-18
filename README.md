@@ -95,9 +95,9 @@ System level diagram is provided. For more detailed diagram of the FSM's see /do
 ### Decrypting message - need to make
 
 ### Determine Valid Message 
-![Determine 1](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/determine_valid_message_simulation_1.png)
+![Determine 1](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/determine_valid_message_annotated_simulation_1.png)
 
-![Determine 2](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/determine_valid_message_simulation_2.png)
+![Determine 2](https://github.com/EldadZZipori/RC4_Breaker/blob/main/doc/determine_valid_message_annotated_simulation_2.png)
 ### Time machine FSM - need to make
 
 ### State Machine Y
